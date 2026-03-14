@@ -36,26 +36,33 @@
   "@type": "ProfessionalService",
   "name": "CANCAS.STUDIO",
   "url": "https://www.cancasstudio.com",
+  "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80",
   "description": "Professional web design & development studio in Dubai, UAE. Custom websites for restaurants, salons, real estate, fitness & more. Mobile-friendly, SEO-ready. Live in 14 days. From AED 1,464.",
   "telephone": "+971569016046",
   "email": "hello@cancasstudio.com",
+  "currenciesAccepted": "AED",
+  "paymentAccepted": "Cash, Bank Transfer, Credit Card",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Dubai",
     "addressLocality": "Dubai",
     "addressCountry": "AE",
-    "addressRegion": "Dubai"
+    "addressRegion": "Dubai",
+    "postalCode": "00000"
   },
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 25.2048,
     "longitude": 55.2708
   },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens": "00:00",
-    "closes": "23:59"
-  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
   "priceRange": "AED 1,464 - AED 5,501",
   "areaServed": [
     { "@type": "City", "name": "Dubai" },
@@ -1666,7 +1673,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <div class="ci-col">
       <h3>LET'S BUILD SOMETHING GREAT</h3>
       <p>We respond to every enquiry within 24 hours and can have your new website live in as little as 14 days. Based in Dubai, serving clients worldwide.</p>
-      <div class="ci-row"><div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="ci-text"><strong>Email</strong><span><a href="mailto:hello@cancasstudio.com" style="color:var(--cyan)">hello@cancasstudio.com</a></span></div></div>
+      <div class="ci-row"><div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="ci-text"><strong>Email</strong><span><a href="/cdn-cgi/l/email-protection#29414c454546694a48474a485a5a5d5c4d4046074a4644" style="color:var(--cyan)"><span class="__cf_email__" data-cfemail="fa929f969695ba999b94999b89898e8f9e9395d4999597">[email&#160;protected]</span></a></span></div></div>
       <a href="https://wa.me/971569016046?text=Hi%2C%20I%27d%20like%20to%20discuss%20getting%20a%20website%20for%20my%20business." target="_blank" rel="noopener noreferrer" class="ci-row ci-row--wa" style="text-decoration:none;">
         <div class="ci-icon"><svg viewBox="0 0 24 24" fill="#25d366" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.507A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.727.977.994-3.634-.234-.374A9.818 9.818 0 1112 21.818z"/></svg></div>
         <div class="ci-text">
@@ -1794,7 +1801,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // PORTFOLIO TABS
 function showCat(cat,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -2117,7 +2124,7 @@ window.addEventListener('scroll',()=>{
 
     <h2>2. Payment Plans</h2>
     <div class="tc-highlight"><p><strong>One-Time Purchase:</strong> You pay the full package price once. Upon receipt of final payment, you own the complete website source code and all associated assets created for your project. You are responsible for arranging and paying for your own domain and hosting. We provide guidance on setup at no extra charge.</p></div>
-    <div class="tc-highlight"><p><strong>Managed Monthly Plan:</strong> You pay a recurring monthly fee (the applicable rate confirmed at the time of engagement and varies by package tier). This covers website hosting, SSL certificate, security monitoring, basic maintenance, and a set allowance of minor monthly edits as specified in your package. Monthly fees vary — higher-tier packages carry higher monthly rates. This plan may be cancelled at any time with 30 days written notice sent to <a href="mailto:hello@cancasstudio.com" style="color:var(--cyan)">hello@cancasstudio.com</a>. Hosting and all managed services (including domain forwarding) will cease at the end of the final paid billing period following cancellation.</p></div>
+    <div class="tc-highlight"><p><strong>Managed Monthly Plan:</strong> You pay a recurring monthly fee (the applicable rate confirmed at the time of engagement and varies by package tier). This covers website hosting, SSL certificate, security monitoring, basic maintenance, and a set allowance of minor monthly edits as specified in your package. Monthly fees vary — higher-tier packages carry higher monthly rates. This plan may be cancelled at any time with 30 days written notice sent to <a href="/cdn-cgi/l/email-protection#a6cec3cacac9e6c5c7c8c5c7d5d5d2d3c2cfc988c5c9cb" style="color:var(--cyan)"><span class="__cf_email__" data-cfemail="8de5e8e1e1e2cdeeece3eeecfefef9f8e9e4e2a3eee2e0">[email&#160;protected]</span></a>. Hosting and all managed services (including domain forwarding) will cease at the end of the final paid billing period following cancellation.</p></div>
     <p>A non-refundable deposit of 50% of the agreed project cost (or the equivalent of the first month's fee for managed plans) is required to begin work. The remaining balance is due upon project completion, before the website goes live. All payments are final once work has commenced.</p>
 
     <h2>3. Website File Transfer on Cancellation</h2>
@@ -2169,7 +2176,7 @@ window.addEventListener('scroll',()=>{
     <p>CANCAS.STUDIO reserves the right to update these Terms at any time. Updated terms will be posted on our website. Continued use of our services following an update constitutes acceptance of the revised terms.</p>
 
     <h2>16. Contact</h2>
-    <p>For questions regarding these Terms, contact us at <strong style="color:var(--cyan)"><a href="mailto:hello@cancasstudio.com" style="color:var(--cyan)">hello@cancasstudio.com</a></strong> or WhatsApp <strong style="color:var(--cyan)">+971 56 901 6046</strong>. We respond within 24 hours.</p>
+    <p>For questions regarding these Terms, contact us at <strong style="color:var(--cyan)"><a href="/cdn-cgi/l/email-protection#9bf3fef7f7f4dbf8faf5f8fae8e8efeefff2f4b5f8f4f6" style="color:var(--cyan)"><span class="__cf_email__" data-cfemail="87efe2ebebe8c7e4e6e9e4e6f4f4f3f2e3eee8a9e4e8ea">[email&#160;protected]</span></a></strong> or WhatsApp <strong style="color:var(--cyan)">+971 56 901 6046</strong>. We respond within 24 hours.</p>
 
     <div style="margin-top:48px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:gap">
       <p style="font-size:12px;color:var(--muted);">© 2026 CANCAS.STUDIO. All rights reserved.</p>
@@ -2178,7 +2185,7 @@ window.addEventListener('scroll',()=>{
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── PRICING ENGINE ──────────────────────────────────────────────────────
 // Base prices in USD (AED / 3.67)
 // ── Prices stored in AED, converted live ────────────────────────────────
@@ -2347,23 +2354,4 @@ function toggleMobileNav(){
   links.classList.toggle('mobile-open', open);
   document.body.style.overflow = open ? 'hidden' : '';
 }
-// Close mobile nav when a link is clicked
-document.querySelectorAll('#nav-links a').forEach(a=>{
-  a.addEventListener('click', ()=>{
-    const ham = document.getElementById('nav-ham');
-    const links = document.getElementById('nav-links');
-    ham.classList.remove('open');
-    links.classList.remove('mobile-open');
-    document.body.style.overflow = '';
-  });
-});
-
-// T&C
-function openTC(e){if(e)e.preventDefault();document.getElementById('tc-modal').classList.add('open');}
-document.getElementById('tc-modal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
-</script>
-
-</body>
-</html><!--/email_off-->
-</body>
-</html>
+// Close mobile nav when

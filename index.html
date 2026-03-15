@@ -839,6 +839,18 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:72px 72px
 .crm-tl-text{font-size:12px;color:var(--text);}
 /* KPI live */
 .kpi-live{font-size:11px;color:var(--muted);margin-top:4px;}
+/* Enquiry inbox */
+.enq-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-bottom:12px;transition:border-color .2s;position:relative;}
+.enq-card.unread{border-left:3px solid #b464ff;background:rgba(180,100,255,.04);}
+.enq-card:hover{border-color:rgba(180,100,255,.4);}
+.enq-card-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+.enq-name{font-size:15px;font-weight:700;color:var(--white);}
+.enq-date{font-size:11px;color:var(--muted);margin-left:auto;}
+.enq-email{font-size:12px;color:var(--cyan);}
+.enq-body{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:12px;}
+.enq-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.enq-pill{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.06);color:var(--muted);}
+.enq-actions{display:flex;gap:8px;flex-wrap:wrap;}
 /* Empty state */
 .crm-empty{text-align:center;padding:64px 20px;color:var(--muted);}
 .crm-empty-icon{font-size:48px;margin-bottom:16px;opacity:.3;}
@@ -1022,15 +1034,58 @@ img, video, iframe { max-width: 100%; display: block; }
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(8,8,16,.97);
-    align-items: center;
-    justify-content: center;
-    gap: 36px;
+    top: 62px;
+    left: 0;
+    right: 0;
+    background: #0d0d1a;
+    border-bottom: 2px solid var(--cyan);
     z-index: 850;
-    animation: fadeUp .25s ease;
+    list-style: none;
+    padding: 12px 0 20px;
+    gap: 0;
+    box-shadow: 0 12px 40px rgba(0,0,0,.8);
   }
-  .nav-links.mobile-open a { font-size: 20px; letter-spacing: 2px; }
+  .nav-links.mobile-open li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .nav-links.mobile-open li:last-child { border-bottom: none; }
+  .nav-links.mobile-open li a {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #e0e0e0;
+    background: transparent;
+    transition: background .15s, color .15s, padding-left .15s;
+  }
+  .nav-links.mobile-open li a:active,
+  .nav-links.mobile-open li a:hover {
+    background: rgba(0,212,255,.08);
+    color: var(--cyan);
+    padding-left: 32px;
+  }
+  .nav-links.mobile-open .mobile-cta-li {
+    border-bottom: none !important;
+    padding: 12px 24px 0;
+  }
+  .nav-links.mobile-open .mobile-cta-li a {
+    background: var(--cyan) !important;
+    color: #000 !important;
+    border-radius: 4px;
+    font-weight: 700;
+    justify-content: center;
+    padding: 15px 24px !important;
+    letter-spacing: 1.5px;
+  }
+  .nav-links.mobile-open .mobile-cta-li a:hover {
+    background: #fff !important;
+    padding-left: 24px !important;
+  }
   .nav-hamburger {
     display: flex;
     flex-direction: column;
@@ -1039,7 +1094,8 @@ img, video, iframe { max-width: 100%; display: block; }
     border: none;
     cursor: pointer;
     padding: 8px;
-    z-index: 860;
+    z-index: 900;
+    position: relative;
   }
   .nav-hamburger span {
     display: block;
@@ -1047,10 +1103,11 @@ img, video, iframe { max-width: 100%; display: block; }
     height: 2px;
     background: var(--white);
     border-radius: 2px;
-    transition: all .25s;
+    transition: all .3s;
+    transform-origin: center;
   }
   .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
   .btn-nav { display: none; }
 
@@ -1188,6 +1245,8 @@ img, video, iframe { max-width: 100%; display: block; }
 ═══════════════════════════════════ */
 .nav-hamburger { display: none; }
 @media (max-width: 767px) { .nav-hamburger { display: flex; } }
+.mobile-cta-li { display: none; }
+@media (max-width: 767px) { .mobile-cta-li { display: block; } }
 
 /* ═══════════════════════════════════
    SAFARI / iOS SPECIFIC FIXES
@@ -1263,6 +1322,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <li><a href="#process">Process</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#" onclick="openAdmin(event)">Admin</a></li>
+    <li class="mobile-cta-li"><a href="#contact">Get In Touch</a></li>
   </ul>
   <a href="#contact" class="btn-nav">Get In Touch</a>
 </nav>
@@ -1718,9 +1778,10 @@ html, body { max-width: 100%; overflow-x: hidden; }
   <h2>START YOUR<br>PROJECT TODAY</h2>
   <div class="contact-grid reveal">
     <div class="contact-form">
-      <div class="form-row">
+      <div class="form-row" style="grid-template-columns:1fr 1fr 1fr;">
         <div class="fg"><label>Full Name</label><input type="text" name="fullname" placeholder="John Smith" autocomplete="name"></div>
         <div class="fg"><label>Email Address</label><input type="email" name="email" placeholder="john@company.com" autocomplete="email"></div>
+        <div class="fg"><label>Phone / WhatsApp</label><input type="tel" name="phone" placeholder="+971 XX XXX XXXX" autocomplete="tel"></div>
       </div>
       <div class="form-row">
         <div class="fg"><label>Business Type</label><select><option value="">Select your industry</option><option>Restaurant / Café</option><option>Salon / Beauty</option><option>Real Estate</option><option>Fitness &amp; Wellness</option><option>Retail &amp; Fashion</option><option>Tech / SaaS</option><option>Healthcare</option><option>Other</option></select></div>
@@ -1732,7 +1793,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <div class="ci-col">
       <h3>LET'S BUILD SOMETHING GREAT</h3>
       <p>We respond to every enquiry within 24 hours and can have your new website live in as little as 14 days. Based in Dubai, serving clients worldwide.</p>
-      <a href="mailto:hello&#64;cancasstudio.com" class="ci-row ci-row--email" style="text-decoration:none;" aria-label="Email us">
+      <a href="/cdn-cgi/l/email-protection#f8909d949497dedbceccc39b99969b998b8b8c8d9c9197d69b9795" class="ci-row ci-row--email" style="text-decoration:none;" aria-label="Email us">
         <div class="ci-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -1844,7 +1905,12 @@ html, body { max-width: 100%; overflow-x: hidden; }
   <div class="admin-body">
 
     <!-- KPIs (live) -->
-    <div class="admin-kpis" id="crm-kpis">
+    <div class="admin-kpis" id="crm-kpis" style="grid-template-columns:repeat(5,1fr);">
+      <div class="kpi" style="border-left-color:#b464ff;cursor:pointer;" onclick="showEnquiriesView()">
+        <div class="kpi-val" id="kpi-enquiries" style="color:#b464ff;">0</div>
+        <div class="kpi-lbl">New Enquiries</div>
+        <div class="kpi-live" id="kpi-enq-sub">from website form</div>
+      </div>
       <div class="kpi"><div class="kpi-val" id="kpi-total">0</div><div class="kpi-lbl">Total Clients</div><div class="kpi-live" id="kpi-total-sub"></div></div>
       <div class="kpi"><div class="kpi-val" id="kpi-active">0</div><div class="kpi-lbl">Active / In Progress</div><div class="kpi-live" id="kpi-rev">AED 0/mo</div></div>
       <div class="kpi"><div class="kpi-val" id="kpi-leads">0</div><div class="kpi-lbl">Open Leads</div><div class="kpi-live" id="kpi-leads-sub"></div></div>
@@ -1853,7 +1919,10 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
     <!-- CRM Tabs -->
     <div class="crm-nav">
-      <button class="crm-tab active" onclick="crmTab('all',this)">All Clients</button>
+      <button class="crm-tab" id="tab-enquiries" onclick="showEnquiriesView()" style="color:#b464ff;border-bottom-color:transparent;">
+        📥 Enquiries <span id="enq-badge" style="display:none;background:#b464ff;color:#fff;border-radius:10px;padding:1px 7px;font-size:10px;margin-left:4px;"></span>
+      </button>
+      <button class="crm-tab active" id="tab-clients" onclick="showClientsView(this)">All Clients</button>
       <button class="crm-tab" onclick="crmTab('active',this)">Active</button>
       <button class="crm-tab" onclick="crmTab('inprogress',this)">In Progress</button>
       <button class="crm-tab" onclick="crmTab('lead',this)">Leads</button>
@@ -1861,6 +1930,20 @@ html, body { max-width: 100%; overflow-x: hidden; }
       <button class="crm-tab" onclick="crmTab('churned',this)">Churned</button>
     </div>
 
+    <!-- ENQUIRIES VIEW -->
+    <div id="enq-view" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--white);display:flex;align-items:center;gap:10px;">
+          <span style="width:3px;height:20px;background:#b464ff;display:block;"></span>
+          Website Enquiries
+        </div>
+        <button class="crm-btn" style="background:rgba(255,80,80,.12);color:#ff5050;border:1px solid rgba(255,80,80,.3);" onclick="clearReadEnquiries()">Clear Read</button>
+      </div>
+      <div id="enq-list"></div>
+    </div>
+
+    <!-- CLIENTS VIEW -->
+    <div id="clients-view">
     <!-- Toolbar -->
     <div class="crm-toolbar">
       <input class="crm-search" id="crm-search" type="text" placeholder="Search clients by name, business, email..." oninput="renderCrmGrid()">
@@ -1875,6 +1958,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
     <!-- Client Grid -->
     <div class="crm-grid" id="crm-grid"></div>
+    </div>
 
   </div>
 
@@ -1893,27 +1977,27 @@ html, body { max-width: 100%; overflow-x: hidden; }
           <div style="display:flex;align-items:center;gap:20px;margin-top:10px;flex-wrap:wrap;">
             <div style="display:flex;flex-direction:column;gap:2px;">
               <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Total</span>
-              <span id="prof-total-val" style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--white);line-height:1;">AED 0</span>
+              <span id="prof-total-val" style="font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;color:var(--white);line-height:1;">AED 0</span>
             </div>
             <div style="width:1px;height:32px;background:var(--border);flex-shrink:0;"></div>
             <div style="display:flex;flex-direction:column;gap:2px;">
               <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Paid</span>
-              <span id="prof-paid-val" style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#00e87a;line-height:1;">AED 0</span>
+              <span id="prof-paid-val" style="font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;color:#00e87a;line-height:1;">AED 0</span>
             </div>
             <div style="width:1px;height:32px;background:var(--border);flex-shrink:0;"></div>
             <div style="display:flex;flex-direction:column;gap:2px;">
               <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Pending</span>
-              <span id="prof-pending-val" style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#ff5050;line-height:1;">AED 0</span>
+              <span id="prof-pending-val" style="font-family:Barlow Condensed,sans-serif;font-size:26px;font-weight:900;color:#ff5050;line-height:1;">AED 0</span>
             </div>
             <div style="width:1px;height:32px;background:var(--border);flex-shrink:0;"></div>
             <div style="display:flex;flex-direction:column;gap:2px;">
               <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Monthly</span>
-              <span id="prof-monthly-val" style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--cyan);line-height:1;">AED 0/mo</span>
+              <span id="prof-monthly-val" style="font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;color:var(--cyan);line-height:1;">AED 0/mo</span>
             </div>
             <div style="width:1px;height:32px;background:var(--border);flex-shrink:0;"></div>
             <div id="prof-countdown-wrap" style="display:none;flex-direction:column;gap:2px;">
               <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Delivery In</span>
-              <span id="prof-countdown" style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#e8b84b;line-height:1;">—</span>
+              <span id="prof-countdown" style="font-family:Barlow Condensed,sans-serif;font-size:26px;font-weight:900;color:#e8b84b;line-height:1;">—</span>
             </div>
           </div>
         </div>
@@ -1959,7 +2043,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
             </div>
             <div class="crm-field" id="cf-industry-other-wrap" style="display:none"><label class="crm-label">Specify Industry</label><input class="crm-input" id="cf-industry-other" placeholder="Type your industry..."></div>
             <div class="crm-field full" style="padding:16px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;grid-column:1/-1;">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:12px;">Secondary Contact Person</div>
+              <div style="font-family:Barlow Condensed,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:12px;">Secondary Contact Person</div>
               <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
                 <div class="crm-field"><label class="crm-label">Contact Name</label><input class="crm-input" id="cf-contact2-name" placeholder="Full name"></div>
                 <div class="crm-field"><label class="crm-label">Role / Title</label><input class="crm-input" id="cf-contact2-role" placeholder="e.g. Manager, Owner"></div>
@@ -2054,15 +2138,15 @@ html, body { max-width: 100%; overflow-x: hidden; }
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
               <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;">
                 <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Total Value</div>
-                <div id="bill-total" style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--white);">AED 0</div>
+                <div id="bill-total" style="font-family:Barlow Condensed,sans-serif;font-size:28px;font-weight:900;color:var(--white);">AED 0</div>
               </div>
               <div style="background:var(--bg3);border:1px solid rgba(0,232,122,.2);border-radius:6px;padding:14px;text-align:center;">
                 <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Total Paid</div>
-                <div id="bill-paid" style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#00e87a;">AED 0</div>
+                <div id="bill-paid" style="font-family:Barlow Condensed,sans-serif;font-size:28px;font-weight:900;color:#00e87a;">AED 0</div>
               </div>
               <div style="background:var(--bg3);border:1px solid rgba(255,80,80,.2);border-radius:6px;padding:14px;text-align:center;">
                 <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Pending / Due</div>
-                <div id="bill-pending" style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#ff5050;">AED 0</div>
+                <div id="bill-pending" style="font-family:Barlow Condensed,sans-serif;font-size:28px;font-weight:900;color:#ff5050;">AED 0</div>
               </div>
             </div>
             <div style="margin-top:8px;"><button class="crm-btn" onclick="saveClient()" style="width:100%;">Save Billing</button></div>
@@ -2352,19 +2436,264 @@ async function sendChat(){
 }
 
 function getFallback(l){
-  if(l.match(/cheap|afford|lowest|budget|starter|799/)) return 'Our most affordable option is the Starter — AED 1,464 one-time (you own the code) or just AED 99/month on a managed plan that includes hosting, SSL, domain, and 2 edits per month. What suits you best?';
-  if(l.match(/price|cost|how much|pricing|fee|package/)) return 'We have two paths: own your website outright from AED 1,464 (you keep the code) or a monthly managed plan from AED 99/month that covers hosting, SSL, domain, and regular maintenance. Which suits you better?';
-  if(l.match(/domain|hosting|manage|cancel|monthly/)) return 'Our managed monthly plans cover hosting, SSL, security, and minor edits — with a free domain included (closest match to your business name). Monthly rates increase with larger packages. Cancel anytime — hosting stops at end of your final paid period. Website files can be transferred to you at no extra charge on cancellation. Specific or premium domains have an additional cost — we check with our team first.';
-  if(l.match(/salon|barber|hair|beauty|spa|nail/)) return 'We build stunning salon and barbershop websites with online booking, stylist profiles, before/after galleries, and loyalty programmes. Would you like to see a demo or get a quote?';
-  if(l.match(/restaurant|cafe|coffee|food|menu|delivery/)) return 'We specialise in restaurant and café websites with digital menus, online reservations, delivery integrations, and QR table ordering. We can have yours live in as little as 7 days.';
-  if(l.match(/real estate|property|home|house|listing|agent/)) return 'Our real estate sites include property listing portals, virtual tours, mortgage calculators, and agent profiles. Perfect for individual agents or full agencies.';
-  if(l.match(/gym|fitness|yoga|workout|training|health/)) return 'We build gym and fitness websites with class schedules, personal trainer booking, membership portals, and even live-streaming integrations. What type of fitness business do you run?';
-  if(l.match(/how long|time|fast|days|quick|when|turnaround/)) return 'Starter websites launch in 5–7 days, Business sites in 10–14 days, and Enterprise projects in 3–4 weeks. We move fast without cutting corners.';
-  if(l.match(/contact|email|phone|reach|whatsapp|talk/)) return 'You can reach us at hello@cancasstudio.com or WhatsApp +971 56 901 6046. We respond within 24 hours — usually much faster.';
-  if(l.match(/ai|chatbot|bot|automation|smart/)) return 'Every Business and Enterprise site includes a built-in AI chatbot (like this one) that answers customer questions 24/7, takes bookings, and captures leads automatically.';
-  if(l.match(/terms|condition|legal|cancel|refund/)) return 'Our full Terms & Conditions are available in the website footer. Key points: 50% deposit to start, cancel managed plans with 30 days notice, hosting stops on cancellation, and you own your code on one-time purchases.';
-  return 'Great question! I\'m here to help with anything about our websites, pricing, or your project. What would you like to know?';
+  // Track used responses to avoid repeating
+  if(!window._nexUsed) window._nexUsed = [];
+  
+  function pick(key, responses){
+    var unused = responses.filter(function(r){ return window._nexUsed.indexOf(key+'|'+r) === -1; });
+    var pool = unused.length > 0 ? unused : responses;
+    var chosen = pool[Math.floor(Math.random() * pool.length)];
+    window._nexUsed.push(key+'|'+chosen);
+    if(window._nexUsed.length > 40) window._nexUsed.shift();
+    return chosen;
+  }
+
+  // Greetings
+  if(l.match(/^(hi|hello|hey|good morning|good evening|good afternoon|sup|yo|hiya|howdy)[\s!.,?]*$/))
+    return pick('greet',[
+      'Hey! Welcome to CANCAS.STUDIO. I\'m Nex, your AI guide. Are you looking to build a new website, or do you have a question about our services?',
+      'Hello! Great to have you here. I\'m Nex — I can help you with pricing, services, timelines, or anything else about CANCAS.STUDIO. What\'s on your mind?',
+      'Hi there! I\'m Nex. Whether you\'re a new client exploring options or an existing client with a question, I\'m here to help. What can I do for you today?'
+    ]);
+
+  // Who are you / what is this
+  if(l.match(/who are you|what are you|your name|are you (a )?bot|are you (an )?ai|are you human|are you real/))
+    return pick('whoami',[
+      'I\'m Nex — the AI assistant for CANCAS.STUDIO. I can answer questions about our web design services, pricing, timelines, and more. What would you like to know?',
+      'I\'m Nex, CANCAS.STUDIO\'s virtual assistant. I\'m powered by AI and know everything about our services, packages, and process. How can I help you today?'
+    ]);
+
+  // About the company
+  if(l.match(/who is cancas|what is cancas|about you|about cancas|about the company|tell me about|what do you do|what does cancas/))
+    return pick('about',[
+      'CANCAS.STUDIO is a premium web design and development agency based in Dubai, UAE. We build fast, modern, AI-powered websites for businesses across all industries — from restaurants and salons to real estate and tech companies. We typically launch sites in 7–14 days.',
+      'We\'re a Dubai-based web agency that specialises in building high-converting custom websites. From a 5-page starter site to a full enterprise platform with AI chatbot, booking systems and CRM — we do it all. Want to see pricing or examples?'
+    ]);
+
+  // Pricing / cost / packages
+  if(l.match(/price|cost|how much|pricing|fee|package|plan|rate|charge|quote|affordable|cheap|expensive/))
+    return pick('pricing',[
+      'We have two ways to work with us: \n\n1. Own it outright — Starter AED 1,464 | Business AED 2,932 | Premium AED 5,501 (one-time, you keep the code forever)\n\n2. Monthly managed — from AED 99/mo (we host, maintain and update everything, free domain included)\n\nWhich interests you more?',
+      'Our packages start at AED 1,464 for a one-time build or AED 99/month on a managed plan. The main difference: one-time means you own the code outright, monthly means we handle everything including hosting, SSL and edits. What type of business are you building for?',
+      'Great question on pricing! Starter is AED 1,464 (5 pages), Business is AED 2,932 (10 pages + AI chatbot + booking system), and Premium is AED 5,501 (unlimited pages, advanced features). All include full custom design. Monthly plans start at AED 99/mo. Want a specific quote?'
+    ]);
+
+  // Starter package
+  if(l.match(/starter|basic|simple|small|1464|99.?mo|99 a month/))
+    return pick('starter',[
+      'The Starter package is AED 1,464 one-time or AED 99/month managed. It includes a 5-page website, contact form, basic SEO, Google Maps, and 30 days of support. Perfect for small businesses just getting online. Want to get started?',
+      'Our Starter plan gives you a clean, professional 5-page website for AED 1,464 one-time. On the monthly plan it\'s AED 99/mo — and we handle hosting, SSL, domain, and 2 edits per month. Is this for a new business or an existing one?'
+    ]);
+
+  // Business package
+  if(l.match(/business (package|plan|tier)|2932|149.?mo|10 page/))
+    return pick('business',[
+      'The Business package at AED 2,932 one-time (or AED 149/month managed) is our most popular. It includes up to 10 pages, an AI chatbot, booking system, advanced SEO, analytics, and 90 days of support with unlimited revisions. What industry are you in?',
+      'Business plan is AED 2,932 one-time — 10 pages, booking system, built-in AI chatbot, full SEO and analytics, 90 days support. On monthly it\'s AED 149/mo with hosting and 5 edits per month. Would you like a demo?'
+    ]);
+
+  // Premium package
+  if(l.match(/premium|enterprise|5501|349.?mo|unlimited/))
+    return pick('premium',[
+      'The Premium package at AED 5,501 one-time (or AED 349/month) is our full-power option — unlimited pages, advanced AI chatbot, CRM integrations, 6 months support, and unlimited revisions. It\'s ideal for businesses that want a complete digital system. Want to discuss your requirements?',
+      'Premium is our most powerful package: AED 5,501 one-time or AED 349/month managed. Unlimited pages, full custom design, advanced AI chatbot, CRM integrations, VIP support and monthly strategy calls. Perfect for growing businesses. Shall I connect you with our team?'
+    ]);
+
+  // Timeline / how long
+  if(l.match(/how long|time|fast|days|quick|when|turnaround|deadline|delivery|launch|ready/))
+    return pick('timeline',[
+      'Starter websites are typically live in 5–7 days. Business sites take 10–14 days. Enterprise or highly custom projects take 3–4 weeks. We move fast without cutting corners — and you\'re involved throughout.',
+      'We aim to launch Starter sites in under 7 days and Business sites within 14 days. Once you send us your content (logo, photos, text), we take it from there. What\'s your ideal launch date?',
+      'Our fastest launch is 5 days for a Starter site — we once launched a restaurant site in 4 days for a grand opening! Typically 7–14 days depending on the package. When are you hoping to go live?'
+    ]);
+
+  // Restaurant / cafe / food
+  if(l.match(/restaurant|cafe|coffee|food|menu|delivery|takeaway|diner|bistro|eatery|bar|pub/))
+    return pick('restaurant',[
+      'Restaurants are one of our specialities! We build sites with digital menus, online reservations, delivery integrations, QR table ordering cards, and Instagram-worthy photo galleries. We can have yours live in as little as 7 days. Want to see a demo?',
+      'We\'ve built dozens of restaurant and café websites. Key features we include: full menu with photos, OpenTable or custom reservation system, Google Maps integration, online ordering, and a gallery that makes the food look incredible. What type of food business is it?'
+    ]);
+
+  // Salon / beauty
+  if(l.match(/salon|barber|hair|beauty|spa|nail|facial|wax|aesthetic|lash|brow/))
+    return pick('salon',[
+      'Salon and beauty websites are a big part of what we do! We include online booking (linked to your calendar), stylist profiles, service menus with pricing, before/after galleries, and loyalty programme integration. What type of salon is it?',
+      'We love building for salons and beauty businesses — the visual storytelling is amazing. Your site would include booking, services, team profiles, a full gallery, and even gift voucher sales. Shall we put together a quick quote?'
+    ]);
+
+  // Real estate / property
+  if(l.match(/real estate|property|home|house|listing|agent|mortgage|villa|apartment|rent|lease|realtor/))
+    return pick('realestate',[
+      'Our real estate websites include property listing portals with search/filter, virtual tour integration, mortgage calculators, agent profiles, and lead capture forms. Great for individual agents, brokers, and full agencies. Are you based in Dubai?',
+      'Property websites are one of our strongest areas — especially for the Dubai market. We build full listing portals, agent profile pages, enquiry systems, and WhatsApp lead integration. Business or Premium package would suit you best. Want a quote?'
+    ]);
+
+  // Gym / fitness
+  if(l.match(/gym|fitness|yoga|pilates|workout|training|crossfit|pt|personal trainer|health|wellness|sport/))
+    return pick('fitness',[
+      'Fitness websites are exciting to build! We include class schedules with live booking, personal trainer profiles, membership plans, progress trackers, and even live-stream class integrations. What type of fitness business do you run?',
+      'We\'ve built for gyms, yoga studios, personal trainers, and wellness centres. Key features: class timetable, trainer booking, membership sign-up, before/after gallery, and an AI chatbot to handle enquiries 24/7. Interested in a quote?'
+    ]);
+
+  // Healthcare / dental / clinic
+  if(l.match(/doctor|medical|clinic|dental|dentist|health|hospital|therapy|therapist|physio|pharmacy/))
+    return pick('health',[
+      'Medical and dental websites need to be clean, trustworthy, and conversion-focused. We build appointment booking systems, service pages, doctor/team profiles, patient portals, and telehealth integrations. We also ensure full GDPR-compliant privacy policies. What type of clinic is it?',
+      'We\'ve built for dental clinics, medical centres, therapy practices, and wellness clinics. Features include online appointment booking, service information pages, doctor profiles, and patient testimonials. Business package is most popular for clinics — shall I break it down?'
+    ]);
+
+  // Tech / SaaS / startup
+  if(l.match(/tech|saas|startup|app|software|developer|agency|digital|product|platform|api/))
+    return pick('tech',[
+      'Tech and SaaS sites are something we love building — feature sections, pricing tables, API documentation pages, investor decks, and waitlist landing pages. We\'ve helped several Dubai startups launch their online presence. What stage is your product at?',
+      'For tech companies and startups, we focus on clean design, fast load times, and conversion-optimised copy. We can build anything from a simple landing page to a full product site with user portal and integrations. What does your product do?'
+    ]);
+
+  // Retail / ecommerce / shop
+  if(l.match(/retail|shop|store|ecommerce|e-commerce|sell|product|boutique|fashion|clothing/))
+    return pick('retail',[
+      'Retail and fashion websites are a strong suit for us — product showcases, lookbooks, size guides, enquiry forms, and even basic e-commerce. We work with platforms like Shopify for full online stores, or build custom product pages. What are you selling?',
+      'We build retail sites ranging from simple product showcase pages to full e-commerce stores. If you need cart and checkout, we\'d recommend our Premium package with e-commerce integration. What products do you carry?'
+    ]);
+
+  // Domain / hosting
+  if(l.match(/domain|hosting|host|ssl|server|dns|cpanel|subdomain/))
+    return pick('hosting',[
+      'All our monthly managed plans include free hosting, SSL certificate, security monitoring, and a free domain (closest available match to your business name). Premium domains or specific names may have an extra cost — we confirm before purchasing. One-time clients arrange their own hosting (we help with setup free).',
+      'On our managed monthly plans, we handle everything: hosting, SSL, domain, and security monitoring. Your site is always online and updated. If you go the one-time route, you own the code and host it yourself — we assist with the initial setup at no extra charge.'
+    ]);
+
+  // AI chatbot feature
+  if(l.match(/ai|chatbot|bot|automation|smart feature|artificial intelligence|machine learning/))
+    return pick('ai',[
+      'Every Business and Premium package includes a built-in AI chatbot — just like the one you\'re chatting with now! It answers customer questions 24/7, handles booking enquiries, captures leads, and can be trained on your specific menu, services, or FAQ. It\'s a game-changer for businesses.',
+      'Our AI chatbot feature is included in Business and Premium packages. It\'s powered by the same technology you\'re using right now — it can answer questions about your services, handle bookings, qualify leads, and even escalate to WhatsApp for complex queries. Clients love it.'
+    ]);
+
+  // SEO
+  if(l.match(/seo|search engine|google|rank|traffic|keywords|visibility|organic/))
+    return pick('seo',[
+      'All our sites are built with SEO best practices: fast load times, proper meta tags, schema markup, Google Maps integration, and sitemap submission. Business and Premium packages include advanced SEO setup and Google Analytics. We also set up your Google Business Profile.',
+      'SEO is built into every website we deliver — not an afterthought. We handle page speed optimisation, meta descriptions, schema markup, and Google Business Profile setup. Want your site to rank for specific keywords in Dubai? We can talk about that too.'
+    ]);
+
+  // Existing client / account / support
+  if(l.match(/existing client|my website|my account|my site|support|help with|issue|problem|bug|update|change|edit/))
+    return pick('support',[
+      'For existing client support, the best route is to message us directly on WhatsApp (+971 56 901 6046) or email hello@cancasstudio.com with your service number and details of what you need. We typically respond within a few hours.',
+      'If you\'re an existing CANCAS.STUDIO client, please reach out on WhatsApp +971 56 901 6046 or email hello@cancasstudio.com. Include your business name and what you need changed — our team will get right on it, usually within 24 hours.'
+    ]);
+
+  // Payment / deposit / invoice
+  if(l.match(/pay|payment|deposit|invoice|receipt|bank|transfer|card|cash|crypto/))
+    return pick('payment',[
+      'We require a 50% deposit to begin work, with the remaining balance due on project completion. We accept bank transfer, cash, credit/debit card, Apple Pay, Google Pay, PayPal, Wise, and cryptocurrency (USDT). Monthly plans are billed by card or bank transfer.',
+      'Payment is 50% upfront to kick off the project and 50% on delivery. We accept all major payment methods — bank transfer, card, Apple Pay, Google Pay, PayPal, Wise, and crypto. Monthly plans can be set up on auto-billing. Need an invoice for a quote?'
+    ]);
+
+  // Refund / cancel
+  if(l.match(/refund|cancel|stop|end|terminate|money back/))
+    return pick('cancel',[
+      'For monthly managed plans, you can cancel anytime with 30 days notice — hosting stops at the end of your final paid period, and we transfer your website files to you at no extra charge. For one-time projects, the 50% deposit is non-refundable once work begins. Our full terms are in the website footer.',
+      'Cancellations for monthly plans take effect at end of the billing period. You always keep your website files — we transfer them to you on request. One-time project deposits are non-refundable once the build has started. Questions about a specific situation? Message us directly.'
+    ]);
+
+  // Contact / reach us
+  if(l.match(/contact|email|phone|reach|whatsapp|call|get in touch|speak|talk to someone|human/))
+    return pick('contact',[
+      'You can reach us at hello@cancasstudio.com or WhatsApp +971 56 901 6046. We\'re based in Dubai and respond within 24 hours — usually much faster. Or just fill in the contact form on this page and we\'ll come to you!',
+      'Best ways to reach us: WhatsApp +971 56 901 6046 (fastest), email hello@cancasstudio.com, or the contact form on this page. We respond within 24 hours, 7 days a week.'
+    ]);
+
+  // Portfolio / examples / demos
+  if(l.match(/portfolio|example|demo|sample|work|previous|past|show me|can i see|have you built/))
+    return pick('portfolio',[
+      'Yes! We have 24 live demo sites showing our work across 8 industries — restaurants, salons, real estate, fitness, tech, retail, healthcare, and more. Scroll up to the Portfolio section to see them all. Each one is fully interactive.',
+      'Our portfolio section (scroll up!) has 24 interactive demos across every industry we work in. Each demo shows a complete website with navigation, hero, services, gallery, and contact sections. Want me to highlight any specific industry?'
+    ]);
+
+  // Process / how it works
+  if(l.match(/process|how does it work|steps|what happens|next step|get started|begin|start/))
+    return pick('process',[
+      'Our process is simple: 1) Discovery call to understand your business 2) Design concept presented within 48 hours 3) Build phase (5–14 days) 4) Your review + revisions 5) Launch day! We handle domain, hosting, and go-live. Want to book a discovery call?',
+      'Getting started is easy — reach out via WhatsApp or the contact form, we have a quick discovery chat, then we send you a design concept within 48 hours. From there the build takes 7–14 days. You\'re involved at every stage but we do all the heavy lifting.'
+    ]);
+
+  // Revisions / changes
+  if(l.match(/revision|change|amend|modify|update|edit|adjust|alter|different/))
+    return pick('revision',[
+      'Starter includes 2 revisions, Business and Premium include unlimited revisions until you\'re 100% happy. Monthly managed clients get 2–5 edits per month depending on plan. We never charge extra for reasonable change requests during the build phase.',
+      'We work with you until you\'re completely satisfied. Business and Premium packages have unlimited revisions — we keep refining until it\'s perfect. Monthly clients can request edits any time within their plan allowance.'
+    ]);
+
+  // Languages / multilingual
+  if(l.match(/arabic|language|multilingual|english|hindi|french|translation|bilingual/))
+    return pick('language',[
+      'We build multilingual websites — English, Arabic, Hindi, and more. Arabic RTL (right-to-left) design is something we specialise in given our Dubai base. A bilingual site is available as an add-on to any package. Is this for a UAE-based business?',
+      'Multilingual support including Arabic RTL is available as part of our builds. Many of our Dubai clients run English + Arabic sites. It\'s an add-on to any package — just mention it when you enquire and we\'ll include it in your quote.'
+    ]);
+
+  // Mobile / responsive
+  if(l.match(/mobile|responsive|phone|tablet|ipad|iphone|android|screen size/))
+    return pick('mobile',[
+      'Every website we build is fully responsive — it looks and works perfectly on phones, tablets, and desktops. We test across iOS Safari, Chrome, Android, and all major screen sizes before launch. Mobile performance is a priority, not an afterthought.',
+      'All our sites are mobile-first. More than 70% of web traffic is on mobile, so we design for phones first, then scale up to desktop. Google also ranks mobile-friendly sites higher in search results. You\'ll love how it looks on your phone.'
+    ]);
+
+  // Speed / performance
+  if(l.match(/speed|fast|slow|performance|pagespeed|lighthouse|loading|load time/))
+    return pick('speed',[
+      'Our sites consistently score 95–99 on Google PageSpeed — we\'ve had clients go from a 40-score site to 98 after rebuilding with us. Fast sites rank higher on Google and convert visitors into customers more effectively. Speed is something we take seriously.',
+      'Performance is built in from day one — optimised images, clean code, minimal dependencies, and CDN hosting. We target 99+ on Google PageSpeed and sub-2-second load times. Fast sites rank higher and convert better.'
+    ]);
+
+  // Thank you / thanks
+  if(l.match(/^(thank|thanks|thank you|cheers|appreciate|perfect|great|awesome|amazing|fantastic|brilliant|excellent|wonderful|love it)[\s!.,?]*$/))
+    return pick('thanks',[
+      'Happy to help! If you have any other questions or are ready to start your project, just say the word. Our team at CANCAS.STUDIO is excited to build something great for you.',
+      'Anytime! Feel free to ask anything else. When you\'re ready to move forward, just fill in the contact form or message us on WhatsApp +971 56 901 6046.',
+      'Great! Any time you\'re ready to take the next step, we\'re here. You can also browse our demos in the Portfolio section to get a feel for our work.'
+    ]);
+
+  // Bye / goodbye
+  if(l.match(/^(bye|goodbye|see you|cya|later|take care|ttyl|gtg)[\s!.,?]*$/))
+    return pick('bye',[
+      'Thanks for stopping by! Feel free to come back any time you have questions. Looking forward to working with you at CANCAS.STUDIO!',
+      'Take care! If you decide to move forward with a website, we\'re just a message away at hello@cancasstudio.com or WhatsApp +971 56 901 6046.'
+    ]);
+
+  // Yes / no / ok / sure (short replies in conversation context)
+  if(l.match(/^(yes|yeah|yep|sure|ok|okay|definitely|absolutely|of course|sounds good|go ahead|please)[\s!.,?]*$/))
+    return pick('yes',[
+      'Great! To get started, fill in the contact form on this page or WhatsApp us at +971 56 901 6046. We\'ll get back to you within 24 hours with a tailored proposal.',
+      'Excellent! The quickest way to move forward is to WhatsApp us at +971 56 901 6046 — just say "I\'d like a quote" and we\'ll take it from there. Alternatively, the contact form above works perfectly too.'
+    ]);
+
+  // Question about our clients / industries
+  if(l.match(/what industry|what business|what client|what type|which business|who do you work with/))
+    return pick('industries',[
+      'We work with businesses across all industries — restaurants and cafes, salons and barbershops, real estate agencies, gyms and fitness studios, tech companies and startups, retail and fashion brands, medical and dental clinics, and hospitality businesses. Basically, if you have customers, we can build you a website that converts them. What\'s your industry?',
+      'Our clients span 8+ industries: food and beverage, beauty and wellness, real estate, fitness, retail, tech, healthcare, and hospitality. We\'ve done everything from a 5-page cafe site to a full real estate portal with 200+ property listings. What does your business do?'
+    ]);
+
+  // Guarantee / warranty
+  if(l.match(/guarantee|warranty|promise|what if i don|not happy|satisfaction/))
+    return pick('guarantee',[
+      'We stand behind our work. Business and Premium packages include unlimited revisions — we keep refining until you\'re 100% happy. We\'ve never had a client who wasn\'t satisfied with the final result. If something isn\'t right, we fix it, full stop.',
+      'Your satisfaction is guaranteed. We don\'t consider a project done until you love it. That\'s why Business and Premium packages have unlimited revisions, and even our Starter includes 2 rounds of changes. We\'re proud of our 98% client satisfaction rate.'
+    ]);
+
+  // Catchall — genuinely varied, helpful, never repetitive
+  var catchalls = [
+    'That\'s a great question — could you tell me a bit more about what you\'re looking for? I\'m happy to help with anything from pricing and timelines to specific features for your industry.',
+    'I want to make sure I give you the most relevant answer! Are you exploring website options for a new business, or looking to upgrade an existing site?',
+    'I\'d love to help with that. To point you in the right direction — are you thinking about a one-time website build, or a monthly managed plan where we handle everything?',
+    'Good question! The best way to get a precise answer is to describe your business briefly. What industry are you in, and roughly how many pages do you think you\'d need?',
+    'I can definitely help with that. Quick question first — is this for a brand new business website, or are you looking to replace or improve an existing one?'
+  ];
+  return pick('catchall', catchalls);
 }
+
 function addChatMsg(text,type){
   const box=document.getElementById('chat-msgs');
   const div=document.createElement('div');div.className='msg '+type;
@@ -2468,7 +2797,7 @@ window.addEventListener('scroll',()=>{
 
     <h2>2. Payment Plans</h2>
     <div class="tc-highlight"><p><strong>One-Time Purchase:</strong> You pay the full package price once. Upon receipt of final payment, you own the complete website source code and all associated assets created for your project. You are responsible for arranging and paying for your own domain and hosting. We provide guidance on setup at no extra charge.</p></div>
-    <div class="tc-highlight"><p><strong>Managed Monthly Plan:</strong> You pay a recurring monthly fee (the applicable rate confirmed at the time of engagement and varies by package tier). This covers website hosting, SSL certificate, security monitoring, basic maintenance, and a set allowance of minor monthly edits as specified in your package. Monthly fees vary — higher-tier packages carry higher monthly rates. This plan may be cancelled at any time with 30 days written notice sent to <a href="mailto:hello&#64;cancasstudio.com" style="color:var(--cyan)">hello&#64;cancasstudio&#46;com</a>. Hosting and all managed services (including domain forwarding) will cease at the end of the final paid billing period following cancellation.</p></div>
+    <div class="tc-highlight"><p><strong>Managed Monthly Plan:</strong> You pay a recurring monthly fee (the applicable rate confirmed at the time of engagement and varies by package tier). This covers website hosting, SSL certificate, security monitoring, basic maintenance, and a set allowance of minor monthly edits as specified in your package. Monthly fees vary — higher-tier packages carry higher monthly rates. This plan may be cancelled at any time with 30 days written notice sent to <a href="/cdn-cgi/l/email-protection#2149444d4d4e070217151a42404f42405252555445484e0f424e4c" style="color:var(--cyan)">hello&#64;cancasstudio&#46;com</a>. Hosting and all managed services (including domain forwarding) will cease at the end of the final paid billing period following cancellation.</p></div>
     <p>A non-refundable deposit of 50% of the agreed project cost (or the equivalent of the first month's fee for managed plans) is required to begin work. The remaining balance is due upon project completion, before the website goes live. All payments are final once work has commenced.</p>
 
     <h2>3. Website File Transfer on Cancellation</h2>
@@ -2520,7 +2849,7 @@ window.addEventListener('scroll',()=>{
     <p>CANCAS.STUDIO reserves the right to update these Terms at any time. Updated terms will be posted on our website. Continued use of our services following an update constitutes acceptance of the revised terms.</p>
 
     <h2>16. Contact</h2>
-    <p>For questions regarding these Terms, contact us at <strong style="color:var(--cyan)"><a href="mailto:hello&#64;cancasstudio.com" style="color:var(--cyan)">hello&#64;cancasstudio&#46;com</a></strong> or WhatsApp <strong style="color:var(--cyan)">+971 56 901 6046</strong>. We respond within 24 hours.</p>
+    <p>For questions regarding these Terms, contact us at <strong style="color:var(--cyan)"><a href="/cdn-cgi/l/email-protection#3a525f5656551c190c0e01595b54595b49494e4f5e535514595557" style="color:var(--cyan)">hello&#64;cancasstudio&#46;com</a></strong> or WhatsApp <strong style="color:var(--cyan)">+971 56 901 6046</strong>. We respond within 24 hours.</p>
 
     <div style="margin-top:48px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:gap">
       <p style="font-size:12px;color:var(--muted);">© 2026 CANCAS.STUDIO. All rights reserved.</p>
@@ -2546,6 +2875,34 @@ let CUR = 'AED', RATE = 1; // RATE = target/AED ratio
 function toTarget(aed){ return Math.round(aed * RATE).toLocaleString(); }
 // alias for legacy calls
 function fmtP(usd){ return Math.round(usd * RATE * BASE_RATE).toLocaleString(); }
+
+// ── MOBILE NAV ─────────────────────────────────────────────────────────
+function toggleMobileNav(){
+  var nav = document.getElementById('nav-links');
+  var ham = document.getElementById('nav-ham');
+  if(!nav || !ham) return;
+  var isOpen = nav.classList.contains('mobile-open');
+  nav.classList.toggle('mobile-open', !isOpen);
+  ham.classList.toggle('open', !isOpen);
+  // Prevent body scroll when menu open
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+
+// Close mobile nav when any link is clicked
+document.addEventListener('DOMContentLoaded', function(){
+  var links = document.querySelectorAll('#nav-links a');
+  links.forEach(function(link){
+    link.addEventListener('click', function(){
+      var nav = document.getElementById('nav-links');
+      var ham = document.getElementById('nav-ham');
+      if(nav && nav.classList.contains('mobile-open')){
+        nav.classList.remove('mobile-open');
+        ham.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+});
 
 window.setCur = function setCur(cur, ratePerUSD){
   CUR = cur;
@@ -2740,10 +3097,141 @@ var CRM = {
   }
 };
 
+// ── ENQUIRIES INBOX ────────────────────────────────────────────
+function updateEnquiryBadge(){
+  var enquiries = [];
+  try { enquiries = JSON.parse(localStorage.getItem('crm_enquiries')||'[]'); } catch(e){}
+  var unread = enquiries.filter(function(e){ return !e.read; }).length;
+  var badge = document.getElementById('enq-badge');
+  var kpi = document.getElementById('kpi-enquiries');
+  var sub = document.getElementById('kpi-enq-sub');
+  if(badge){ if(unread>0){ badge.textContent=unread; badge.style.display='inline'; } else { badge.style.display='none'; } }
+  if(kpi) kpi.textContent = unread;
+  if(sub) sub.textContent = unread===1 ? '1 unread' : (unread>0 ? unread+' unread' : 'all read');
+}
+
+function showEnquiriesView(){
+  document.getElementById('enq-view').style.display = 'block';
+  document.getElementById('clients-view').style.display = 'none';
+  document.querySelectorAll('.crm-tab').forEach(function(t){ t.classList.remove('active'); });
+  var et = document.getElementById('tab-enquiries');
+  if(et){ et.classList.add('active'); et.style.color='#b464ff'; et.style.borderBottomColor='#b464ff'; }
+  renderEnquiries();
+}
+
+function showClientsView(btn){
+  document.getElementById('enq-view').style.display = 'none';
+  document.getElementById('clients-view').style.display = 'block';
+  document.querySelectorAll('.crm-tab').forEach(function(t){ t.classList.remove('active'); t.style.color=''; t.style.borderBottomColor=''; });
+  if(btn){ btn.classList.add('active'); }
+  CRM.currentTab = 'all';
+  renderCrmGrid();
+}
+
+function renderEnquiries(){
+  var enquiries = [];
+  try { enquiries = JSON.parse(localStorage.getItem('crm_enquiries')||'[]'); } catch(e){}
+  var list = document.getElementById('enq-list');
+  if(!list) return;
+
+  if(enquiries.length===0){
+    list.innerHTML = '<div class="crm-empty"><div class="crm-empty-icon">📭</div><div>No enquiries yet — they will appear here when clients submit the contact form</div></div>';
+    return;
+  }
+
+  list.innerHTML = enquiries.map(function(e){
+    var unread = !e.read;
+    var statusColor = e.status==='converted' ? '#00e87a' : e.status==='replied' ? '#00d4ff' : '#b464ff';
+    var statusLabel = e.status==='converted' ? 'Converted' : e.status==='replied' ? 'Replied' : 'New';
+    return '<div class="enq-card'+(unread?' unread':'')+'" id="enq-'+e.id+'">'
+      +'<div class="enq-card-top">'
+      +(unread?'<span style="width:8px;height:8px;border-radius:50%;background:#b464ff;flex-shrink:0;"></span>':'')
+      +'<span class="enq-name">'+e.name+'</span>'
+      +'<span class="enq-email">'+e.email+'</span>'
+      +(e.phone?'<span style="font-size:12px;color:#25d366;">'+e.phone+'</span>':'')
+      +'<span style="font-family:JetBrains Mono,monospace;font-size:9px;padding:2px 8px;border-radius:10px;background:'+statusColor+'22;color:'+statusColor+';border:1px solid '+statusColor+'44;">'+statusLabel+'</span>'
+      +'<span class="enq-date">'+e.date+'</span>'
+      +'</div>'
+      +'<div class="enq-meta">'
+      +(e.biz&&e.biz!=='Not specified'?'<span class="enq-pill">'+e.biz+'</span>':'')
+      +(e.pkg&&e.pkg!=='Not specified'?'<span class="enq-pill" style="color:var(--cyan);">'+e.pkg+'</span>':'')
+      +'</div>'
+      +(e.detail?'<div class="enq-body">'+e.detail+'</div>':'')
+      +'<div class="enq-actions">'
+      +'<button class="crm-btn" style="font-size:10px;padding:7px 14px;" onclick="convertEnquiryToLead('+e.id+')">+ Add as Lead</button>'
+      +'<a href="mailto:'+e.email+'?subject=Re: Your website enquiry — CANCAS.STUDIO" class="crm-btn sec" style="font-size:10px;padding:7px 14px;text-decoration:none;" onclick="markEnquiryReplied('+e.id+')">Reply by Email</a>'
+      +'<a href="https://wa.me/'+e.email.replace(/[^0-9]/g,'')+'" class="crm-btn sec" style="font-size:10px;padding:7px 14px;text-decoration:none;color:#25d366;border-color:#25d366;">WhatsApp</a>'
+      +(unread?'<button class="crm-btn sec" style="font-size:10px;padding:7px 14px;" onclick="markEnquiryRead('+e.id+')">Mark Read</button>':'')
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function markEnquiryRead(id){
+  var enquiries = [];
+  try { enquiries = JSON.parse(localStorage.getItem('crm_enquiries')||'[]'); } catch(e){}
+  enquiries = enquiries.map(function(e){ if(e.id===id){ e.read=true; } return e; });
+  localStorage.setItem('crm_enquiries', JSON.stringify(enquiries));
+  renderEnquiries();
+  updateEnquiryBadge();
+}
+
+function markEnquiryReplied(id){
+  var enquiries = [];
+  try { enquiries = JSON.parse(localStorage.getItem('crm_enquiries')||'[]'); } catch(e){}
+  enquiries = enquiries.map(function(e){ if(e.id===id){ e.status='replied'; e.read=true; } return e; });
+  localStorage.setItem('crm_enquiries', JSON.stringify(enquiries));
+  updateEnquiryBadge();
+}
+
+function convertEnquiryToLead(id){
+  var enquiries = [];
+  try { enquiries = JSON.parse(localStorage.getItem('crm_enquiries')||'[]'); } catch(e){}
+  var enq = enquiries.find(function(e){ return e.id===id; });
+  if(!enq) return;
+  // Mark as converted
+  enquiries = enquiries.map(function(e){ if(e.id===id){ e.status='converted'; e.read=true; } return e; });
+  localStorage.setItem('crm_enquiries', JSON.stringify(enquiries));
+  // Open new client profile pre-filled
+  CRM.currentId = null;
+  clearProfileForm();
+  var setV = function(eid, val){ var el=document.getElementById(eid); if(el) el.value=val||''; };
+  setV('cf-name', enq.name);
+  setV('cf-email', enq.email);
+  setV('cf-phone', enq.phone||'');
+  setV('cf-status', 'lead');
+  setV('cf-package', enq.pkg!=='Not specified'?enq.pkg:'');
+  setV('cf-brief', enq.detail);
+  // Try to match industry
+  var industryMap = {'Restaurant':'Restaurant','Cafe':'Cafe & Coffee','Salon':'Salon & Beauty','Beauty':'Salon & Beauty','Real Estate':'Real Estate','Fitness':'Fitness & Gym','Gym':'Fitness & Gym','Tech':'Tech & SaaS','Retail':'Retail & Shop','Health':'Healthcare','Medical':'Healthcare','Dental':'Healthcare'};
+  Object.keys(industryMap).forEach(function(k){ if(enq.biz && enq.biz.toLowerCase().indexOf(k.toLowerCase())>-1){ setV('cf-industry', industryMap[k]); } });
+  document.getElementById('prof-del-btn') && (document.getElementById('prof-del-btn').style.display='none');
+  updateProfileHeader();
+  var firstCat = document.querySelector('.crm-main-cat');
+  if(firstCat) selectMainCat(firstCat);
+  var infoBtn = document.querySelector('.crm-prof-tab');
+  if(infoBtn) switchProfTab('info', infoBtn);
+  document.getElementById('crm-profile-modal').classList.add('open');
+  document.getElementById('note-thread').innerHTML='<div class="crm-empty"><div class="crm-empty-icon">💬</div><div>No activity yet</div></div>';
+  document.getElementById('crm-timeline-list').innerHTML='';
+  renderEnquiries();
+  updateEnquiryBadge();
+}
+
+function clearReadEnquiries(){
+  var enquiries = [];
+  try { enquiries = JSON.parse(localStorage.getItem('crm_enquiries')||'[]'); } catch(e){}
+  enquiries = enquiries.filter(function(e){ return !e.read; });
+  localStorage.setItem('crm_enquiries', JSON.stringify(enquiries));
+  renderEnquiries();
+  updateEnquiryBadge();
+}
+
 function crmInit(){
   CRM.load();
   renderCrmGrid();
   updateKpis();
+  updateEnquiryBadge();
 }
 
 function crmTab(tab, btn){
@@ -3342,26 +3830,69 @@ if(document.readyState==='loading'){
 }
 
 window.submitContactForm = function submitContactForm(btn) {
-  const form = btn.closest('.contact-form');
-  const name  = form.querySelector('input[type=text]').value.trim();
-  const email = form.querySelector('input[type=email]').value.trim();
-  const detail = form.querySelector('textarea').value.trim();
-  if (!name) { alert('Please enter your full name.'); return; }
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  const pkg  = form.querySelectorAll('select')[1].value || 'Not specified';
-  const biz  = form.querySelectorAll('select')[0].value || 'Not specified';
-  const msg  = encodeURIComponent(
-    'Hi CANCAS.STUDIO! I just submitted an enquiry via your website.\n\n' +
-    'Name: ' + name + '\n' +
-    'Email: ' + email + '\n' +
-    'Business type: ' + biz + '\n' +
-    'Package interest: ' + pkg + '\n' + (detail ? 'Details: ' + detail : '')
-  );
-  btn.textContent = '\u2705 Sent! Redirecting to WhatsApp...';
-  btn.style.background = '#00e87a';
-  btn.style.color = '#000';
+  var form = btn.closest('.contact-form');
+  var name   = form.querySelector('input[type=text]').value.trim();
+  var email  = form.querySelector('input[type=email]').value.trim();
+  var phone  = (form.querySelector('input[type=tel]')||{value:''}).value.trim();
+  var detail = form.querySelector('textarea').value.trim();
+  var pkg    = form.querySelectorAll('select')[1].value || 'Not specified';
+  var biz    = form.querySelectorAll('select')[0].value || 'Not specified';
+
+  if (!name)  { showFormError(form, 'Please enter your full name.'); return; }
+  if (!email || !email.includes('@')) { showFormError(form, 'Please enter a valid email address.'); return; }
+
   btn.disabled = true;
-  setTimeout(() => { window.open('https://wa.me/971569016046?text=' + msg, '_blank'); }, 800);
+  btn.innerHTML = '<span style="opacity:.7">Sending...</span>';
+
+  // Save enquiry directly to admin inbox (localStorage)
+  var enquiries = [];
+  try { enquiries = JSON.parse(localStorage.getItem('crm_enquiries') || '[]'); } catch(e){}
+  var enquiry = {
+    id: Date.now(),
+    name: name,
+    email: email,
+    phone: phone,
+    biz: biz,
+    pkg: pkg,
+    detail: detail,
+    date: new Date().toLocaleString('en-GB', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'}),
+    status: 'new',
+    read: false
+  };
+  enquiries.unshift(enquiry);
+  localStorage.setItem('crm_enquiries', JSON.stringify(enquiries));
+
+  // Update admin badge if panel is open
+  updateEnquiryBadge();
+  showFormSuccess(form, btn);
+}
+
+function showFormSuccess(form, btn){
+  // Hide the form fields, show success message
+  form.querySelectorAll('.form-row, .fg').forEach(function(el){ el.style.display='none'; });
+  btn.style.display = 'none';
+  var existing = form.querySelector('.form-success-msg');
+  if(!existing){
+    var msg = document.createElement('div');
+    msg.className = 'form-success-msg';
+    msg.innerHTML = '<div style="text-align:center;padding:40px 20px;">'
+      + '<div style="font-size:48px;margin-bottom:16px;">✅</div>'
+      + '<div style="font-family:Barlow Condensed,sans-serif;font-size:28px;font-weight:900;color:#00e87a;letter-spacing:1px;margin-bottom:10px;">MESSAGE SENT!</div>'
+      + '<div style="font-size:14px;color:var(--muted);line-height:1.7;">Your enquiry has been sent to <strong style="color:var(--cyan)">hello@cancasstudio.com</strong>.<br>We will get back to you within 24 hours.</div>'
+      + '</div>';
+    form.appendChild(msg);
+  }
+}
+
+function showFormError(form, message){
+  var existing = form.querySelector('.form-error-msg');
+  if(existing) existing.remove();
+  var err = document.createElement('div');
+  err.className = 'form-error-msg';
+  err.style.cssText = 'background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);border-radius:4px;padding:10px 14px;font-size:13px;color:#ff5050;margin-top:8px;';
+  err.textContent = message;
+  form.appendChild(err);
+  setTimeout(function(){ if(err.parentNode) err.remove(); }, 4000);
 }
 </script>
 </body>

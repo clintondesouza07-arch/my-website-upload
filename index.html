@@ -622,6 +622,9 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,6vw,84px);font
 .ci-row--wa:hover{border-color:#25d366;background:rgba(37,211,102,.06);}
 .ci-row--call{cursor:pointer;}
 .ci-row--call:hover{border-color:var(--cyan);background:rgba(0,212,255,.04);}
+.ci-row--email{cursor:pointer;border-color:rgba(0,212,255,.15);}
+.ci-row--email:hover{border-color:var(--cyan);background:rgba(0,212,255,.04);}
+.ci-row--email:hover .ci-action-badge{color:var(--cyan);border-color:rgba(0,212,255,.3);}
 .ci-action-badge{
   margin-left:auto;flex-shrink:0;
   font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
@@ -736,6 +739,115 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:72px 72px
 .badge-s{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;letter-spacing:1px;}
 .badge-a{background:rgba(0,232,122,.12);color:var(--green);}
 .badge-p{background:rgba(232,184,75,.12);color:var(--gold);}
+
+/* ── CRM SYSTEM ─────────────────────────────────────────────────── */
+.crm-nav{display:flex;gap:6px;margin-bottom:32px;border-bottom:1px solid var(--border);padding-bottom:0;}
+.crm-tab{background:none;border:none;border-bottom:2px solid transparent;padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s;margin-bottom:-1px;}
+.crm-tab.active,.crm-tab:hover{color:var(--cyan);border-bottom-color:var(--cyan);}
+.crm-view{display:none;}.crm-view.active{display:block;}
+.crm-toolbar{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+.crm-search{flex:1;min-width:200px;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:10px 16px;color:var(--white);font-size:13px;font-family:'DM Sans',sans-serif;}
+.crm-search:focus{outline:none;border-color:var(--cyan);}
+.crm-btn{background:var(--cyan);color:#000;border:none;padding:10px 22px;font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:all .2s;white-space:nowrap;}
+.crm-btn:hover{background:#fff;}
+.crm-btn.sec{background:transparent;color:var(--cyan);border:1px solid var(--cyan);}
+.crm-btn.sec:hover{background:rgba(0,212,255,.08);}
+.crm-btn.red{background:rgba(255,80,80,.12);color:#ff5050;border:1px solid rgba(255,80,80,.3);}
+.crm-btn.red:hover{background:rgba(255,80,80,.2);}
+.crm-filter{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:10px 14px;color:var(--muted);font-size:12px;cursor:pointer;}
+.crm-filter:focus{outline:none;border-color:var(--cyan);}
+/* Client cards grid */
+.crm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.crm-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px;cursor:pointer;transition:all .25s;position:relative;}
+.crm-card:hover{border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4);}
+.crm-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
+.crm-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#2a7070);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#000;flex-shrink:0;}
+.crm-card-name{font-size:15px;font-weight:600;color:var(--white);margin-bottom:3px;}
+.crm-card-biz{font-size:12px;color:var(--muted);}
+.crm-status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.crm-card-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.crm-meta-item{font-size:11px;}
+.crm-meta-label{color:var(--muted);letter-spacing:.5px;margin-bottom:2px;}
+.crm-meta-val{color:var(--text);font-weight:500;}
+/* Status badges */
+.st-active{background:rgba(0,232,122,.12);color:#00e87a;}
+.st-inprogress{background:rgba(0,212,255,.12);color:var(--cyan);}
+.st-revision{background:rgba(232,184,75,.12);color:#e8b84b;}
+.st-paused{background:rgba(255,150,50,.12);color:#ff9632;}
+.st-completed{background:rgba(120,120,120,.12);color:#888;}
+.st-churned{background:rgba(255,80,80,.12);color:#ff5050;}
+.st-lead{background:rgba(180,100,255,.12);color:#b464ff;}
+.crm-pill{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;letter-spacing:.5px;display:inline-block;}
+/* Client profile modal */
+#crm-profile-modal{display:none;position:fixed;inset:0;z-index:9600;background:rgba(0,0,0,.92);overflow-y:auto;}
+#crm-profile-modal.open{display:block;}
+.crm-profile-shell{max-width:1100px;margin:32px auto;background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.crm-profile-header{background:var(--bg3);border-bottom:1px solid var(--border);padding:24px 36px;display:flex;align-items:center;gap:20px;}
+.crm-profile-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#2a7070);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;color:#000;flex-shrink:0;}
+.crm-profile-info{flex:1;}
+.crm-profile-name{font-size:22px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.crm-profile-sub{font-size:13px;color:var(--muted);}
+.crm-profile-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.crm-profile-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.crm-profile-left{padding:32px 36px;border-right:1px solid var(--border);}
+.crm-profile-right{padding:32px 36px;}
+.crm-section-hd{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.crm-field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;}
+.crm-field{display:flex;flex-direction:column;gap:5px;}
+.crm-field.full{grid-column:1/-1;}
+.crm-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+.crm-input{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:9px 13px;color:var(--white);font-size:13px;font-family:'DM Sans',sans-serif;transition:border-color .2s;width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;}
+.crm-input:focus{outline:none;border-color:var(--cyan);}
+.crm-select{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:9px 13px;color:var(--white);font-size:13px;font-family:'DM Sans',sans-serif;width:100%;cursor:pointer;}
+.crm-select:focus{outline:none;border-color:var(--cyan);}
+.crm-textarea{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:10px 13px;color:var(--white);font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:80px;width:100%;}
+.crm-textarea:focus{outline:none;border-color:var(--cyan);}
+/* Activity / notes thread */
+.crm-thread{border-top:1px solid var(--border);padding-top:24px;margin-top:8px;}
+.crm-thread-compose{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.crm-tag-row{display:flex;gap:8px;flex-wrap:wrap;}
+.crm-tag{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:11px;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'JetBrains Mono',monospace;letter-spacing:.5px;}
+.crm-tag.sel{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.08);}
+.crm-tag.billing.sel{border-color:#e8b84b;color:#e8b84b;background:rgba(232,184,75,.08);}
+.crm-main-cat{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 14px;font-size:11px;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'JetBrains Mono',monospace;letter-spacing:.3px;white-space:nowrap;}
+.crm-main-cat.sel{background:rgba(0,212,255,.1);border-color:var(--cyan);color:var(--cyan);font-weight:600;}
+.crm-main-cat:hover{border-color:var(--border-lit);color:var(--text);}
+.crm-prof-tab{background:none;border:none;border-bottom:2px solid transparent;padding:12px 20px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s;margin-bottom:-1px;white-space:nowrap;}
+.crm-prof-tab.active{color:var(--cyan);border-bottom-color:var(--cyan);}
+.crm-prof-tab:hover{color:var(--text);}
+.crm-prof-panel{display:none;}
+.crm-prof-panel.active{display:block;}
+.crm-tag.update.sel{border-color:var(--cyan);color:var(--cyan);}
+.crm-tag.issue.sel{border-color:#ff5050;color:#ff5050;background:rgba(255,80,80,.08);}
+.crm-tag.photo.sel{border-color:#b464ff;color:#b464ff;background:rgba(180,100,255,.08);}
+.crm-tag.complaint.sel{border-color:#ff9632;color:#ff9632;background:rgba(255,150,50,.08);}
+.crm-tag.payment.sel{border-color:#00e87a;color:#00e87a;background:rgba(0,232,122,.08);}
+.crm-note-entry{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin-bottom:10px;transition:border-color .2s;}
+.crm-note-entry:hover{border-color:rgba(0,212,255,.2);}
+.crm-note-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.crm-note-tag{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:10px;letter-spacing:1px;}
+.crm-note-date{font-size:11px;color:var(--muted);margin-left:auto;}
+.crm-note-text{font-size:13px;color:var(--text);line-height:1.65;}
+.crm-note-del{background:none;border:none;color:rgba(255,80,80,.4);font-size:14px;cursor:pointer;padding:2px 6px;border-radius:3px;transition:color .2s;}
+.crm-note-del:hover{color:#ff5050;}
+/* Timeline */
+.crm-timeline{position:relative;padding-left:20px;}
+.crm-timeline::before{content:'';position:absolute;left:5px;top:0;bottom:0;width:1px;background:var(--border);}
+.crm-tl-item{position:relative;margin-bottom:16px;padding-left:16px;}
+.crm-tl-item::before{content:'';position:absolute;left:-15px;top:5px;width:8px;height:8px;border-radius:50%;background:var(--cyan);border:2px solid var(--bg2);}
+.crm-tl-date{font-size:10px;color:var(--muted);letter-spacing:.5px;margin-bottom:2px;}
+.crm-tl-text{font-size:12px;color:var(--text);}
+/* KPI live */
+.kpi-live{font-size:11px;color:var(--muted);margin-top:4px;}
+/* Empty state */
+.crm-empty{text-align:center;padding:64px 20px;color:var(--muted);}
+.crm-empty-icon{font-size:48px;margin-bottom:16px;opacity:.3;}
+/* Responsive */
+@media(max-width:768px){
+  .crm-profile-body{grid-template-columns:1fr;}
+  .crm-profile-left{border-right:none;border-bottom:1px solid var(--border);}
+  .crm-field-grid{grid-template-columns:1fr;}
+}
 
 /* REVEAL - always visible */
 .reveal{opacity:1;transform:none;}
@@ -1620,10 +1732,18 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <div class="ci-col">
       <h3>LET'S BUILD SOMETHING GREAT</h3>
       <p>We respond to every enquiry within 24 hours and can have your new website live in as little as 14 days. Based in Dubai, serving clients worldwide.</p>
-      <a href="mailto:hello&#64;cancasstudio.com" class="ci-row" style="text-decoration:none;cursor:pointer;" onmouseover="this.style.borderColor='var(--cyan)'" onmouseout="this.style.borderColor=''">
-        <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-        <div class="ci-text"><strong>Email</strong><span style="color:var(--cyan)" data-email="hello&#64;cancasstudio&#46;com">hello&#64;cancasstudio&#46;com</span></div>
-        <div class="ci-action-badge" style="margin-left:auto;font-size:11px;color:var(--cyan);border:1px solid rgba(0,212,255,.3);padding:4px 10px;border-radius:4px;">SEND EMAIL</div>
+      <a href="mailto:hello&#64;cancasstudio.com" class="ci-row ci-row--email" style="text-decoration:none;" aria-label="Email us">
+        <div class="ci-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="ci-text">
+          <strong style="color:var(--cyan);">Email Us</strong>
+          <span>hello&#64;cancasstudio&#46;com</span>
+        </div>
+        <div class="ci-action-badge">SEND EMAIL &#8594;</div>
       </a>
       <a href="https://wa.me/971569016046?text=Hi%2C%20I%27d%20like%20to%20discuss%20getting%20a%20website%20for%20my%20business." target="_blank" rel="noopener noreferrer" class="ci-row ci-row--wa" style="text-decoration:none;">
         <div class="ci-icon"><svg viewBox="0 0 24 24" fill="#25d366" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.507A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.727.977.994-3.634-.234-.374A9.818 9.818 0 1112 21.818z"/></svg></div>
@@ -1707,10 +1827,9 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><svg style="width:30px;height:30px;animation:navMarkSpin 28s linear infinite;filter:drop-shadow(0 0 6px rgba(74,173,173,0.5));flex-shrink:0;" viewBox="0 0 120 120" fill="none"><defs><radialGradient id="mmamBg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#0d2828"/><stop offset="100%" stop-color="#040e0e"/></radialGradient></defs><circle cx="60" cy="60" r="57" fill="url(#mmamBg)"/><circle cx="60" cy="60" r="56" stroke="#4aadad" stroke-width="1.8" fill="none"/><g fill="#4aadad" fill-opacity="0.9"><path d="M60,18 C44,32 44,54 60,64 C76,54 76,32 60,18 Z"/><path d="M60,18 C44,32 44,54 60,64 C76,54 76,32 60,18 Z" transform="rotate(120,60,60)"/><path d="M60,18 C44,32 44,54 60,64 C76,54 76,32 60,18 Z" transform="rotate(240,60,60)"/></g><circle cx="60" cy="33" r="5" fill="#040e0e"/><circle cx="60" cy="33" r="5" fill="#040e0e" transform="rotate(120,60,60)"/><circle cx="60" cy="33" r="5" fill="#040e0e" transform="rotate(240,60,60)"/><circle cx="60" cy="60" r="9" fill="#040e0e"/><circle cx="60" cy="60" r="9" stroke="#4aadad" stroke-width="1.4" fill="none"/><circle cx="60" cy="60" r="3.5" fill="#7dd4d4"/></svg><div style="display:flex;flex-direction:column;line-height:1;"><span style="font-family:'Cinzel',serif;font-weight:700;font-size:13px;letter-spacing:3px;color:#f0ece5;">CANCAS</span><span style="font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:3px;color:#4aadad;text-transform:uppercase;margin-top:2px;">Studio</span></div></a>
     <h3>Admin Access</h3>
     <p>Enter your credentials to access the admin panel</p>
-    <div class="fg" style="margin-bottom:14px"><label>Username</label><input type="text" id="admin-u" placeholder="cancas_admin"></div>
-    <div class="fg" style="margin-bottom:28px"><label>Password</label><input type="password" id="admin-p" placeholder="••••••••" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
+    <div class="fg" style="margin-bottom:14px"><label>Username</label><input type="text" id="admin-u" placeholder="Username"></div>
+    <div class="fg" style="margin-bottom:28px"><label>Password</label><input type="password" id="admin-p" placeholder="Password" onkeypress="if(event.key==='Enter')doAdminLogin()"></div>
     <button class="btn-primary" style="width:100%;justify-content:center;" onclick="doAdminLogin()">Sign In</button>
-    <div class="admin-hint"><p>Username: <em>cancas_admin</em></p><p>Password: <em>Cancas@2026!</em></p></div>
     <button class="admin-cancel" onclick="document.getElementById('admin-modal').classList.remove('open')" aria-label="Close admin login">← Back to website</button>
   </div>
 </div>
@@ -1723,37 +1842,305 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <div style="margin-left:auto"><button class="btn-secondary" style="padding:9px 20px;font-size:11px" onclick="closeAdmin()">Exit Admin</button></div>
   </div>
   <div class="admin-body">
-    <div class="admin-kpis">
-      <div class="kpi"><div class="kpi-val">12</div><div class="kpi-lbl">Active Clients</div></div>
-      <div class="kpi"><div class="kpi-val">3</div><div class="kpi-lbl">Projects In Progress</div></div>
-      <div class="kpi"><div class="kpi-val">$8,240</div><div class="kpi-lbl">Monthly Revenue</div></div>
-      <div class="kpi"><div class="kpi-val">147</div><div class="kpi-lbl">AI Chat Sessions</div></div>
+
+    <!-- KPIs (live) -->
+    <div class="admin-kpis" id="crm-kpis">
+      <div class="kpi"><div class="kpi-val" id="kpi-total">0</div><div class="kpi-lbl">Total Clients</div><div class="kpi-live" id="kpi-total-sub"></div></div>
+      <div class="kpi"><div class="kpi-val" id="kpi-active">0</div><div class="kpi-lbl">Active / In Progress</div><div class="kpi-live" id="kpi-rev">AED 0/mo</div></div>
+      <div class="kpi"><div class="kpi-val" id="kpi-leads">0</div><div class="kpi-lbl">Open Leads</div><div class="kpi-live" id="kpi-leads-sub"></div></div>
+      <div class="kpi"><div class="kpi-val" id="kpi-done">0</div><div class="kpi-lbl">Completed</div><div class="kpi-live" id="kpi-done-sub"></div></div>
     </div>
-    <div class="admin-section">
-      <div class="admin-section-title">Active Projects</div>
-      <table class="a-table"><thead><tr><th>Client</th><th>Project</th><th>Package</th><th>Status</th><th>Due</th></tr></thead><tbody>
-        <tr><td>Café Amore</td><td>Restaurant website + booking</td><td>Business</td><td><span class="badge-s badge-a">In Progress</span></td><td>Mar 15</td></tr>
-        <tr><td>Gloss Beauty Studio</td><td>Salon site + AI chatbot</td><td>Business</td><td><span class="badge-s badge-p">Revision</span></td><td>Mar 20</td></tr>
-        <tr><td>Dubai Realty Group</td><td>Property portal + listings</td><td>Enterprise</td><td><span class="badge-s badge-a">In Dev</span></td><td>Apr 1</td></tr>
-        <tr><td>FitZone Gym</td><td>Gym site + class scheduling</td><td>Starter</td><td><span class="badge-s badge-a">Design Phase</span></td><td>Mar 25</td></tr>
-      </tbody></table>
+
+    <!-- CRM Tabs -->
+    <div class="crm-nav">
+      <button class="crm-tab active" onclick="crmTab('all',this)">All Clients</button>
+      <button class="crm-tab" onclick="crmTab('active',this)">Active</button>
+      <button class="crm-tab" onclick="crmTab('inprogress',this)">In Progress</button>
+      <button class="crm-tab" onclick="crmTab('lead',this)">Leads</button>
+      <button class="crm-tab" onclick="crmTab('completed',this)">Completed</button>
+      <button class="crm-tab" onclick="crmTab('churned',this)">Churned</button>
     </div>
-    <div class="admin-section">
-      <div class="admin-section-title">Monthly Hosting Clients</div>
-      <table class="a-table"><thead><tr><th>Client</th><th>Plan</th><th>Monthly Fee</th><th>Renewal</th><th>Status</th></tr></thead><tbody>
-        <tr><td>Brew &amp; Co Coffee</td><td>Business Hosted</td><td>$149/mo</td><td>Apr 1</td><td><span class="badge-s badge-a">Active</span></td></tr>
-        <tr><td>Prime Property UAE</td><td>Enterprise Hosted</td><td>$299/mo</td><td>Mar 28</td><td><span class="badge-s badge-a">Active</span></td></tr>
-        <tr><td>La Petite Boutique</td><td>Starter Hosted</td><td>$79/mo</td><td>Apr 5</td><td><span class="badge-s badge-a">Active</span></td></tr>
-        <tr><td>Sakura Restaurant</td><td>Business Hosted</td><td>$149/mo</td><td>Mar 31</td><td><span class="badge-s badge-p">Due Soon</span></td></tr>
-      </tbody></table>
+
+    <!-- Toolbar -->
+    <div class="crm-toolbar">
+      <input class="crm-search" id="crm-search" type="text" placeholder="Search clients by name, business, email..." oninput="renderCrmGrid()">
+      <select class="crm-filter" id="crm-sort" onchange="renderCrmGrid()">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="name">Name A-Z</option>
+        <option value="revenue">Revenue ↓</option>
+      </select>
+      <button class="crm-btn" onclick="openNewClient()">+ New Client</button>
     </div>
-    <div class="admin-section">
-      <div class="admin-section-title">New Enquiries</div>
-      <table class="a-table"><thead><tr><th>Name</th><th>Industry</th><th>Package Interest</th><th>Date</th><th>Status</th></tr></thead><tbody>
-        <tr><td>Ahmed Al-Farsi</td><td>Healthcare Clinic</td><td>Business</td><td>Today</td><td><span class="badge-s badge-p">New</span></td></tr>
-        <tr><td>Sara Matthews</td><td>Fashion Boutique</td><td>Starter</td><td>Yesterday</td><td><span class="badge-s badge-p">Contacted</span></td></tr>
-        <tr><td>Marco DiLuca</td><td>Italian Restaurant</td><td>Business</td><td>Mar 1</td><td><span class="badge-s badge-a">In Discussion</span></td></tr>
-      </tbody></table>
+
+    <!-- Client Grid -->
+    <div class="crm-grid" id="crm-grid"></div>
+
+  </div>
+
+  <!-- ── CLIENT PROFILE MODAL ── -->
+  <div id="crm-profile-modal">
+    <div class="crm-profile-shell">
+
+      <div class="crm-profile-header">
+        <div class="crm-profile-avatar" id="prof-avatar">?</div>
+        <div class="crm-profile-info">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <div class="crm-profile-name" id="prof-name">New Client</div>
+            <span id="prof-svcnum" style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 10px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);border-radius:3px;color:var(--cyan);letter-spacing:1.5px;"></span>
+          </div>
+          <div class="crm-profile-sub" id="prof-sub">—</div>
+          <div style="display:flex;align-items:center;gap:20px;margin-top:10px;flex-wrap:wrap;">
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Total</span>
+              <span id="prof-total-val" style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--white);line-height:1;">AED 0</span>
+            </div>
+            <div style="width:1px;height:32px;background:var(--border);flex-shrink:0;"></div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Paid</span>
+              <span id="prof-paid-val" style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#00e87a;line-height:1;">AED 0</span>
+            </div>
+            <div style="width:1px;height:32px;background:var(--border);flex-shrink:0;"></div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Pending</span>
+              <span id="prof-pending-val" style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#ff5050;line-height:1;">AED 0</span>
+            </div>
+            <div style="width:1px;height:32px;background:var(--border);flex-shrink:0;"></div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Monthly</span>
+              <span id="prof-monthly-val" style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--cyan);line-height:1;">AED 0/mo</span>
+            </div>
+            <div style="width:1px;height:32px;background:var(--border);flex-shrink:0;"></div>
+            <div id="prof-countdown-wrap" style="display:none;flex-direction:column;gap:2px;">
+              <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">Delivery In</span>
+              <span id="prof-countdown" style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#e8b84b;line-height:1;">—</span>
+            </div>
+          </div>
+        </div>
+        <div class="crm-profile-actions">
+          <button class="crm-btn sec" onclick="saveClient()">Save</button>
+          <button class="crm-btn sec" onclick="closeCrmProfile()">✕ Close</button>
+        </div>
+      </div>
+
+      <!-- Profile tabs nav -->
+      <div style="background:var(--bg3);border-bottom:1px solid var(--border);padding:0 36px;display:flex;gap:0;">
+        <button class="crm-prof-tab active" onclick="switchProfTab('info',this)">Contact &amp; Project</button>
+        <button class="crm-prof-tab" onclick="switchProfTab('billing',this)">💳 Billing</button>
+        <button class="crm-prof-tab" onclick="switchProfTab('technical',this)">⚙️ Technical</button>
+        <button class="crm-prof-tab" onclick="switchProfTab('notes',this)">📋 Notes</button>
+      </div>
+
+      <div class="crm-profile-body">
+
+        <!-- LEFT: Tabbed panels -->
+        <div class="crm-profile-left" style="padding:0;">
+
+          <!-- TAB: Info -->
+          <div class="crm-prof-panel active" id="pp-info" style="padding:28px 36px;">
+          <div class="crm-section-hd">Contact Information</div>
+          <div class="crm-field-grid">
+            <div class="crm-field"><label class="crm-label">Client Name</label><input class="crm-input" id="cf-name" placeholder="Full name" oninput="updateProfileHeader()"></div>
+            <div class="crm-field"><label class="crm-label">Business Name</label><input class="crm-input" id="cf-biz" placeholder="Business / Company" oninput="updateProfileHeader()"></div>
+            <div class="crm-field"><label class="crm-label">Email Address</label><input class="crm-input" id="cf-email" type="email" placeholder="email@example.com"></div>
+            <div class="crm-field"><label class="crm-label">Secondary Email</label><input class="crm-input" id="cf-email2" type="email" placeholder="secondary@example.com"></div>
+            <div class="crm-field"><label class="crm-label">Main Business Number</label><input class="crm-input" id="cf-phone" placeholder="+971 XX XXX XXXX"></div>
+            <div class="crm-field"><label class="crm-label">Mobile / WhatsApp 1</label><input class="crm-input" id="cf-mobile1" placeholder="+971 XX XXX XXXX"></div>
+            <div class="crm-field"><label class="crm-label">Mobile / WhatsApp 2</label><input class="crm-input" id="cf-mobile2" placeholder="+971 XX XXX XXXX"></div>
+            <div class="crm-field"><label class="crm-label">Location / City</label><input class="crm-input" id="cf-location" placeholder="Dubai, UAE"></div>
+            <div class="crm-field"><label class="crm-label">Industry</label>
+              <select class="crm-select" id="cf-industry" onchange="toggleIndustryOther(this)">
+                <option value="">Select industry...</option>
+                <option>Cafe &amp; Coffee</option><option>Restaurant</option><option>Salon &amp; Beauty</option>
+                <option>Real Estate</option><option>Fitness &amp; Gym</option><option>Tech &amp; SaaS</option>
+                <option>Retail &amp; Shop</option><option>Healthcare</option><option>Education</option>
+                <option>Hospitality</option><option>Finance</option><option>Legal</option><option>Other</option>
+              </select>
+            </div>
+            <div class="crm-field" id="cf-industry-other-wrap" style="display:none"><label class="crm-label">Specify Industry</label><input class="crm-input" id="cf-industry-other" placeholder="Type your industry..."></div>
+            <div class="crm-field full" style="padding:16px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;grid-column:1/-1;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:12px;">Secondary Contact Person</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+                <div class="crm-field"><label class="crm-label">Contact Name</label><input class="crm-input" id="cf-contact2-name" placeholder="Full name"></div>
+                <div class="crm-field"><label class="crm-label">Role / Title</label><input class="crm-input" id="cf-contact2-role" placeholder="e.g. Manager, Owner"></div>
+                <div class="crm-field"><label class="crm-label">Phone / WhatsApp</label><input class="crm-input" id="cf-contact2-phone" placeholder="+971 XX XXX XXXX"></div>
+                <div class="crm-field"><label class="crm-label">Email</label><input class="crm-input" id="cf-contact2-email" type="email" placeholder="email@example.com"></div>
+                <div class="crm-field"><label class="crm-label">Best Time to Contact</label><input class="crm-input" id="cf-contact2-time" placeholder="e.g. Mornings, After 5pm"></div>
+                <div class="crm-field"><label class="crm-label">Preferred Method</label>
+                  <select class="crm-select" id="cf-contact2-pref">
+                    <option value="">Select...</option>
+                    <option>WhatsApp</option><option>Call</option><option>Email</option><option>Any</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="crm-field full"><label class="crm-label">Current Website (if any)</label><input class="crm-input" id="cf-oldsite" placeholder="https://..."></div>
+          </div>
+
+          <div class="crm-section-hd">Project Details</div>
+          <div class="crm-field-grid">
+            <div class="crm-field"><label class="crm-label">Status</label>
+              <select class="crm-select" id="cf-status" onchange="updateProfileHeader()">
+                <option value="lead">Lead</option>
+                <option value="inprogress">In Progress</option>
+                <option value="active">Active / Hosting</option>
+                <option value="revision">Revision</option>
+                <option value="paused">Paused</option>
+                <option value="completed">Completed</option>
+                <option value="churned">Churned</option>
+              </select>
+            </div>
+            <div class="crm-field"><label class="crm-label">Package</label>
+              <select class="crm-select" id="cf-package">
+                <option value="">Select...</option>
+                <option>Starter — One-Time</option><option>Business — One-Time</option><option>Premium — One-Time</option>
+                <option>Starter — Monthly</option><option>Business — Monthly</option><option>Premium — Monthly</option>
+                <option>Custom</option>
+              </select>
+            </div>
+            <div class="crm-field"><label class="crm-label">Project Type</label><input class="crm-input" id="cf-project" placeholder="e.g. Restaurant website + booking"></div>
+            <div class="crm-field"><label class="crm-label">Number of Pages</label><input class="crm-input" id="cf-pages" placeholder="e.g. 5, 10, Unlimited"></div>
+            <div class="crm-field"><label class="crm-label">Start Date</label><input class="crm-input" id="cf-start" type="date"></div>
+            <div class="crm-field"><label class="crm-label">Deadline / Due Date</label><input class="crm-input" id="cf-due" type="date" onchange="calcPending()"></div>
+            <div class="crm-field"><label class="crm-label">Launch Date</label><input class="crm-input" id="cf-launch" type="date"></div>
+            <div class="crm-field"><label class="crm-label">Contract End Date</label><input class="crm-input" id="cf-end" type="date"></div>
+            <div class="crm-field full"><label class="crm-label">Live Website URL</label><input class="crm-input" id="cf-live" placeholder="https://"></div>
+          </div>
+
+          <div style="margin-top:8px;"><button class="crm-btn" onclick="saveClient()" style="width:100%;">Save All Changes</button></div>
+          </div><!-- /pp-info -->
+
+          <!-- TAB: Billing -->
+          <div class="crm-prof-panel" id="pp-billing" style="padding:28px 36px;display:none;">
+            <div class="crm-section-hd">Contract &amp; Pricing</div>
+            <div class="crm-field-grid">
+              <div class="crm-field"><label class="crm-label">Total Contract Value (AED)</label><input class="crm-input" id="cf-value" type="number" placeholder="0" oninput="calcPending()"></div>
+              <div class="crm-field"><label class="crm-label">Monthly Fee (AED)</label><input class="crm-input" id="cf-monthly" type="number" placeholder="0" oninput="calcPending()"></div>
+              <div class="crm-field"><label class="crm-label">Invoice / Reference No.</label><input class="crm-input" id="cf-invoice" placeholder="INV-001"></div>
+              <div class="crm-field"><label class="crm-label">Billing Renewal Date</label><input class="crm-input" id="cf-renewal" type="date"></div>
+            </div>
+
+            <div class="crm-section-hd" style="margin-top:20px;">Payments Received</div>
+            <div id="billing-payments-list" style="margin-bottom:12px;"></div>
+            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:16px;margin-bottom:20px;">
+              <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;font-weight:600;">Add Payment</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+                <div class="crm-field"><label class="crm-label">Amount (AED)</label><input class="crm-input" id="pay-amount" type="number" placeholder="0"></div>
+                <div class="crm-field"><label class="crm-label">Date</label><input class="crm-input" id="pay-date" type="date"></div>
+                <div class="crm-field"><label class="crm-label">Payment Method</label>
+                  <select class="crm-select" id="pay-method">
+                    <option value="">Select method...</option>
+                    <option>Bank Transfer</option>
+                    <option>Cash</option>
+                    <option>Credit Card (Visa)</option>
+                    <option>Credit Card (Mastercard)</option>
+                    <option>Debit Card</option>
+                    <option>Apple Pay</option>
+                    <option>Google Pay</option>
+                    <option>PayPal</option>
+                    <option>Wise / Transferwise</option>
+                    <option>Crypto (USDT)</option>
+                    <option>Cheque</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="crm-field"><label class="crm-label">Reference / Transaction ID</label><input class="crm-input" id="pay-ref" placeholder="TXN-123 or last 4 digits"></div>
+                <div class="crm-field full"><label class="crm-label">Notes (optional)</label><input class="crm-input" id="pay-note" placeholder="e.g. Deposit for project, Monthly March..."></div>
+              </div>
+              <button class="crm-btn" onclick="addPayment()" style="width:100%;">+ Record Payment</button>
+            </div>
+
+            <div class="crm-section-hd">Balance Summary</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;">
+                <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Total Value</div>
+                <div id="bill-total" style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--white);">AED 0</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid rgba(0,232,122,.2);border-radius:6px;padding:14px;text-align:center;">
+                <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Total Paid</div>
+                <div id="bill-paid" style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#00e87a;">AED 0</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid rgba(255,80,80,.2);border-radius:6px;padding:14px;text-align:center;">
+                <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Pending / Due</div>
+                <div id="bill-pending" style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#ff5050;">AED 0</div>
+              </div>
+            </div>
+            <div style="margin-top:8px;"><button class="crm-btn" onclick="saveClient()" style="width:100%;">Save Billing</button></div>
+          </div><!-- /pp-billing -->
+
+          <!-- TAB: Technical -->
+          <div class="crm-prof-panel" id="pp-technical" style="padding:28px 36px;display:none;">
+            <div class="crm-section-hd">Technical Details</div>
+            <div class="crm-field-grid">
+              <div class="crm-field"><label class="crm-label">Domain Name</label><input class="crm-input" id="cf-domain" placeholder="example.com"></div>
+              <div class="crm-field"><label class="crm-label">Domain Registrar</label><input class="crm-input" id="cf-registrar" placeholder="Namecheap / GoDaddy..."></div>
+              <div class="crm-field"><label class="crm-label">Hosting Platform</label><input class="crm-input" id="cf-hosting" placeholder="GitHub Pages / Vercel..."></div>
+              <div class="crm-field"><label class="crm-label">Domain Expiry</label><input class="crm-input" id="cf-domain-exp" type="date"></div>
+              <div class="crm-field"><label class="crm-label">Admin Email (client's)</label><input class="crm-input" id="cf-admin-email" placeholder="client admin email"></div>
+              <div class="crm-field"><label class="crm-label">CPanel / GitHub Username</label><input class="crm-input" id="cf-cpanel" placeholder="username"></div>
+              <div class="crm-field full"><label class="crm-label">Technologies Used</label><input class="crm-input" id="cf-tech" placeholder="e.g. HTML, WordPress, Shopify, React..."></div>
+            </div>
+            <div style="margin-top:8px;"><button class="crm-btn" onclick="saveClient()" style="width:100%;">Save Technical</button></div>
+          </div><!-- /pp-technical -->
+
+          <!-- TAB: Notes -->
+          <div class="crm-prof-panel" id="pp-notes" style="padding:28px 36px;display:none;">
+            <div class="crm-section-hd">Project Notes</div>
+            <div class="crm-field-grid">
+              <div class="crm-field full"><label class="crm-label">Project Brief / Requirements</label><textarea class="crm-textarea" id="cf-brief" rows="4" placeholder="What does the client need?"></textarea></div>
+              <div class="crm-field full"><label class="crm-label">Internal Notes</label><textarea class="crm-textarea" id="cf-notes" rows="4" placeholder="Private notes, reminders, anything..."></textarea></div>
+              <div class="crm-field full"><label class="crm-label">End of Service Notes</label><textarea class="crm-textarea" id="cf-eos" rows="3" placeholder="Reason for ending, handover notes..."></textarea></div>
+            </div>
+            <div style="margin-top:8px;"><button class="crm-btn" onclick="saveClient()" style="width:100%;">Save Notes</button></div>
+          </div><!-- /pp-notes -->
+
+        </div><!-- /crm-profile-left -->
+
+        <!-- RIGHT: Activity thread -->
+        <div class="crm-profile-right">
+
+          <div class="crm-section-hd">Activity &amp; Communications</div>
+
+          <!-- Compose -->
+          <div class="crm-thread-compose">
+
+            <!-- Main categories -->
+            <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Category</div>
+            <div class="crm-tag-row" id="note-main-cats">
+              <span class="crm-main-cat sel" data-cat="Communication" onclick="selectMainCat(this)">📞 Communication</span>
+              <span class="crm-main-cat" data-cat="Project" onclick="selectMainCat(this)">🏗 Project</span>
+              <span class="crm-main-cat" data-cat="Billing" onclick="selectMainCat(this)">💰 Billing</span>
+              <span class="crm-main-cat" data-cat="Support" onclick="selectMainCat(this)">🛠 Support</span>
+              <span class="crm-main-cat" data-cat="Content" onclick="selectMainCat(this)">📁 Content</span>
+              <span class="crm-main-cat" data-cat="Internal" onclick="selectMainCat(this)">🔒 Internal</span>
+            </div>
+
+            <!-- Sub-tags (change based on main cat) -->
+            <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:10px 0 8px;">Type</div>
+            <div class="crm-tag-row" id="note-tags">
+              <!-- Populated by selectMainCat() -->
+            </div>
+
+            <textarea class="crm-textarea" id="note-text" rows="3" placeholder="Type your note, message, or log entry..."></textarea>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button class="crm-btn" onclick="addNote()" style="flex:1;">Add Entry</button>
+              <span style="font-size:11px;color:var(--muted);">Ctrl+Enter</span>
+            </div>
+          </div>
+
+          <!-- Thread -->
+          <div class="crm-thread" id="note-thread">
+            <div class="crm-empty" id="note-empty"><div class="crm-empty-icon">💬</div><div>No activity yet — add your first note above</div></div>
+          </div>
+
+          <!-- Timeline -->
+          <div style="margin-top:32px;">
+            <div class="crm-section-hd">Project Timeline</div>
+            <div class="crm-timeline" id="crm-timeline-list"></div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -2312,6 +2699,648 @@ function calcCustom(){
   else total.textContent='—';
 }
 // ── Contact form submission ──
+// ══════════════════════════════════════════════════════════════
+// CANCAS.STUDIO CRM — Full Client Management System
+// Data stored in localStorage under key 'crm_clients'
+// ══════════════════════════════════════════════════════════════
+
+var CRM = {
+  clients: [],
+  currentId: null,
+  currentTab: 'all',
+  noteTag: 'Update',
+
+  load: function(){
+    try{ this.clients = JSON.parse(localStorage.getItem('crm_clients')||'[]'); }
+    catch(e){ this.clients = []; }
+  },
+  save: function(){
+    localStorage.setItem('crm_clients', JSON.stringify(this.clients));
+  },
+  get: function(id){ return this.clients.find(function(c){ return c.id===id; }); },
+  nextId: function(){ return 'c'+(Date.now()); },
+  initials: function(name){
+    var parts=(name||'?').trim().split(' ');
+    return (parts[0][0]+(parts[1]?parts[1][0]:'')).toUpperCase();
+  },
+  statusLabel: function(s){
+    var m={lead:'Lead',inprogress:'In Progress',active:'Active',revision:'Revision',
+           paused:'Paused',completed:'Completed',churned:'Churned'};
+    return m[s]||s||'Lead';
+  },
+  statusClass: function(s){
+    var m={lead:'st-lead',inprogress:'st-inprogress',active:'st-active',revision:'st-revision',
+           paused:'st-paused',completed:'st-completed',churned:'st-churned'};
+    return m[s]||'st-lead';
+  },
+  statusColor: function(s){
+    var m={lead:'#b464ff',inprogress:'#00d4ff',active:'#00e87a',revision:'#e8b84b',
+           paused:'#ff9632',completed:'#888',churned:'#ff5050'};
+    return m[s]||'#b464ff';
+  }
+};
+
+function crmInit(){
+  CRM.load();
+  renderCrmGrid();
+  updateKpis();
+}
+
+function crmTab(tab, btn){
+  CRM.currentTab = tab;
+  document.querySelectorAll('.crm-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderCrmGrid();
+}
+
+function renderCrmGrid(){
+  CRM.load();
+  var search = (document.getElementById('crm-search')||{}).value||'';
+  search = search.toLowerCase();
+  var sort = (document.getElementById('crm-sort')||{}).value||'newest';
+  var tab = CRM.currentTab;
+
+  var clients = CRM.clients.filter(function(c){
+    if(tab!=='all' && c.status!==tab) return false;
+    if(search){
+      var hay = ((c.name||'')+(c.biz||'')+(c.email||'')+(c.industry||'')).toLowerCase();
+      if(hay.indexOf(search)===-1) return false;
+    }
+    return true;
+  });
+
+  // Sort
+  clients = clients.slice().sort(function(a,b){
+    if(sort==='name') return (a.name||'').localeCompare(b.name||'');
+    if(sort==='oldest') return (a.created||0)-(b.created||0);
+    if(sort==='revenue') return (parseFloat(b.monthly||0)+parseFloat(b.value||0)/12)-(parseFloat(a.monthly||0)+parseFloat(a.value||0)/12);
+    return (b.created||0)-(a.created||0);
+  });
+
+  var grid = document.getElementById('crm-grid');
+  if(!grid) return;
+
+  if(clients.length===0){
+    grid.innerHTML = '<div class="crm-empty" style="grid-column:1/-1"><div class="crm-empty-icon">👥</div><div>'+(CRM.clients.length===0?'No clients yet — click <strong>+ New Client</strong> to add your first':'No clients match this filter')+'</div></div>';
+    return;
+  }
+
+  grid.innerHTML = clients.map(function(c){
+    var initials = CRM.initials(c.name||c.biz||'?');
+    var sc = CRM.statusClass(c.status);
+    var sl = CRM.statusLabel(c.status);
+    var color = CRM.statusColor(c.status);
+    var notes = (c.notes||[]).length;
+    var monthly = c.monthly ? 'AED '+parseFloat(c.monthly).toLocaleString()+'/mo' : (c.value ? 'AED '+parseFloat(c.value).toLocaleString() : '—');
+    var totalPaid = (c.payments||[]).reduce(function(s,p){ return s+parseFloat(p.amount||0); },0);
+    var pending = Math.max(0, parseFloat(c.value||0) - totalPaid);
+    var catColors2 = {Communication:'#25d366',Project:'var(--cyan)',Billing:'#e8b84b',Support:'#ff5050',Content:'#b464ff',Internal:'#888'};
+    var activeCatsHtml = '';
+    if(c.activeCats){ Object.keys(c.activeCats).forEach(function(cat){ var cnt=c.activeCats[cat]; if(cnt>0){ var cc=catColors2[cat]||'#aaa'; activeCatsHtml+='<span style="font-family:JetBrains Mono,monospace;font-size:9px;padding:2px 7px;border-radius:10px;background:'+cc+'22;color:'+cc+';border:1px solid '+cc+'33;">'+cat+' ('+cnt+')</span>'; }}); }
+    var cardHtml = '<div class="crm-card" data-cid="'+c.id+'" onclick="openClientProfile(this.dataset.cid)">'
+      +'<div class="crm-card-top">'
+      +'<div style="display:flex;align-items:center;gap:12px;">'
+      +'<div class="crm-avatar">'+initials+'</div>'
+      +'<div><div class="crm-card-name">'+(c.name||'Unnamed')+'</div>'
+      +'<div class="crm-card-biz">'+(c.biz||'—')+'</div></div></div>'
+      +'<div class="crm-status-dot" style="background:'+color+'"></div>'
+      +'</div>'
+      +'<div style="margin-top:8px;">'
+      +'<span class="crm-pill '+sc+'">'+sl+'</span>'
+      +(c.package?'<span class="crm-pill" style="background:rgba(255,255,255,.05);color:var(--muted);margin-left:6px;font-size:9px;">'+c.package+'</span>':'')
+      +'</div>'
+      +'<div class="crm-card-meta">'      +'<div class="crm-meta-item"><div class="crm-meta-label">Revenue</div><div class="crm-meta-val">'+monthly+'</div></div>'      +'<div class="crm-meta-item"><div class="crm-meta-label">Industry</div><div class="crm-meta-val">'+(c.industry==='Other'&&c.industryother?c.industryother:c.industry||'—')+'</div></div>'      +'<div class="crm-meta-item"><div class="crm-meta-label">Pending</div><div class="crm-meta-val" style="color:'+(pending>0?'#ff5050':'#00e87a')+';font-weight:700;">'+(pending>0?'AED '+pending.toLocaleString():'✓ Paid')+'</div></div>'      +'<div class="crm-meta-item"><div class="crm-meta-label">Service No.</div><div class="crm-meta-val" style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--cyan);">'+(c.svcnum||'—')+'</div></div>'      +'</div>'      +(activeCatsHtml?'<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">'+activeCatsHtml+'</div>':'')      +'</div>';
+    return cardHtml;
+  }).join('');
+
+  updateKpis();
+}
+
+function updateKpis(){
+  CRM.load();
+  var total = CRM.clients.length;
+  var active = CRM.clients.filter(function(c){ return c.status==='active'||c.status==='inprogress'||c.status==='revision'; }).length;
+  var leads = CRM.clients.filter(function(c){ return c.status==='lead'; }).length;
+  var done = CRM.clients.filter(function(c){ return c.status==='completed'; }).length;
+  var rev = CRM.clients.reduce(function(s,c){ return s+parseFloat(c.monthly||0); },0);
+
+  var el = function(id){ return document.getElementById(id); };
+  if(el('kpi-total'))el('kpi-total').textContent=total;
+  if(el('kpi-active'))el('kpi-active').textContent=active;
+  if(el('kpi-leads'))el('kpi-leads').textContent=leads;
+  if(el('kpi-done'))el('kpi-done').textContent=done;
+  if(el('kpi-rev'))el('kpi-rev').textContent='AED '+rev.toLocaleString()+'/mo';
+  if(el('kpi-total-sub'))el('kpi-total-sub').textContent=active+' active';
+}
+
+function openNewClient(){
+  CRM.currentId = null;
+  clearProfileForm();
+  document.getElementById('prof-name').textContent='New Client';
+  document.getElementById('prof-sub').textContent='Fill in the details below';
+  document.getElementById('prof-avatar').textContent='?';
+  document.getElementById('note-thread').innerHTML='<div class="crm-empty" id="note-empty"><div class="crm-empty-icon">💬</div><div>No activity yet</div></div>';
+  document.getElementById('crm-timeline-list').innerHTML='';
+  document.getElementById('crm-profile-modal').classList.add('open');
+  // Init main category tabs
+  var firstCat = document.querySelector('.crm-main-cat');
+  if(firstCat) selectMainCat(firstCat);
+}
+
+function openClientProfile(id){
+  CRM.load();
+  var c = CRM.get(id);
+  if(!c) return;
+  CRM.currentId = id;
+  // Populate all fields
+  var fields = ['name','biz','email','email2','phone','mobile1','mobile2','location','oldsite',
+    'status','package','project','pages','start','due','launch','end','live',
+    'value','monthly','deposit','balance','payment','renewal','invoice',
+    'domain','registrar','hosting','domain-exp','admin-email','cpanel','tech',
+    'brief','notes','eos',
+    'contact2-name','contact2-role','contact2-phone','contact2-email','contact2-time','contact2-pref'];
+  fields.forEach(function(f){
+    var el = document.getElementById('cf-'+f);
+    if(el) el.value = c[f.replace(/-/g,'')] || c[f] || '';
+  });
+  // Fix hyphenated field names
+  if(document.getElementById('cf-domain-exp')) document.getElementById('cf-domain-exp').value = c.domainexp||'';
+  if(document.getElementById('cf-admin-email')) document.getElementById('cf-admin-email').value = c.adminemail||'';
+  // Industry "Other" field
+  if(c.industryother){
+    var wrap = document.getElementById('cf-industry-other-wrap');
+    var inp = document.getElementById('cf-industry-other');
+    if(wrap) wrap.style.display='';
+    if(inp) inp.value = c.industryother||'';
+  }
+
+  updateProfileHeader();
+  renderNoteThread(c);
+  renderTimeline(c);
+  // Show service number
+  var sn = document.getElementById('prof-svcnum');
+  if(sn) sn.textContent = c.svcnum||'';
+  document.getElementById('crm-profile-modal').classList.add('open');
+  // Init main category tabs
+  var firstCat = document.querySelector('.crm-main-cat');
+  if(firstCat) selectMainCat(firstCat);
+  // Switch to info tab by default
+  var infoBtn = document.querySelector('.crm-prof-tab');
+  if(infoBtn) switchProfTab('info', infoBtn);
+}
+
+function updateProfileHeader(){
+  var name = (document.getElementById('cf-name')||{}).value||'';
+  var biz = (document.getElementById('cf-biz')||{}).value||'';
+  var status = (document.getElementById('cf-status')||{}).value||'lead';
+  var pkg = (document.getElementById('cf-package')||{}).value||'';
+
+  var displayName = name||biz||'New Client';
+  document.getElementById('prof-name').textContent = displayName;
+  document.getElementById('prof-sub').textContent = (biz&&name?biz+' · ':'')+CRM.statusLabel(status)+(pkg?' · '+pkg:'');
+  document.getElementById('prof-avatar').textContent = CRM.initials(displayName);
+
+  // Show service number
+  if(CRM.currentId){
+    var c = CRM.get(CRM.currentId);
+    var sn = document.getElementById('prof-svcnum');
+    if(sn && c && c.svcnum) sn.textContent = c.svcnum;
+  }
+  calcPending();
+}
+
+function calcPending(){
+  var total = parseFloat((document.getElementById('cf-value')||{}).value||0);
+  var monthly = parseFloat((document.getElementById('cf-monthly')||{}).value||0);
+  var c = CRM.currentId ? CRM.get(CRM.currentId) : null;
+  var paid = c ? (c.payments||[]).reduce(function(s,p){ return s+parseFloat(p.amount||0); },0) : 0;
+  var pending = Math.max(0, total - paid);
+
+  var set = function(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; };
+  set('prof-total-val','AED '+total.toLocaleString());
+  set('prof-paid-val','AED '+paid.toLocaleString());
+  set('prof-pending-val', pending>0 ? 'AED '+pending.toLocaleString() : '✓ PAID');
+  var pendEl = document.getElementById('prof-pending-val');
+  if(pendEl) pendEl.style.color = pending>0 ? '#ff5050' : '#00e87a';
+  set('prof-monthly-val','AED '+monthly.toLocaleString()+'/mo');
+  set('bill-total','AED '+total.toLocaleString());
+  set('bill-paid','AED '+paid.toLocaleString());
+  var billPend = document.getElementById('bill-pending');
+  if(billPend){ billPend.textContent = pending>0 ? 'AED '+pending.toLocaleString() : '✓ PAID'; billPend.style.color = pending>0 ? '#ff5050' : '#00e87a'; }
+
+  // Countdown from deadline date
+  var dueEl = document.getElementById('cf-due');
+  var wrap = document.getElementById('prof-countdown-wrap');
+  var cd = document.getElementById('prof-countdown');
+  if(dueEl && dueEl.value && wrap && cd){
+    var due = new Date(dueEl.value);
+    var now = new Date();
+    due.setHours(23,59,59,0);
+    var diff = Math.ceil((due - now) / (1000*60*60*24));
+    wrap.style.display = 'flex';
+    if(diff > 0){
+      cd.textContent = diff + (diff===1?' day':' days');
+      cd.style.color = diff <= 3 ? '#ff5050' : diff <= 7 ? '#ff9632' : '#e8b84b';
+    } else if(diff === 0){
+      cd.textContent = 'DUE TODAY';
+      cd.style.color = '#ff5050';
+    } else {
+      cd.textContent = Math.abs(diff)+'d OVERDUE';
+      cd.style.color = '#ff5050';
+    }
+  } else if(wrap){
+    wrap.style.display = 'none';
+  }
+}
+
+function switchProfTab(tab, btn){
+  document.querySelectorAll('.crm-prof-tab').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelectorAll('.crm-prof-panel').forEach(function(p){ p.style.display='none'; });
+  btn.classList.add('active');
+  var panel = document.getElementById('pp-'+tab);
+  if(panel){ panel.style.display='block'; }
+  if(tab==='billing') renderPaymentsList();
+}
+
+function addPayment(){
+  if(!CRM.currentId){ saveClient(); }
+  var amount = parseFloat((document.getElementById('pay-amount')||{}).value||0);
+  if(!amount || amount<=0){ alert('Please enter a valid amount.'); return; }
+  var method = (document.getElementById('pay-method')||{}).value||'';
+  var date = (document.getElementById('pay-date')||{}).value||new Date().toISOString().split('T')[0];
+  var ref = (document.getElementById('pay-ref')||{}).value||'';
+  var note = (document.getElementById('pay-note')||{}).value||'';
+  CRM.load();
+  var c = CRM.get(CRM.currentId);
+  if(!c) return;
+  if(!c.payments) c.payments=[];
+  var payment = {
+    id: Date.now(),
+    amount: amount,
+    method: method,
+    date: date,
+    ref: ref,
+    note: note,
+    recorded: new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
+  };
+  c.payments.push(payment);
+  CRM.save();
+  // Clear form
+  ['pay-amount','pay-ref','pay-note'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+  var pm = document.getElementById('pay-method'); if(pm) pm.value='';
+  renderPaymentsList();
+  calcPending();
+  // Add to activity thread
+  if(!c.notes) c.notes=[];
+  if(!c.activeCats) c.activeCats={};
+  c.activeCats['Billing'] = (c.activeCats['Billing']||0)+1;
+  c.notes.unshift({
+    id: Date.now()+1, tag:'Payment Received', tags:['Payment Received'], mainCat:'Billing',
+    text:'Payment of AED '+amount.toLocaleString()+' received via '+(method||'—')+(ref?' (Ref: '+ref+')':'')+(note?' — '+note:''),
+    date: new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
+  });
+  CRM.save();
+  renderNoteThread(c);
+}
+
+function renderPaymentsList(){
+  if(!CRM.currentId) return;
+  CRM.load();
+  var c = CRM.get(CRM.currentId);
+  var list = document.getElementById('billing-payments-list');
+  if(!list||!c) return;
+  var payments = c.payments||[];
+  if(payments.length===0){
+    list.innerHTML='<div style="color:var(--muted);font-size:12px;padding:8px 0;margin-bottom:8px;">No payments recorded yet.</div>';
+    return;
+  }
+  var methodIcons = {'Bank Transfer':'🏦','Cash':'💵','Credit Card (Visa)':'💳','Credit Card (Mastercard)':'💳',
+    'Debit Card':'💳','Apple Pay':'🍎','Google Pay':'G','PayPal':'🅿','Wise / Transferwise':'💱',
+    'Crypto (USDT)':'₿','Cheque':'📄','Other':'💰'};
+  list.innerHTML = '<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:4px;">'
+    +payments.slice().reverse().map(function(p){
+      var icon = methodIcons[p.method]||'💰';
+      return '<div style="display:flex;align-items:center;gap:12px;background:var(--bg3);border:1px solid rgba(0,232,122,.15);border-radius:6px;padding:10px 14px;">'
+        +'<span style="font-size:16px;">'+icon+'</span>'
+        +'<div style="flex:1;">'
+        +'<div style="font-size:13px;font-weight:600;color:#00e87a;">AED '+parseFloat(p.amount).toLocaleString()+'</div>'
+        +'<div style="font-size:11px;color:var(--muted);">'+(p.method||'—')+(p.ref?' · Ref: '+p.ref:'')+'</div>'
+        +(p.note?'<div style="font-size:11px;color:var(--muted);font-style:italic;">'+p.note+'</div>':'')        +'</div>'
+        +'<div style="text-align:right;">'
+        +'<div style="font-size:11px;color:var(--muted);">'+p.date+'</div>'
+        +'<button onclick="deletePayment('+p.id+')" style="background:none;border:none;color:rgba(255,80,80,.4);font-size:12px;cursor:pointer;padding:2px 4px;" title="Delete">✕</button>'
+        +'</div>'
+        +'</div>';
+    }).join('')+'</div>';
+}
+
+function deletePayment(pid){
+  if(!CRM.currentId) return;
+  CRM.load();
+  var c = CRM.get(CRM.currentId);
+  if(!c||!c.payments) return;
+  c.payments = c.payments.filter(function(p){ return p.id!==pid; });
+  CRM.save();
+  renderPaymentsList();
+  calcPending();
+}
+
+function clearProfileForm(){
+  var fields = ['name','biz','email','email2','phone','mobile1','mobile2','location','oldsite',
+    'status','package','project','pages','start','due','launch','end','live',
+    'value','monthly','deposit','balance','payment','renewal','invoice',
+    'domain','registrar','hosting','domain-exp','admin-email','cpanel','tech',
+    'brief','notes','eos',
+    'contact2-name','contact2-role','contact2-phone','contact2-email','contact2-time','contact2-pref',
+    'industry-other'];
+  fields.forEach(function(f){
+    var el = document.getElementById('cf-'+f);
+    if(el){ el.value=''; }
+  });
+  var wrap = document.getElementById('cf-industry-other-wrap');
+  if(wrap) wrap.style.display='none';
+}
+
+function saveClient(){
+  var getV = function(id){ var el=document.getElementById(id); return el?el.value:''; };
+  var existing = CRM.currentId ? CRM.get(CRM.currentId) : null;
+  var svcNum = existing ? existing.svcnum : ('CS-'+String(Date.now()).slice(-6));
+  var client = {
+    id: CRM.currentId || CRM.nextId(),
+    svcnum: svcNum,
+    created: existing ? existing.created||Date.now() : Date.now(),
+    updated: Date.now(),
+    payments: existing ? (existing.payments||[]) : [],
+    activeCats: existing ? (existing.activeCats||{}) : {},
+    name: getV('cf-name'), biz: getV('cf-biz'), email: getV('cf-email'),
+    phone: getV('cf-phone'), mobile1: getV('cf-mobile1'), mobile2: getV('cf-mobile2'),
+    email2: getV('cf-email2'), industry: getV('cf-industry'),
+    industryother: getV('cf-industry-other'), location: getV('cf-location'),
+    contact2name: getV('cf-contact2-name'), contact2role: getV('cf-contact2-role'),
+    contact2phone: getV('cf-contact2-phone'), contact2email: getV('cf-contact2-email'),
+    contact2time: getV('cf-contact2-time'), contact2pref: getV('cf-contact2-pref'),
+    oldsite: getV('cf-oldsite'), status: getV('cf-status'), package: getV('cf-package'),
+    project: getV('cf-project'), pages: getV('cf-pages'), start: getV('cf-start'),
+    due: getV('cf-due'), launch: getV('cf-launch'), end: getV('cf-end'),
+    live: getV('cf-live'), value: getV('cf-value'), monthly: getV('cf-monthly'),
+    deposit: getV('cf-deposit'), balance: getV('cf-balance'), payment: getV('cf-payment'),
+    renewal: getV('cf-renewal'), invoice: getV('cf-invoice'), domain: getV('cf-domain'),
+    registrar: getV('cf-registrar'), hosting: getV('cf-hosting'),
+    domainexp: getV('cf-domain-exp'), adminemail: getV('cf-admin-email'),
+    cpanel: getV('cf-cpanel'), tech: getV('cf-tech'), brief: getV('cf-brief'),
+    notes: CRM.currentId ? ((CRM.get(CRM.currentId)||{}).notes||[]) : [],
+    internalNotes: getV('cf-notes'), eos: getV('cf-eos')
+  };
+
+  if(CRM.currentId){
+    var idx = CRM.clients.findIndex(function(c){ return c.id===CRM.currentId; });
+    if(idx>-1) CRM.clients[idx]=client;
+  } else {
+    CRM.clients.unshift(client);
+    CRM.currentId = client.id;
+  }
+  CRM.save();
+
+  // Add timeline entry
+  addTimelineEvent(client, 'Client saved — '+CRM.statusLabel(client.status));
+  renderCrmGrid();
+  updateProfileHeader();
+
+  // Flash save button
+  var btn = document.querySelector('.crm-profile-actions .crm-btn.sec');
+  if(btn){ var orig=btn.textContent; btn.textContent='✅ Saved!'; btn.style.color='#00e87a'; setTimeout(function(){ btn.textContent=orig; btn.style.color=''; },1500); }
+}
+
+function deleteClient(){
+  if(!CRM.currentId) return;
+  var c = CRM.get(CRM.currentId);
+  if(!confirm('Delete '+(c?c.name||c.biz:'this client')+'? This cannot be undone.')) return;
+  CRM.clients = CRM.clients.filter(function(x){ return x.id!==CRM.currentId; });
+  CRM.save();
+  CRM.currentId = null;
+  closeCrmProfile();
+  renderCrmGrid();
+}
+
+function closeCrmProfile(){
+  document.getElementById('crm-profile-modal').classList.remove('open');
+}
+
+// ── Notes / Activity ──
+function toggleNoteTag(el){
+  document.querySelectorAll('#note-tags .crm-tag').forEach(function(t){ t.classList.remove('sel'); });
+  el.classList.add('sel');
+  CRM.noteTag = el.dataset.tag;
+}
+
+function toggleIndustryOther(sel){
+  var wrap = document.getElementById('cf-industry-other-wrap');
+  if(wrap) wrap.style.display = sel.value==='Other' ? '' : 'none';
+}
+
+var CAT_SUBTAGS = {
+  Communication: [
+    {tag:'Call',color:'#aaa'}, {tag:'WhatsApp',color:'#25d366'}, {tag:'Email Sent',color:'#4fc3f7'},
+    {tag:'Meeting',color:'#b464ff'}, {tag:'Video Call',color:'#00d4ff'}, {tag:'Follow-Up',color:'#e8b84b'}
+  ],
+  Project: [
+    {tag:'Update',color:'var(--cyan)'}, {tag:'Change Request',color:'#ff6b35'}, {tag:'Design',color:'#b464ff'},
+    {tag:'Development',color:'#00e87a'}, {tag:'Review',color:'#e8b84b'}, {tag:'Launch',color:'#00d4ff'},
+    {tag:'Revision',color:'#ff9632'}, {tag:'Delay',color:'#ff5050'}
+  ],
+  Billing: [
+    {tag:'Invoice Sent',color:'#e8b84b'}, {tag:'Payment Received',color:'#00e87a'}, {tag:'Deposit',color:'#4fc3f7'},
+    {tag:'Overdue',color:'#ff5050'}, {tag:'Refund',color:'#ff9632'}, {tag:'Quote Sent',color:'#b464ff'}
+  ],
+  Support: [
+    {tag:'Bug',color:'#ff4757'}, {tag:'Issue',color:'#ff5050'}, {tag:'Fix Applied',color:'#00e87a'},
+    {tag:'Complaint',color:'#ff9632'}, {tag:'Escalated',color:'#ff5050'}, {tag:'Resolved',color:'#00e87a'},
+    {tag:'Maintenance',color:'#aaa'}
+  ],
+  Content: [
+    {tag:'Assets Received',color:'#b464ff'}, {tag:'Photos',color:'#b464ff'}, {tag:'Logo',color:'#b464ff'},
+    {tag:'Copy/Text',color:'#4fc3f7'}, {tag:'Content Request',color:'#e8b84b'}, {tag:'Files Shared',color:'#00d4ff'}
+  ],
+  Internal: [
+    {tag:'Note',color:'#aaa'}, {tag:'Reminder',color:'#e8b84b'}, {tag:'Task',color:'var(--cyan)'},
+    {tag:'Decision',color:'#00e87a'}, {tag:'Risk',color:'#ff5050'}, {tag:'Archive',color:'#555'}
+  ]
+};
+
+function selectMainCat(el){
+  document.querySelectorAll('.crm-main-cat').forEach(function(t){ t.classList.remove('sel'); });
+  el.classList.add('sel');
+  var cat = el.dataset.cat;
+  CRM.mainCat = cat;
+  var subtags = CAT_SUBTAGS[cat]||[];
+  var container = document.getElementById('note-tags');
+  if(!container) return;
+  container.innerHTML = subtags.map(function(s,i){
+    var sel = i===0;
+    var st = sel ? ('border-color:'+s.color+';color:'+s.color+';background:'+s.color+'22;') : '';
+    return '<span class="crm-tag'+(sel?' sel':'')+'" data-tag="'+s.tag+'" data-color="'+s.color+'" style="'+st+'" onclick="toggleNoteTagColor(this)">'+s.tag+'</span>';
+  }).join('');
+  if(subtags.length>0) CRM.noteTag = subtags[0].tag;
+}
+
+function toggleNoteTagColor(el){
+  // Multi-select: toggle this tag
+  var color = el.dataset.color || 'var(--cyan)';
+  var isSel = el.classList.contains('sel');
+  if(isSel){
+    el.classList.remove('sel');
+    el.style.borderColor=''; el.style.color=''; el.style.background='';
+  } else {
+    el.classList.add('sel');
+    el.style.borderColor=color; el.style.color=color; el.style.background=color+'22';
+  }
+  // Collect all selected tags
+  var selected = [];
+  document.querySelectorAll('#note-tags .crm-tag.sel').forEach(function(t){ selected.push(t.dataset.tag); });
+  CRM.noteTags = selected.length > 0 ? selected : [el.dataset.tag];
+  CRM.noteTag = CRM.noteTags[0];
+}
+
+function addNote(){
+  if(!CRM.currentId){
+    saveClient();
+  }
+  var text = (document.getElementById('note-text')||{}).value||'';
+  if(!text.trim()) return;
+  CRM.load();
+  var c = CRM.get(CRM.currentId);
+  if(!c) return;
+  if(!c.notes) c.notes=[];
+  var tags = CRM.noteTags && CRM.noteTags.length ? CRM.noteTags : [CRM.noteTag||'Update'];
+  var mainCat = CRM.mainCat || 'Communication';
+  var note = {
+    id: Date.now(),
+    tag: tags[0],
+    tags: tags,
+    mainCat: mainCat,
+    text: text.trim(),
+    date: new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
+  };
+  c.notes.unshift(note);
+  // Track which main cats have records — for highlight on card
+  if(!c.activeCats) c.activeCats = {};
+  c.activeCats[mainCat] = (c.activeCats[mainCat]||0) + 1;
+  CRM.save();
+  document.getElementById('note-text').value='';
+  // Do NOT deselect tags — keep them selected for next entry
+  renderNoteThread(c);
+  addTimelineEvent(c, '['+mainCat+' / '+tags.join(', ')+'] '+text.trim().substring(0,50)+(text.length>50?'...':''));
+}
+
+function deleteNote(noteId){
+  if(!CRM.currentId) return;
+  CRM.load();
+  var c = CRM.get(CRM.currentId);
+  if(!c||!c.notes) return;
+  c.notes = c.notes.filter(function(n){ return n.id!==noteId; });
+  CRM.save();
+  renderNoteThread(c);
+}
+
+function renderNoteThread(c){
+  var thread = document.getElementById('note-thread');
+  if(!thread) return;
+  var notes = c.notes||[];
+  if(notes.length===0){
+    thread.innerHTML='<div class="crm-empty"><div class="crm-empty-icon">💬</div><div>No activity yet — add your first note above</div></div>';
+    return;
+  }
+  var tagColors = {Update:'var(--cyan)','Invoice Sent':'#e8b84b','Payment Received':'#00e87a',
+    Deposit:'#4fc3f7',Overdue:'#ff5050','Quote Sent':'#b464ff',Bug:'#ff4757',Issue:'#ff5050',
+    'Fix Applied':'#00e87a',Complaint:'#ff9632',Escalated:'#ff5050',Resolved:'#00e87a',
+    'Change Request':'#ff6b35',Design:'#b464ff',Development:'#00e87a',Launch:'#00d4ff',
+    Revision:'#ff9632',Delay:'#ff5050',Call:'#aaa',WhatsApp:'#25d366','Email Sent':'#4fc3f7',
+    Meeting:'#b464ff','Video Call':'#00d4ff','Follow-Up':'#e8b84b','Assets Received':'#b464ff',
+    Photos:'#b464ff',Logo:'#b464ff','Copy/Text':'#4fc3f7','Content Request':'#e8b84b',
+    'Files Shared':'#00d4ff',Note:'#aaa',Reminder:'#e8b84b',Task:'var(--cyan)',
+    Decision:'#00e87a',Risk:'#ff5050',Archive:'#555'};
+  var catColors = {Communication:'#25d366',Project:'var(--cyan)',Billing:'#e8b84b',
+    Support:'#ff5050',Content:'#b464ff',Internal:'#888'};
+  thread.innerHTML = notes.map(function(n){
+    var tags = n.tags || [n.tag];
+    var mainCat = n.mainCat || '';
+    var catColor = catColors[mainCat] || 'var(--muted)';
+    var tagsHtml = tags.map(function(t){
+      var tc = tagColors[t] || 'var(--muted)';
+      return '<span style="font-family:JetBrains Mono,monospace;font-size:9px;padding:2px 7px;border-radius:10px;background:'+tc+'22;color:'+tc+';border:1px solid '+tc+'44;white-space:nowrap;">'+t+'</span>';
+    }).join('');
+    return '<div class="crm-note-entry">'
+      +'<div class="crm-note-top" style="flex-wrap:wrap;gap:6px;">'
+      +(mainCat?'<span style="font-family:JetBrains Mono,monospace;font-size:9px;padding:2px 8px;border-radius:3px;background:'+catColor+'22;color:'+catColor+';border:1px solid '+catColor+'44;font-weight:700;text-transform:uppercase;">'+mainCat+'</span>':'')
+      +'<span style="display:flex;gap:4px;flex-wrap:wrap;">'+tagsHtml+'</span>'
+      +'<span class="crm-note-date" style="margin-left:auto;">'+n.date+'</span>'
+      +'<button class="crm-note-del" onclick="deleteNote('+n.id+')" title="Delete">✕</button>'
+      +'</div>'
+      +'<div class="crm-note-text" style="margin-top:8px;">'+n.text.split('\n').join('<br>')+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function addTimelineEvent(c, text){
+  if(!c.timeline) c.timeline=[];
+  c.timeline.unshift({
+    date: new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}),
+    text: text
+  });
+  if(c.timeline.length>20) c.timeline=c.timeline.slice(0,20);
+  CRM.save();
+  renderTimeline(c);
+}
+
+function renderTimeline(c){
+  var list = document.getElementById('crm-timeline-list');
+  if(!list) return;
+  var items = c.timeline||[];
+  if(items.length===0){
+    list.innerHTML='<div style="color:var(--muted);font-size:12px;">No timeline events yet</div>';
+    return;
+  }
+  list.innerHTML = items.map(function(t){
+    return '<div class="crm-tl-item"><div class="crm-tl-date">'+t.date+'</div><div class="crm-tl-text">'+t.text+'</div></div>';
+  }).join('');
+}
+
+// Keyboard shortcut: Ctrl+Enter to add note
+document.addEventListener('keydown', function(e){
+  if(e.ctrlKey && e.key==='Enter'){
+    var modal = document.getElementById('crm-profile-modal');
+    if(modal && modal.classList.contains('open')) addNote();
+  }
+});
+
+// Close profile on background click
+document.getElementById('crm-profile-modal').addEventListener('click', function(e){
+  if(e.target===this) closeCrmProfile();
+});
+
+// Init CRM after admin login
+var _crmAdminPatched = false;
+function _patchAdminForCrm(){
+  if(_crmAdminPatched) return;
+  _crmAdminPatched = true;
+  var origLogin = window.doAdminLogin;
+  window.doAdminLogin = function(){
+    if(document.getElementById('admin-u').value==='cancas_admin'
+      && document.getElementById('admin-p').value==='Cancas@2026!'){
+      document.getElementById('admin-modal').classList.remove('open');
+      document.getElementById('admin-panel').classList.add('open');
+      setTimeout(crmInit, 80);
+    } else {
+      alert('Incorrect credentials.');
+    }
+  };
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', _patchAdminForCrm);
+} else {
+  _patchAdminForCrm();
+}
+
 window.submitContactForm = function submitContactForm(btn) {
   const form = btn.closest('.contact-form');
   const name  = form.querySelector('input[type=text]').value.trim();
@@ -2326,16 +3355,13 @@ window.submitContactForm = function submitContactForm(btn) {
     'Name: ' + name + '\n' +
     'Email: ' + email + '\n' +
     'Business type: ' + biz + '\n' +
-    'Package interest: ' + pkg + '\n' +
-    (detail ? 'Details: ' + detail : '')
+    'Package interest: ' + pkg + '\n' + (detail ? 'Details: ' + detail : '')
   );
   btn.textContent = '\u2705 Sent! Redirecting to WhatsApp...';
   btn.style.background = '#00e87a';
   btn.style.color = '#000';
   btn.disabled = true;
-  setTimeout(() => {
-    window.open('https://wa.me/971569016046?text=' + msg, '_blank');
-  }, 800);
+  setTimeout(() => { window.open('https://wa.me/971569016046?text=' + msg, '_blank'); }, 800);
 }
 </script>
 </body>

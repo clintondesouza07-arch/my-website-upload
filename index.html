@@ -2064,10 +2064,12 @@ html, body { max-width: 100%; overflow-x: hidden; }
       </div>
     </div>
     <div id="sync-modal-status" style="font-size:12px;color:var(--muted);min-height:18px;margin-bottom:16px;"></div>
-    <div style="display:flex;gap:10px;">
-      <button class="crm-btn" onclick="saveSyncConfig()" style="flex:2;">Save &amp; Sync Now</button>
-      <button class="crm-btn sec" onclick="manualPull()" style="flex:1;">Pull from Cloud</button>
-      <button class="crm-btn sec" onclick="closeSyncSetup()">Close</button>
+    <div style="display:flex;gap:10px;flex-direction:column;">
+      <button class="crm-btn" onclick="saveSyncConfig()" style="width:100%;font-size:13px;padding:14px;">① Save &amp; Sync Now — do this FIRST on every new device</button>
+      <div style="display:flex;gap:10px;">
+        <button class="crm-btn sec" onclick="manualPull()" style="flex:1;">② Pull from Cloud — after Step 1 is done</button>
+        <button class="crm-btn sec" onclick="closeSyncSetup()">Close</button>
+      </div>
     </div>
     <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:#555;line-height:1.6;">
       Your data is stored privately in your own JSONBin account. The API key is saved in your browser and never sent anywhere except jsonbin.io.
@@ -3534,20 +3536,29 @@ function saveSyncConfig(){
   if(st){ st.textContent = 'Saving and syncing...'; st.style.color='var(--muted)'; }
   SYNC.push(false);
   setTimeout(function(){
-    if(st){ st.textContent = '✅ Sync configured! Your data will now sync across all devices.'; st.style.color='#00e87a'; }
+    var binId = SYNC.getBinId();
+    if(binId){
+      if(st){ st.textContent = '✅ Synced! Bin ID saved. Now go to your other devices, enter the same key and click Save & Sync Now.'; st.style.color='#00e87a'; }
+    } else {
+      if(st){ st.textContent = '✅ Key saved — syncing data now...'; st.style.color='#00e87a'; }
+    }
     var binInp = document.getElementById('sync-bin-id');
-    if(binInp) binInp.value = SYNC.getBinId();
+    if(binInp) binInp.value = SYNC.getBinId() || 'Creating...';
   }, 2500);
 }
 function manualPull(){
   var st = document.getElementById('sync-modal-status');
+  var key = SYNC.getKey();
+  var binId = SYNC.getBinId();
+  if(!key){ if(st){ st.textContent = '⚠ Enter your API key first, then click Save & Sync Now'; st.style.color='#ff5050'; } return; }
+  if(!binId){ if(st){ st.textContent = '⚠ No cloud bin yet — click Save & Sync Now first to create it, then Pull will work'; st.style.color='#e8b84b'; } return; }
   if(st){ st.textContent = 'Pulling from cloud...'; st.style.color='var(--muted)'; }
   SYNC.pull(function(ok){
     if(ok){
       CRM.load(); renderCrmGrid(); updateKpis(); updateEnquiryBadge();
       if(st){ st.textContent = '✅ Data updated from cloud!'; st.style.color='#00e87a'; }
     } else {
-      if(st){ st.textContent = '⚠ Could not reach cloud — check your API key and Bin ID'; st.style.color='#ff5050'; }
+      if(st){ st.textContent = '⚠ Could not reach cloud — check your API key is correct'; st.style.color='#ff5050'; }
     }
   });
 }

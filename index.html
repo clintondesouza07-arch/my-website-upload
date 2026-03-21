@@ -559,9 +559,10 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,6vw,84px);font
 .builder-total span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
 .builder-total strong{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);}
 /* T&C MODAL */
-#tc-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;}
+#tc-modal{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99600;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;}
 #tc-modal.open{display:flex;}
 .tc-shell{background:var(--bg2);border:1px solid var(--border);border-radius:8px;max-width:860px;width:100%;padding:60px 72px;position:relative;}
+@media(max-width:600px){.tc-shell{padding:40px 24px;border-radius:0;}}
 .tc-shell h1{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;text-transform:uppercase;margin-bottom:6px;}
 .tc-shell .tc-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:40px;}
 .tc-shell h2{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--white);margin:36px 0 12px;}
@@ -1992,7 +1993,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <div class="ci-col">
       <h3>LET'S BUILD SOMETHING GREAT</h3>
       <p>We respond to every enquiry within 24 hours and can have your new website live in as little as 14 days. Based in Dubai, serving clients worldwide.</p>
-      <a href="mailto:hello&#64;cancasstudio.com" class="ci-row ci-row--email" style="text-decoration:none;" aria-label="Email us">
+      <a href="/cdn-cgi/l/email-protection#721a171e1e1d545144464911131c111301010607161b1d5c111d1f" class="ci-row ci-row--email" style="text-decoration:none;" aria-label="Email us">
         <div class="ci-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -2677,6 +2678,7 @@ function openPkgDemo(key){
 }
 
 function toggleChat(){document.getElementById('chat-box').classList.toggle('open');}
+function openTC(e){ if(e) e.preventDefault(); document.getElementById('tc-modal').classList.add('open'); }
 
 const CHAT_SYSTEM = `You are Nex, the friendly and highly intelligent AI assistant for CANCAS.STUDIO — a premium web design and development agency based in Dubai, UAE.
 
@@ -3126,7 +3128,7 @@ window.addEventListener('scroll',()=>{
 
     <h2>2. Payment Plans</h2>
     <div class="tc-highlight"><p><strong>One-Time Purchase:</strong> You pay the full package price once. Upon receipt of final payment, you own the complete website source code and all associated assets created for your project. You are responsible for arranging and paying for your own domain and hosting. We provide guidance on setup at no extra charge.</p></div>
-    <div class="tc-highlight"><p><strong>Managed Monthly Plan:</strong> You pay a recurring monthly fee (the applicable rate confirmed at the time of engagement and varies by package tier). This covers website hosting, SSL certificate, security monitoring, basic maintenance, and a set allowance of minor monthly edits as specified in your package. Monthly fees vary — higher-tier packages carry higher monthly rates. This plan may be cancelled at any time with 30 days written notice sent to <a href="mailto:hello&#64;cancasstudio.com" style="color:var(--cyan)">hello&#64;cancasstudio&#46;com</a>. Hosting and all managed services (including domain forwarding) will cease at the end of the final paid billing period following cancellation.</p></div>
+    <div class="tc-highlight"><p><strong>Managed Monthly Plan:</strong> You pay a recurring monthly fee (the applicable rate confirmed at the time of engagement and varies by package tier). This covers website hosting, SSL certificate, security monitoring, basic maintenance, and a set allowance of minor monthly edits as specified in your package. Monthly fees vary — higher-tier packages carry higher monthly rates. This plan may be cancelled at any time with 30 days written notice sent to <a href="/cdn-cgi/l/email-protection#afc7cac3c3c0898c999b94cccec1cccedcdcdbdacbc6c081ccc0c2" style="color:var(--cyan)">hello&#64;cancasstudio&#46;com</a>. Hosting and all managed services (including domain forwarding) will cease at the end of the final paid billing period following cancellation.</p></div>
     <p>A non-refundable deposit of 50% of the agreed project cost (or the equivalent of the first month's fee for managed plans) is required to begin work. The remaining balance is due upon project completion, before the website goes live. All payments are final once work has commenced.</p>
 
     <h2>3. Website File Transfer on Cancellation</h2>
@@ -3178,7 +3180,7 @@ window.addEventListener('scroll',()=>{
     <p>CANCAS.STUDIO reserves the right to update these Terms at any time. Updated terms will be posted on our website. Continued use of our services following an update constitutes acceptance of the revised terms.</p>
 
     <h2>16. Contact</h2>
-    <p>For questions regarding these Terms, contact us at <strong style="color:var(--cyan)"><a href="mailto:hello&#64;cancasstudio.com" style="color:var(--cyan)">hello&#64;cancasstudio&#46;com</a></strong> or WhatsApp <strong style="color:var(--cyan)">+971 56 901 6046</strong>. We respond within 24 hours.</p>
+    <p>For questions regarding these Terms, contact us at <strong style="color:var(--cyan)"><a href="/cdn-cgi/l/email-protection#c2aaa7aeaeade4e1f4f6f9a1a3aca1a3b1b1b6b7a6abadeca1adaf" style="color:var(--cyan)">hello&#64;cancasstudio&#46;com</a></strong> or WhatsApp <strong style="color:var(--cyan)">+971 56 901 6046</strong>. We respond within 24 hours.</p>
 
     <div style="margin-top:48px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:gap">
       <p style="font-size:12px;color:var(--muted);">© 2026 CANCAS.STUDIO. All rights reserved.</p>

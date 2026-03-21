@@ -2050,7 +2050,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
         <li>Go to <a href="https://jsonbin.io" target="_blank" style="color:var(--cyan);">jsonbin.io</a> → click <strong style="color:var(--text)">Sign Up Free</strong></li>
         <li>Verify your email and log in</li>
         <li>Go to <strong style="color:var(--text)">API Keys</strong> in the top menu</li>
-        <li>Copy your <strong style="color:var(--text)">X-Master-Key</strong> (starts with $2b$)</li>
+        <li>Copy your <strong style="color:var(--text)">X-Master-Key</strong> (starts with $2a$ or $2b$)</li>
         <li>Paste it below and click Save &amp; Sync</li>
       </ol>
     </div>
@@ -3529,7 +3529,7 @@ function closeSyncSetup(){
 function saveSyncConfig(){
   var key = (document.getElementById('sync-api-key')||{}).value||'';
   var st = document.getElementById('sync-modal-status');
-  if(!key || !key.startsWith('$2b$')){ if(st) st.textContent = '⚠ Key must start with $2b$ — check your JSONBin API Keys page'; if(st) st.style.color='#ff5050'; return; }
+  if(!key || !key.startsWith('$')){ if(st) st.textContent = '⚠ Paste the full key from JSONBin — it should start with $2a$ or $2b$'; if(st) st.style.color='#ff5050'; return; }
   SYNC.setKey(key.trim());
   if(st){ st.textContent = 'Saving and syncing...'; st.style.color='var(--muted)'; }
   SYNC.push(false);

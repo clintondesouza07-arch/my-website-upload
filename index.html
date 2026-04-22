@@ -27,14 +27,16 @@
 <meta property="og:url" content="https://www.cancasstudio.com/">
 <meta property="og:title" content="CANCAS.STUDIO | Web Design & Development Dubai">
 <meta property="og:description" content="Professional web design & development studio in Dubai, UAE. Custom websites from AED 1,464. Mobile-friendly, SEO-ready, live in 14 days.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80">
+<meta property="og:image" content="https://www.cancasstudio.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_AE">
 <meta property="og:site_name" content="CANCAS.STUDIO">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CANCAS.STUDIO | Web Design Dubai">
 <meta name="twitter:description" content="Custom websites for Dubai businesses from AED 1,464. Live in 14 days.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80">
+<meta name="twitter:image" content="https://www.cancasstudio.com/og-image.jpg">
 <!-- Schema Markup: Local Business -->
 <script type="application/ld+json">
 {
@@ -45,6 +47,7 @@
   "url": "https://www.cancasstudio.com",
   "logo": "https://www.cancasstudio.com/logo.png",
   "image": "https://www.cancasstudio.com/og-image.jpg",
+  "hasMap": "https://maps.google.com/?q=Dubai,UAE",
   "description": "Professional web design & development studio in Dubai, UAE. Custom websites for restaurants, salons, real estate, fitness & more. Mobile-friendly, SEO-ready. Live in 14 days. From AED 1,464.",
   "telephone": "+971569016046",
   "email": "hello@cancasstudio.com",
@@ -4188,6 +4191,7 @@ function saveClient(){
     CRM.currentId = client.id;
   }
   CRM.save();
+  autoBackupOnSave();
 
   // Add timeline entry
   addTimelineEvent(client, 'Client saved — '+CRM.statusLabel(client.status));
@@ -4580,6 +4584,45 @@ function showToast(msg) {
   t.style.opacity = '1';
   clearTimeout(t._hide);
   t._hide = setTimeout(function(){ t.style.opacity = '0'; }, 3500);
+}
+
+// ══════════════════════════════════════════════════════
+// AUTO-BACKUP — fires on every Save button press
+// • Always: stores latest snapshot in localStorage
+// • Once per day: auto-downloads a .json backup file
+// ══════════════════════════════════════════════════════
+function autoBackupOnSave() {
+  try {
+    var clients   = JSON.parse(localStorage.getItem('crm_clients')   || '[]');
+    var enquiries = JSON.parse(localStorage.getItem('crm_enquiries') || '[]');
+    var ts    = new Date().toISOString();
+    var today = ts.slice(0, 10); // "YYYY-MM-DD"
+
+    var snapshot = { exported: ts, crm_clients: clients, crm_enquiries: enquiries };
+
+    // 1. Always keep a fresh snapshot in localStorage
+    localStorage.setItem('crm_auto_backup_latest', JSON.stringify(snapshot));
+    localStorage.setItem('crm_auto_backup_time',   ts);
+
+    // 2. Auto-download a file once per calendar day (won't spam Downloads)
+    var lastDl = localStorage.getItem('crm_auto_backup_last_dl') || '';
+    if (lastDl !== today) {
+      var blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: 'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'cancas-crm-auto-backup-' + today + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      localStorage.setItem('crm_auto_backup_last_dl', today);
+      showToast('✅ Saved + Daily backup file downloaded 💾');
+    } else {
+      showToast('✅ Saved + Auto-backed up 💾');
+    }
+  } catch(e) {
+    // Backup failure must never break the save
+    showToast('✅ Saved!');
+  }
 }
 </script>
 </body>

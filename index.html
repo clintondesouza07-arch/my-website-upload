@@ -3,13 +3,8 @@
 <html lang="en">
 <head>
 <!-- Google Analytics 4 (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RWM62JTN1D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RWM62JTN1D');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RWM62JTN1D" onload="gtag('js',new Date());gtag('config','G-RWM62JTN1D');"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CANCAS.STUDIO | Web Design & Development Dubai | From AED 1,464</title>
@@ -167,12 +162,14 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Cinzel:wght@700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Cinzel:wght@700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Cinzel:wght@700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{--cyan:#00d4ff;--bg:#080810;--bg2:#0f0f1a;--bg3:#16162a;--card:#111120;--border:rgba(255,255,255,0.07);--border-lit:rgba(0,212,255,0.25);--text:#d8d8e8;--muted:#6a6a8a;--white:#fff;--green:#00e87a;--gold:#e8b84b;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+body{font-family:'DM Sans',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:2px;}
@@ -672,7 +669,7 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,6vw,84px);font
 .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
 .proc-card{background:var(--bg);padding:44px 36px;border-bottom:2px solid transparent;transition:border-color .3s;}
 .proc-card:hover{border-color:var(--cyan);}
-.proc-num{font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:rgba(0,212,255,.06);line-height:1;margin-bottom:20px;display:block;}
+.proc-num{font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;line-height:1;margin-bottom:20px;display:block;background:linear-gradient(135deg,rgba(0,212,255,.8) 0%,rgba(0,212,255,.2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .proc-card h3{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--white);margin-bottom:10px;}
 .proc-card p{font-size:13px;color:var(--muted);line-height:1.75;}
 
@@ -1606,42 +1603,42 @@ html, body { max-width: 100%; overflow-x: hidden; }
 <div id="industries">
   <div class="ind-strip">
     <div class="ind-item" onclick="window.goToCategory('cafe')">
-      <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=80" alt="Cafe">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=80" width="400" height="280" alt="Cafe">
       <div class="ind-overlay"><div class="ind-label">Cafe &amp; Coffee</div><div class="ind-count">3 demos</div></div>
       <div class="ind-arrow">→</div>
     </div>
     <div class="ind-item" onclick="window.goToCategory('restaurant')">
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Restaurant">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" width="400" height="280" alt="Restaurant">
       <div class="ind-overlay"><div class="ind-label">Restaurants</div><div class="ind-count">3 demos</div></div>
       <div class="ind-arrow">→</div>
     </div>
     <div class="ind-item" onclick="window.goToCategory('salon')">
-      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" alt="Salon">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" width="400" height="280" alt="Salon">
       <div class="ind-overlay"><div class="ind-label">Salon &amp; Beauty</div><div class="ind-count">3 demos</div></div>
       <div class="ind-arrow">→</div>
     </div>
     <div class="ind-item" onclick="window.goToCategory('realestate')">
-      <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&q=80" alt="Real Estate">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&q=80" width="400" height="280" alt="Real Estate">
       <div class="ind-overlay"><div class="ind-label">Real Estate</div><div class="ind-count">3 demos</div></div>
       <div class="ind-arrow">→</div>
     </div>
     <div class="ind-item" onclick="window.goToCategory('fitness')">
-      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80" alt="Fitness">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80" width="400" height="280" alt="Fitness">
       <div class="ind-overlay"><div class="ind-label">Fitness</div><div class="ind-count">3 demos</div></div>
       <div class="ind-arrow">→</div>
     </div>
     <div class="ind-item" onclick="window.goToCategory('tech')">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="Tech">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" width="400" height="280" alt="Tech">
       <div class="ind-overlay"><div class="ind-label">Tech &amp; SaaS</div><div class="ind-count">3 demos</div></div>
       <div class="ind-arrow">→</div>
     </div>
     <div class="ind-item" onclick="window.goToCategory('retail')">
-      <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&q=80" alt="Retail">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&q=80" width="400" height="280" alt="Retail">
       <div class="ind-overlay"><div class="ind-label">Retail &amp; Shop</div><div class="ind-count">3 demos</div></div>
       <div class="ind-arrow">→</div>
     </div>
     <div class="ind-item" onclick="window.goToCategory('healthcare')">
-      <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80" alt="Healthcare">
+      <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80" width="400" height="280" alt="Healthcare">
       <div class="ind-overlay"><div class="ind-label">Healthcare</div><div class="ind-count">3 demos</div></div>
       <div class="ind-arrow">→</div>
     </div>
@@ -1655,7 +1652,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
   <p class="s-sub">Everything your business needs to dominate online — from pixel-perfect design to powerful AI integrations.</p>
   <div class="svc-grid reveal">
     <div class="svc-card">
-      <img class="svc-card-img" src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80" alt="Web design">
+      <img loading="lazy" decoding="async" class="svc-card-img" src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80" alt="Web design">
       <div class="svc-card-body">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
         <h3>Custom Web Design</h3>
@@ -1663,7 +1660,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       </div>
     </div>
     <div class="svc-card">
-      <img class="svc-card-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80" alt="Development">
+      <img loading="lazy" decoding="async" class="svc-card-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80" alt="Development">
       <div class="svc-card-body">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
         <h3>High-Performance Dev</h3>
@@ -1671,7 +1668,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       </div>
     </div>
     <div class="svc-card">
-      <img class="svc-card-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Edits & Maintenance">
+      <img loading="lazy" decoding="async" class="svc-card-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Edits & Maintenance">
       <div class="svc-card-body">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
         <h3>Edits &amp; Maintenance</h3>
@@ -1679,7 +1676,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       </div>
     </div>
     <div class="svc-card">
-      <img class="svc-card-img" src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80" alt="AI Integration">
+      <img loading="lazy" decoding="async" class="svc-card-img" src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80" alt="AI Integration">
       <div class="svc-card-body">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 116.93 19.07"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42"/></svg></div>
         <h3>AI Integration</h3>
@@ -1687,7 +1684,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       </div>
     </div>
     <div class="svc-card">
-      <img class="svc-card-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80" alt="Mobile design">
+      <img loading="lazy" decoding="async" class="svc-card-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80" alt="Mobile design">
       <div class="svc-card-body">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
         <h3>Mobile-First Design</h3>
@@ -1695,7 +1692,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       </div>
     </div>
     <div class="svc-card">
-      <img class="svc-card-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="SEO analytics">
+      <img loading="lazy" decoding="async" class="svc-card-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="SEO analytics">
       <div class="svc-card-body">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <h3>SEO &amp; Growth</h3>
@@ -1723,57 +1720,57 @@ html, body { max-width: 100%; overflow-x: hidden; }
   </div>
 
   <div class="p-section active" id="cat-cafe">
-    <div class="p-card" onclick="openDemo('cafe1')"><img class="p-img" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80" alt="Dark artisan coffee shop"><div class="p-body"><h3>Brew &amp; Co — Dark Artisan</h3><p>Moody, premium aesthetic for specialty coffee shops with online ordering, loyalty programme, and events.</p><div class="p-tags"><span class="p-tag">Online Order</span><span class="p-tag">Loyalty</span><span class="p-tag">Events</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('cafe1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('cafe2')"><img class="p-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80" alt="French minimalist café"><div class="p-body"><h3>La Petite — French Minimalist</h3><p>Elegant, clean layout for upscale Parisian-style cafés with digital menu, gallery, and reservation widget.</p><div class="p-tags"><span class="p-tag">Reservations</span><span class="p-tag">Gallery</span><span class="p-tag">Menu</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('cafe2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('cafe3')"><img class="p-img" src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=600&q=80" alt="Urban industrial café"><div class="p-body"><h3>Urban Grind — Industrial</h3><p>Bold, urban aesthetic for trendy city cafés with QR loyalty system, blog, and events calendar.</p><div class="p-tags"><span class="p-tag">Blog</span><span class="p-tag">Events</span><span class="p-tag">QR Menu</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('cafe3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('cafe1')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80" alt="Dark artisan coffee shop"><div class="p-body"><h3>Brew &amp; Co — Dark Artisan</h3><p>Moody, premium aesthetic for specialty coffee shops with online ordering, loyalty programme, and events.</p><div class="p-tags"><span class="p-tag">Online Order</span><span class="p-tag">Loyalty</span><span class="p-tag">Events</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('cafe1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('cafe2')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80" alt="French minimalist café"><div class="p-body"><h3>La Petite — French Minimalist</h3><p>Elegant, clean layout for upscale Parisian-style cafés with digital menu, gallery, and reservation widget.</p><div class="p-tags"><span class="p-tag">Reservations</span><span class="p-tag">Gallery</span><span class="p-tag">Menu</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('cafe2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('cafe3')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=600&q=80" alt="Urban industrial café"><div class="p-body"><h3>Urban Grind — Industrial</h3><p>Bold, urban aesthetic for trendy city cafés with QR loyalty system, blog, and events calendar.</p><div class="p-tags"><span class="p-tag">Blog</span><span class="p-tag">Events</span><span class="p-tag">QR Menu</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('cafe3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </div>
 
   <div class="p-section" id="cat-restaurant">
-    <div class="p-card" onclick="openDemo('rest1')"><img class="p-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Fine dining restaurant"><div class="p-body"><h3>Rosso — Fine Dining</h3><p>Luxury Italian restaurant with online reservations, chef specials, private dining, and wine pairing pages.</p><div class="p-tags"><span class="p-tag">Reservations</span><span class="p-tag">Wine List</span><span class="p-tag">Private Events</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('rest1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('rest2')"><img class="p-img" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Healthy food restaurant"><div class="p-body"><h3>Verde Kitchen — Healthy Eats</h3><p>Fresh, vibrant design for healthy restaurants with nutritional info, meal subscriptions, and delivery tracking.</p><div class="p-tags"><span class="p-tag">Delivery</span><span class="p-tag">Subscriptions</span><span class="p-tag">Nutrition</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('rest2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('rest3')"><img class="p-img" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80" alt="Japanese sushi restaurant"><div class="p-body"><h3>Sakura — Japanese Fusion</h3><p>Sleek, modern sushi and fusion restaurant with QR table ordering, delivery integration, and loyalty rewards.</p><div class="p-tags"><span class="p-tag">QR Order</span><span class="p-tag">Delivery</span><span class="p-tag">Loyalty</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('rest3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('rest1')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Fine dining restaurant"><div class="p-body"><h3>Rosso — Fine Dining</h3><p>Luxury Italian restaurant with online reservations, chef specials, private dining, and wine pairing pages.</p><div class="p-tags"><span class="p-tag">Reservations</span><span class="p-tag">Wine List</span><span class="p-tag">Private Events</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('rest1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('rest2')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Healthy food restaurant"><div class="p-body"><h3>Verde Kitchen — Healthy Eats</h3><p>Fresh, vibrant design for healthy restaurants with nutritional info, meal subscriptions, and delivery tracking.</p><div class="p-tags"><span class="p-tag">Delivery</span><span class="p-tag">Subscriptions</span><span class="p-tag">Nutrition</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('rest2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('rest3')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80" alt="Japanese sushi restaurant"><div class="p-body"><h3>Sakura — Japanese Fusion</h3><p>Sleek, modern sushi and fusion restaurant with QR table ordering, delivery integration, and loyalty rewards.</p><div class="p-tags"><span class="p-tag">QR Order</span><span class="p-tag">Delivery</span><span class="p-tag">Loyalty</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('rest3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </div>
 
   <div class="p-section" id="cat-salon">
-    <div class="p-card" onclick="openDemo('salon1')"><img class="p-img" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80" alt="Luxury hair salon"><div class="p-body"><h3>Luxe — Luxury Hair Salon</h3><p>High-end salon with online booking, stylist profiles, portfolio gallery, and subscription membership.</p><div class="p-tags"><span class="p-tag">Booking</span><span class="p-tag">Stylists</span><span class="p-tag">Membership</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('salon1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('salon2')"><img class="p-img" src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=600&q=80" alt="Beauty spa"><div class="p-body"><h3>Glow Spa — Beauty &amp; Wellness</h3><p>Full-service spa with gift cards, membership plans, before/after gallery, and online scheduling.</p><div class="p-tags"><span class="p-tag">Scheduling</span><span class="p-tag">Gift Cards</span><span class="p-tag">VIP Membership</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('salon2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('salon3')"><img class="p-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Modern barbershop"><div class="p-body"><h3>The Barbershop — Modern Cuts</h3><p>Bold barber shop design with instant booking, barber bios, portfolio of cuts, and loyalty stamps.</p><div class="p-tags"><span class="p-tag">Booking</span><span class="p-tag">Portfolio</span><span class="p-tag">Loyalty</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('salon3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('salon1')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80" alt="Luxury hair salon"><div class="p-body"><h3>Luxe — Luxury Hair Salon</h3><p>High-end salon with online booking, stylist profiles, portfolio gallery, and subscription membership.</p><div class="p-tags"><span class="p-tag">Booking</span><span class="p-tag">Stylists</span><span class="p-tag">Membership</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('salon1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('salon2')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=600&q=80" alt="Beauty spa"><div class="p-body"><h3>Glow Spa — Beauty &amp; Wellness</h3><p>Full-service spa with gift cards, membership plans, before/after gallery, and online scheduling.</p><div class="p-tags"><span class="p-tag">Scheduling</span><span class="p-tag">Gift Cards</span><span class="p-tag">VIP Membership</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('salon2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('salon3')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Modern barbershop"><div class="p-body"><h3>The Barbershop — Modern Cuts</h3><p>Bold barber shop design with instant booking, barber bios, portfolio of cuts, and loyalty stamps.</p><div class="p-tags"><span class="p-tag">Booking</span><span class="p-tag">Portfolio</span><span class="p-tag">Loyalty</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('salon3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </div>
 
   <div class="p-section" id="cat-realestate">
-    <div class="p-card" onclick="openDemo('re1')"><img class="p-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="Modern property"><div class="p-body"><h3>Prime Property — Listings Portal</h3><p>Full property listing portal with search filters, virtual tours, agent profiles, mortgage calculator, and lead capture.</p><div class="p-tags"><span class="p-tag">Listings</span><span class="p-tag">Virtual Tours</span><span class="p-tag">Calculator</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('re1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('re2')"><img class="p-img" src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80" alt="Luxury estate"><div class="p-body"><h3>Estate Luxury — Premium Homes</h3><p>Ultra-luxury real estate for high-end properties with cinematic hero sections, exclusive listings, and concierge contact.</p><div class="p-tags"><span class="p-tag">Video Tours</span><span class="p-tag">Exclusive</span><span class="p-tag">Concierge</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('re2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('re3')"><img class="p-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Commercial office building"><div class="p-body"><h3>Urban Spaces — Commercial</h3><p>Commercial property rental and sales with floor plans, 360° views, comparison tools, and tenant portal.</p><div class="p-tags"><span class="p-tag">Floor Plans</span><span class="p-tag">360° Views</span><span class="p-tag">Tenant Portal</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('re3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('re1')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="Modern property"><div class="p-body"><h3>Prime Property — Listings Portal</h3><p>Full property listing portal with search filters, virtual tours, agent profiles, mortgage calculator, and lead capture.</p><div class="p-tags"><span class="p-tag">Listings</span><span class="p-tag">Virtual Tours</span><span class="p-tag">Calculator</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('re1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('re2')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80" alt="Luxury estate"><div class="p-body"><h3>Estate Luxury — Premium Homes</h3><p>Ultra-luxury real estate for high-end properties with cinematic hero sections, exclusive listings, and concierge contact.</p><div class="p-tags"><span class="p-tag">Video Tours</span><span class="p-tag">Exclusive</span><span class="p-tag">Concierge</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('re2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('re3')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Commercial office building"><div class="p-body"><h3>Urban Spaces — Commercial</h3><p>Commercial property rental and sales with floor plans, 360° views, comparison tools, and tenant portal.</p><div class="p-tags"><span class="p-tag">Floor Plans</span><span class="p-tag">360° Views</span><span class="p-tag">Tenant Portal</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('re3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </div>
 
   <div class="p-section" id="cat-fitness">
-    <div class="p-card" onclick="openDemo('fit1')"><img class="p-img" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Gym equipment"><div class="p-body"><h3>Ironclad Gym — Power &amp; Strength</h3><p>Bold gym website with class schedules, personal trainer booking, membership tiers, and progress tracking.</p><div class="p-tags"><span class="p-tag">Classes</span><span class="p-tag">Trainers</span><span class="p-tag">Membership</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('fit1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('fit2')"><img class="p-img" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Yoga studio"><div class="p-body"><h3>ZenFlow — Yoga &amp; Wellness</h3><p>Peaceful design for yoga studios with online streaming, instructor bios, retreat booking, and merchandise.</p><div class="p-tags"><span class="p-tag">Live Classes</span><span class="p-tag">Retreats</span><span class="p-tag">Shop</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('fit2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('fit3')"><img class="p-img" src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&q=80" alt="Running community"><div class="p-body"><h3>Runify — Running Club</h3><p>Community running club with event registration, route maps, leaderboards, and social challenges.</p><div class="p-tags"><span class="p-tag">Events</span><span class="p-tag">Routes</span><span class="p-tag">Community</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('fit3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('fit1')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Gym equipment"><div class="p-body"><h3>Ironclad Gym — Power &amp; Strength</h3><p>Bold gym website with class schedules, personal trainer booking, membership tiers, and progress tracking.</p><div class="p-tags"><span class="p-tag">Classes</span><span class="p-tag">Trainers</span><span class="p-tag">Membership</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('fit1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('fit2')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Yoga studio"><div class="p-body"><h3>ZenFlow — Yoga &amp; Wellness</h3><p>Peaceful design for yoga studios with online streaming, instructor bios, retreat booking, and merchandise.</p><div class="p-tags"><span class="p-tag">Live Classes</span><span class="p-tag">Retreats</span><span class="p-tag">Shop</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('fit2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('fit3')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&q=80" alt="Running community"><div class="p-body"><h3>Runify — Running Club</h3><p>Community running club with event registration, route maps, leaderboards, and social challenges.</p><div class="p-tags"><span class="p-tag">Events</span><span class="p-tag">Routes</span><span class="p-tag">Community</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('fit3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </div>
 
   <div class="p-section" id="cat-tech">
-    <div class="p-card" onclick="openDemo('tech1')"><img class="p-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="SaaS dashboard"><div class="p-body"><h3>Launchpad — SaaS Product</h3><p>Sleek SaaS landing page with pricing tiers, feature comparison, customer testimonials, and demo request flow.</p><div class="p-tags"><span class="p-tag">Pricing</span><span class="p-tag">Demo</span><span class="p-tag">Dashboard</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('tech1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('tech2')"><img class="p-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80" alt="Developer working with code"><div class="p-body"><h3>DevStudio — Agency Portfolio</h3><p>Bold developer portfolio with case studies, tech stack showcase, GitHub integration, and client testimonials.</p><div class="p-tags"><span class="p-tag">Case Studies</span><span class="p-tag">Tech Stack</span><span class="p-tag">Contact</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('tech2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('tech3')"><img class="p-img" src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80" alt="Artificial intelligence"><div class="p-body"><h3>AI Startup — Tech Product</h3><p>Futuristic AI product site with animated demos, API documentation preview, investor section, and waitlist.</p><div class="p-tags"><span class="p-tag">Waitlist</span><span class="p-tag">API Docs</span><span class="p-tag">Investors</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('tech3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('tech1')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="SaaS dashboard"><div class="p-body"><h3>Launchpad — SaaS Product</h3><p>Sleek SaaS landing page with pricing tiers, feature comparison, customer testimonials, and demo request flow.</p><div class="p-tags"><span class="p-tag">Pricing</span><span class="p-tag">Demo</span><span class="p-tag">Dashboard</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('tech1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('tech2')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80" alt="Developer working with code"><div class="p-body"><h3>DevStudio — Agency Portfolio</h3><p>Bold developer portfolio with case studies, tech stack showcase, GitHub integration, and client testimonials.</p><div class="p-tags"><span class="p-tag">Case Studies</span><span class="p-tag">Tech Stack</span><span class="p-tag">Contact</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('tech2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('tech3')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80" alt="Artificial intelligence"><div class="p-body"><h3>AI Startup — Tech Product</h3><p>Futuristic AI product site with animated demos, API documentation preview, investor section, and waitlist.</p><div class="p-tags"><span class="p-tag">Waitlist</span><span class="p-tag">API Docs</span><span class="p-tag">Investors</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('tech3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </div>
 
   <div class="p-section" id="cat-retail">
-    <div class="p-card" onclick="openDemo('ret1')"><img class="p-img" src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&q=80" alt="Fashion boutique"><div class="p-body"><h3>Ember Boutique — Fashion</h3><p>Elegant fashion boutique with lookbooks, size guides, wishlist, gift registry, and VIP membership.</p><div class="p-tags"><span class="p-tag">Shop</span><span class="p-tag">Wishlist</span><span class="p-tag">VIP Club</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('ret1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('ret2')"><img class="p-img" src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&q=80" alt="Wholesale warehouse"><div class="p-body"><h3>Supply Co — Wholesale &amp; B2B</h3><p>B2B wholesale portal with bulk ordering, custom quotes, account management, and inventory tracking.</p><div class="p-tags"><span class="p-tag">Wholesale</span><span class="p-tag">Custom Orders</span><span class="p-tag">B2B</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('ret2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('ret3')"><img class="p-img" src="https://images.unsplash.com/photo-1543168256-418811576931?w=600&q=80" alt="Organic natural products"><div class="p-body"><h3>Organic Roots — Natural Products</h3><p>Natural wellness store with subscription boxes, farm sourcing stories, and impact reports.</p><div class="p-tags"><span class="p-tag">Subscriptions</span><span class="p-tag">Blog</span><span class="p-tag">Impact</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('ret3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('ret1')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&q=80" alt="Fashion boutique"><div class="p-body"><h3>Ember Boutique — Fashion</h3><p>Elegant fashion boutique with lookbooks, size guides, wishlist, gift registry, and VIP membership.</p><div class="p-tags"><span class="p-tag">Shop</span><span class="p-tag">Wishlist</span><span class="p-tag">VIP Club</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('ret1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('ret2')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&q=80" alt="Wholesale warehouse"><div class="p-body"><h3>Supply Co — Wholesale &amp; B2B</h3><p>B2B wholesale portal with bulk ordering, custom quotes, account management, and inventory tracking.</p><div class="p-tags"><span class="p-tag">Wholesale</span><span class="p-tag">Custom Orders</span><span class="p-tag">B2B</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('ret2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('ret3')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1543168256-418811576931?w=600&q=80" alt="Organic natural products"><div class="p-body"><h3>Organic Roots — Natural Products</h3><p>Natural wellness store with subscription boxes, farm sourcing stories, and impact reports.</p><div class="p-tags"><span class="p-tag">Subscriptions</span><span class="p-tag">Blog</span><span class="p-tag">Impact</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('ret3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </div>
 
   <div class="p-section" id="cat-healthcare">
-    <div class="p-card" onclick="openDemo('hc1')"><img class="p-img" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80" alt="Medical clinic"><div class="p-body"><h3>MedCare — Medical Clinic</h3><p>Professional medical clinic with appointment booking, doctor profiles, patient portal, and telehealth.</p><div class="p-tags"><span class="p-tag">Appointments</span><span class="p-tag">Telehealth</span><span class="p-tag">Patient Portal</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hc1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('hc2')"><img class="p-img" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=80" alt="Dental clinic"><div class="p-body"><h3>Bright Dental — Dentistry</h3><p>Modern dental practice with online scheduling, treatment explainers, before/after gallery, and financing info.</p><div class="p-tags"><span class="p-tag">Scheduling</span><span class="p-tag">Treatments</span><span class="p-tag">Financing</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hc2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('hc3')"><img class="p-img" src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&q=80" alt="Therapy and counseling"><div class="p-body"><h3>Mindful — Therapy &amp; Counseling</h3><p>Calm, trust-building therapist website with confidential booking, service descriptions, and resource library.</p><div class="p-tags"><span class="p-tag">Private Booking</span><span class="p-tag">Resources</span><span class="p-tag">Blog</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hc3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('hc1')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80" alt="Medical clinic"><div class="p-body"><h3>MedCare — Medical Clinic</h3><p>Professional medical clinic with appointment booking, doctor profiles, patient portal, and telehealth.</p><div class="p-tags"><span class="p-tag">Appointments</span><span class="p-tag">Telehealth</span><span class="p-tag">Patient Portal</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hc1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('hc2')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=80" alt="Dental clinic"><div class="p-body"><h3>Bright Dental — Dentistry</h3><p>Modern dental practice with online scheduling, treatment explainers, before/after gallery, and financing info.</p><div class="p-tags"><span class="p-tag">Scheduling</span><span class="p-tag">Treatments</span><span class="p-tag">Financing</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hc2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('hc3')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&q=80" alt="Therapy and counseling"><div class="p-body"><h3>Mindful — Therapy &amp; Counseling</h3><p>Calm, trust-building therapist website with confidential booking, service descriptions, and resource library.</p><div class="p-tags"><span class="p-tag">Private Booking</span><span class="p-tag">Resources</span><span class="p-tag">Blog</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hc3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </div>
 
   <div class="p-section" id="cat-hospitality">
-    <div class="p-card" onclick="openDemo('hosp1')"><img class="p-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Luxury hotel pool"><div class="p-body"><h3>The Grand &mdash; Luxury Hotel</h3><p>Five-star hotel with room booking, spa reservations, fine dining, and personalised concierge services.</p><div class="p-tags"><span class="p-tag">Room Booking</span><span class="p-tag">Spa</span><span class="p-tag">Concierge</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hosp1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('hosp2')"><img class="p-img" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80" alt="Desert resort pool"><div class="p-body"><h3>Oasis &mdash; Desert Boutique Resort</h3><p>Intimate desert resort with experience packages, sunset dining, gallery, and seasonal promotions.</p><div class="p-tags"><span class="p-tag">Packages</span><span class="p-tag">Gallery</span><span class="p-tag">Promotions</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hosp2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-    <div class="p-card" onclick="openDemo('hosp3')"><img class="p-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80" alt="Urban hotel lobby"><div class="p-body"><h3>Cityview &mdash; Urban Business Hotel</h3><p>Modern city hotel with real-time room availability, loyalty programme, corporate booking, and event spaces.</p><div class="p-tags"><span class="p-tag">Availability</span><span class="p-tag">Loyalty</span><span class="p-tag">Corporate</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hosp3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('hosp1')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Luxury hotel pool"><div class="p-body"><h3>The Grand &mdash; Luxury Hotel</h3><p>Five-star hotel with room booking, spa reservations, fine dining, and personalised concierge services.</p><div class="p-tags"><span class="p-tag">Room Booking</span><span class="p-tag">Spa</span><span class="p-tag">Concierge</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hosp1')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('hosp2')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80" alt="Desert resort pool"><div class="p-body"><h3>Oasis &mdash; Desert Boutique Resort</h3><p>Intimate desert resort with experience packages, sunset dining, gallery, and seasonal promotions.</p><div class="p-tags"><span class="p-tag">Packages</span><span class="p-tag">Gallery</span><span class="p-tag">Promotions</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hosp2')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+    <div class="p-card" onclick="openDemo('hosp3')"><img loading="lazy" decoding="async" class="p-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80" alt="Urban hotel lobby"><div class="p-body"><h3>Cityview &mdash; Urban Business Hotel</h3><p>Modern city hotel with real-time room availability, loyalty programme, corporate booking, and event spaces.</p><div class="p-tags"><span class="p-tag">Availability</span><span class="p-tag">Loyalty</span><span class="p-tag">Corporate</span></div></div><button class="p-prev-btn" onclick="event.stopPropagation();openDemo('hosp3')">Live Preview <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
   </div>
 
 </section>
@@ -1788,12 +1785,12 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <p>Every website we build is tailored to its industry — with the right images, the right tone, and features that make sense for that specific business. This is what your clients' websites could look like.</p>
   </div>
   <div class="showcase-wall">
-    <div class="sw-item sw-a"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=85" alt="Fine dining restaurant"><div class="sw-label">Fine Dining</div></div>
-    <div class="sw-item sw-b"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=85" alt="Hair salon"><div class="sw-label">Luxury Salon</div></div>
-    <div class="sw-item sw-c"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=500&q=85" alt="Luxury real estate"><div class="sw-label">Estate Luxury</div></div>
-    <div class="sw-item sw-d"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&q=85" alt="Gym fitness"><div class="sw-label">Fitness &amp; Gym</div></div>
-    <div class="sw-item sw-e"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=85" alt="Coffee shop"><div class="sw-label">Artisan Coffee</div></div>
-    <div class="sw-item sw-f"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=700&q=85" alt="Sushi restaurant"><div class="sw-label">Japanese Fusion</div></div>
+    <div class="sw-item sw-a"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=85" alt="Fine dining restaurant"><div class="sw-label">Fine Dining</div></div>
+    <div class="sw-item sw-b"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=85" alt="Hair salon"><div class="sw-label">Luxury Salon</div></div>
+    <div class="sw-item sw-c"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=500&q=85" alt="Luxury real estate"><div class="sw-label">Estate Luxury</div></div>
+    <div class="sw-item sw-d"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&q=85" alt="Gym fitness"><div class="sw-label">Fitness &amp; Gym</div></div>
+    <div class="sw-item sw-e"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=85" alt="Coffee shop"><div class="sw-label">Artisan Coffee</div></div>
+    <div class="sw-item sw-f"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=700&q=85" alt="Sushi restaurant"><div class="sw-label">Japanese Fusion</div></div>
   </div>
 </section>
 
@@ -2264,6 +2261,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
         <option value="revenue">Revenue ↓</option>
       </select>
       <button class="crm-btn" onclick="openNewClient()">+ New Client</button>
+      <button class="crm-btn sec" onclick="exportClientsCSV()" title="Download all client data as CSV">⬇ Export CSV</button>
+      <button class="crm-btn sec" onclick="exportClientsJSON()" title="Download full backup as JSON" style="color:var(--gold);border-color:var(--gold);">⬇ Backup JSON</button>
     </div>
 
     <!-- Client Grid -->
@@ -2592,7 +2591,7 @@ function openDemo(key){
 
   // Feature image cards for each section
   const sHTML=(d.secs||[]).map((s,i)=>{
-    const img=d.imgs&&d.imgs[i]?`<img src="${d.imgs[i]}" style="width:100%;height:180px;object-fit:cover;display:block;filter:brightness(.8);" alt="${s}" onerror="this.style.display='none'">`:'';
+    const img=d.imgs&&d.imgs[i]?`<img loading="lazy" decoding="async" src="${d.imgs[i]}" style="width:100%;height:180px;object-fit:cover;display:block;filter:brightness(.8);" alt="${s}" onerror="this.style.display='none'">`:'';
     return `<div style="background:${cb};border:1px solid ${bb};border-radius:8px;overflow:hidden;margin-bottom:16px">
       ${img}
       <div style="padding:22px 24px">
@@ -2613,7 +2612,7 @@ function openDemo(key){
 
     <!-- HERO with full image -->
     <div style="position:relative;height:460px;overflow:hidden">
-      <img src="${d.img}" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45)" alt="${d.t}" onerror="this.style.background='${d.bg}'">
+      <img loading="lazy" decoding="async" src="${d.img}" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45)" alt="${d.t}" onerror="this.style.background='${d.bg}'">
       <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;background:linear-gradient(to top,${d.bg}cc 0%,transparent 50%)">
         <p style="font-size:10px;letter-spacing:5px;color:${d.ac};text-transform:uppercase;margin-bottom:16px;opacity:.9">— Live Demo Preview —</p>
         <h1 style="font-size:clamp(28px,5vw,60px);font-weight:900;line-height:.95;color:#fff;margin-bottom:10px;text-transform:uppercase;letter-spacing:-1px;font-family:system-ui,sans-serif;text-shadow:0 2px 20px rgba(0,0,0,.6)">${d.h[0]}</h1>
@@ -2709,7 +2708,7 @@ function openPkgDemo(key){
   document.getElementById('demo-url-bar').textContent = (key==='premium'?'goldenspoonfine.com':key==='business'?'goldenspoon.ae':'goldenspoonrest.com');
   var featHtml = d.features.map(function(f){ return '<li style="padding:10px 24px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;color:'+d.mg+';display:flex;align-items:center;gap:10px;"><span style="color:'+d.ac+';">✓</span>'+f+'</li>'; }).join('');
   var missHtml = d.missing.map(function(f){ return '<li style="padding:10px 24px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;color:#444;display:flex;align-items:center;gap:10px;"><span style="color:#333;">✕</span>'+f+'</li>'; }).join('');
-  var secs = d.imgs.map(function(img,i){ var labels=[['Menu','Explore our full menu','View Menu'],['Gallery','See our atmosphere & dishes','View Gallery'],['Booking','Reserve your table','Book Now']]; var l=labels[i]||['Section','','See More']; return '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;margin-bottom:16px"><img src="'+img+'" style="width:100%;height:180px;object-fit:cover;display:block;" alt="'+l[0]+'"><div style="padding:20px 24px"><h3 style="font-size:16px;font-weight:800;color:'+d.ac+';margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">'+l[0]+'</h3><p style="color:'+d.mg+';font-size:13px;margin-bottom:12px;">'+l[1]+'</p><button style="background:'+d.ac+';color:#000;border:none;padding:9px 22px;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-radius:3px;">'+l[2]+' →</button></div></div>'; }).join('');
+  var secs = d.imgs.map(function(img,i){ var labels=[['Menu','Explore our full menu','View Menu'],['Gallery','See our atmosphere & dishes','View Gallery'],['Booking','Reserve your table','Book Now']]; var l=labels[i]||['Section','','See More']; return '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;margin-bottom:16px"><img loading="lazy" decoding="async" src="'+img+'" style="width:100%;height:180px;object-fit:cover;display:block;" alt="'+l[0]+'"><div style="padding:20px 24px"><h3 style="font-size:16px;font-weight:800;color:'+d.ac+';margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">'+l[0]+'</h3><p style="color:'+d.mg+';font-size:13px;margin-bottom:12px;">'+l[1]+'</p><button style="background:'+d.ac+';color:#000;border:none;padding:9px 22px;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-radius:3px;">'+l[2]+' →</button></div></div>'; }).join('');
   document.getElementById('demo-inner').innerHTML = '<div style="font-family:system-ui,sans-serif;background:'+d.bg+';min-height:100%;color:'+d.fg+'">'
     +'<div style="background:'+d.nb+';padding:16px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);">'
     +'<div style="font-weight:900;font-size:18px;letter-spacing:3px;color:'+d.ac+';">GOLDEN SPOON</div>'
@@ -2717,7 +2716,7 @@ function openPkgDemo(key){
     +(d.badge?'<div style="background:'+d.ac+'22;border:1px solid '+d.ac+'44;border-radius:20px;padding:5px 14px;font-size:11px;color:'+d.ac+';">'+d.badge+'</div>':'<button style="background:'+d.ac+';color:#000;border:none;padding:9px 20px;font-weight:700;font-size:11px;letter-spacing:1px;cursor:pointer;border-radius:3px;">RESERVE</button>')
     +'</div>'
     +'<div style="position:relative;height:380px;overflow:hidden;">'
-    +'<img src="'+d.img+'" style="width:100%;height:100%;object-fit:cover;" alt="Restaurant">'
+    +'<img loading="lazy" decoding="async" src="'+d.img+'" style="width:100%;height:100%;object-fit:cover;" alt="Restaurant">'
     +'<div style="position:absolute;inset:0;background:linear-gradient(to right,'+d.bg+' 0%,transparent 60%)"></div>'
     +'<div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:48px;">'
     +'<div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:'+d.ac+';margin-bottom:12px;">'+d.label+'</div>'
@@ -4495,6 +4494,92 @@ function showFormError(form, message){
   err.textContent = message;
   form.appendChild(err);
   setTimeout(function(){ if(err.parentNode) err.remove(); }, 4000);
+}
+
+// ══════════════════════════════════════════════════════
+// EXPORT FUNCTIONS — CSV + JSON backup
+// ══════════════════════════════════════════════════════
+window.exportClientsCSV = function() {
+  var raw = localStorage.getItem('crm_clients');
+  var clients = [];
+  try { clients = JSON.parse(raw) || []; } catch(e) { alert('No client data found in local storage.'); return; }
+  if (!clients.length) { alert('No clients to export.'); return; }
+
+  // Build CSV headers from all possible fields
+  var headers = [
+    'Name','Business','Email','Phone','WhatsApp','Status','Package','Revenue',
+    'Pending','Currency','Domain','Hosting','Industry','Notes','Service No',
+    'Project Count','Date Added'
+  ];
+
+  var rows = clients.map(function(c) {
+    var projects = (c.projects||[]).length;
+    var notes = (c.notes||[]).map(function(n){ return n.text||''; }).join(' | ');
+    return [
+      c.name||'', c.business||'', c.email||'', c.phone||'', c.whatsapp||'',
+      c.status||'', c.package||'', c.revenue||'', c.pending||'',
+      c.currency||'AED', c.domain||'', c.hosting||'', c.industry||'',
+      (notes).replace(/,/g,';'), c.serviceNo||'', projects,
+      c.createdAt ? new Date(c.createdAt).toLocaleDateString() : ''
+    ].map(function(v){ return '"'+(String(v).replace(/"/g,'""'))+'"'; });
+  });
+
+  var csv = [headers.join(',')].concat(rows.map(function(r){ return r.join(','); })).join('\n');
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'cancas-crm-clients-' + new Date().toISOString().slice(0,10) + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('✅ CSV exported — ' + clients.length + ' clients saved!');
+};
+
+window.exportClientsJSON = function() {
+  var payload = {
+    exported: new Date().toISOString(),
+    crm_clients: JSON.parse(localStorage.getItem('crm_clients')||'[]'),
+    crm_enquiries: JSON.parse(localStorage.getItem('crm_enquiries')||'[]')
+  };
+  if (!payload.crm_clients.length && !payload.crm_enquiries.length) {
+    alert('No data found to export.'); return;
+  }
+  var blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'cancas-crm-FULL-BACKUP-' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('✅ Full backup downloaded — keep this file safe!');
+};
+
+window.importFromJSON = function(file) {
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      var data = JSON.parse(e.target.result);
+      if (data.crm_clients) localStorage.setItem('crm_clients', JSON.stringify(data.crm_clients));
+      if (data.crm_enquiries) localStorage.setItem('crm_enquiries', JSON.stringify(data.crm_enquiries));
+      showToast('✅ ' + (data.crm_clients||[]).length + ' clients restored! Refreshing...');
+      setTimeout(function(){ location.reload(); }, 1500);
+    } catch(err) { alert('Invalid backup file.'); }
+  };
+  reader.readAsText(file);
+};
+
+function showToast(msg) {
+  var t = document.getElementById('crm-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'crm-toast';
+    t.style.cssText = 'position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:#00d4ff;color:#000;font-weight:700;font-size:13px;letter-spacing:1px;padding:14px 28px;border-radius:6px;z-index:99999;box-shadow:0 8px 32px rgba(0,212,255,.4);transition:opacity .4s;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(t._hide);
+  t._hide = setTimeout(function(){ t.style.opacity = '0'; }, 3500);
 }
 </script>
 </body>

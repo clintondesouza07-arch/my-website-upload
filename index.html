@@ -140,7 +140,7 @@
     {
       "@type": "Question",
       "name": "How much does a website cost in Dubai?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Our packages start at AED 1,464 for a one-time build (you own the code) or AED 99/month on a fully-managed plan. Prices vary by scope — contact us for a free quote." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Our packages start at AED 1,464 for a one-time build (you own the code) or AED 149/month on a fully-managed plan. Prices vary by scope — contact us for a free quote." }
     },
     {
       "@type": "Question",
@@ -160,7 +160,7 @@
     {
       "@type": "Question",
       "name": "Can I pay monthly instead of a lump sum?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our monthly plans start from AED 99/month — we build, host, and look after everything, including a free domain. One-time plans start at AED 1,464 and you get the full code." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our monthly plans start from AED 149/month — we build, host, and look after everything, including a free domain. One-time plans start at AED 1,464 and you get the full code." }
     },
     {
       "@type": "Question",
@@ -581,11 +581,168 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,6vw,84px);font
 .pf li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px;color:var(--text);display:flex;align-items:center;gap:10px;line-height:1.4;}
 .pf li svg{width:12px;height:12px;flex-shrink:0;stroke:var(--cyan);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
 .flip-back .pf li svg{stroke:#00d4ff;}
+
+/* ── Feature-line scroll animation ──────────────────────────────────────── */
+.pkg-list li,
+.pf li {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .42s cubic-bezier(.4,0,.2,1),
+              transform .42s cubic-bezier(.4,0,.2,1),
+              background .28s ease,
+              border-bottom-color .28s ease,
+              padding-left .22s cubic-bezier(.4,0,.2,1),
+              color .2s ease;
+  will-change: transform, opacity;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: default;
+}
+
+/* Revealed state */
+.pkg-list li.feat-in,
+.pf li.feat-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Light-sweep shimmer — travels across the row on hover ── */
+.pkg-list li.feat-in::after,
+.pf li.feat-in::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -110%;
+  width: 70%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(0,212,255,.07) 45%,
+    rgba(180,240,255,.11) 50%,
+    rgba(0,212,255,.07) 55%,
+    transparent 80%
+  );
+  transition: left .6s cubic-bezier(.25,.46,.45,.94);
+  pointer-events: none;
+  z-index: 1;
+}
+.pkg-list li.feat-in:hover::after,
+.pf li.feat-in:hover::after {
+  left: 110%;
+}
+
+/* ── Hover row state ── */
+.pkg-list li.feat-in:hover,
+.pf li.feat-in:hover {
+  background: linear-gradient(90deg, rgba(0,212,255,.07) 0%, rgba(0,212,255,.02) 55%, transparent 100%);
+  border-bottom-color: rgba(0,212,255,.38) !important;
+  padding-left: 6px;
+  color: #fff;
+  transition-delay: 0ms; /* kill stagger so hover snaps instantly */
+}
+
+/* ── Check icon glow — pkg-list uses ::before pseudo ── */
+.pkg-list li::before {
+  transition: background .28s ease, box-shadow .28s ease;
+}
+.pkg-list li.feat-in:hover::before {
+  background: rgba(0,212,255,.3);
+  box-shadow: 0 0 10px rgba(0,212,255,.55), 0 0 20px rgba(0,212,255,.2);
+}
+
+/* ── SVG checkmark glow — pf list ── */
+.pf li svg {
+  transition: stroke .28s ease, filter .28s ease;
+}
+.pf li.feat-in:hover svg {
+  stroke: #00d4ff;
+  filter: drop-shadow(0 0 5px rgba(0,212,255,.7));
+}
+
+/* ── Stagger delays (CSS side) — scroll reveal only ── */
+.pkg-list li:nth-child(1),.pf li:nth-child(1){transition-delay:0ms}
+.pkg-list li:nth-child(2),.pf li:nth-child(2){transition-delay:55ms}
+.pkg-list li:nth-child(3),.pf li:nth-child(3){transition-delay:110ms}
+.pkg-list li:nth-child(4),.pf li:nth-child(4){transition-delay:165ms}
+.pkg-list li:nth-child(5),.pf li:nth-child(5){transition-delay:220ms}
+.pkg-list li:nth-child(6),.pf li:nth-child(6){transition-delay:275ms}
+.pkg-list li:nth-child(7),.pf li:nth-child(7){transition-delay:330ms}
+.pkg-list li:nth-child(8),.pf li:nth-child(8){transition-delay:385ms}
+.pkg-list li:nth-child(9),.pf li:nth-child(9){transition-delay:440ms}
+.pkg-list li:nth-child(10),.pf li:nth-child(10){transition-delay:495ms}
+.pkg-list li:nth-child(n+11),.pf li:nth-child(n+11){transition-delay:550ms}
+
 /* Flip trigger */
 .flip-trigger{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:4px;padding:11px 16px;width:100%;transition:all .2s;}
 .flip-trigger:hover,.flip-trigger:focus{border-color:var(--cyan);color:var(--cyan);}
 .flip-trigger svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s;}
 .flip-wrap.flipped .flip-trigger svg{transform:rotate(180deg);}
+
+/* ── Pricing footer — plan explainer + WhatsApp CTA ───────────────────── */
+.pricing-footer{max-width:740px;margin:52px auto 0;padding:0 20px;}
+.plan-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+@media(max-width:580px){.plan-type-grid{grid-template-columns:1fr;}}
+.plan-type-card{
+  display:flex;align-items:flex-start;gap:14px;
+  background:rgba(255,255,255,.028);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;padding:20px;
+  transition:border-color .25s,background .25s;
+}
+.plan-type-card:hover{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.13);}
+.ptc-icon{
+  width:42px;height:42px;flex-shrink:0;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,212,255,.1);
+  border:1px solid rgba(0,212,255,.22);
+}
+.ptc-monthly .ptc-icon{background:rgba(160,100,255,.1);border-color:rgba(160,100,255,.25);}
+.ptc-body strong{display:block;font-size:14.5px;font-weight:700;color:#fff;margin-bottom:5px;}
+.ptc-tag{
+  display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--cyan);
+  background:rgba(0,212,255,.1);border-radius:4px;
+  padding:2px 8px;margin-bottom:9px;
+}
+.ptc-monthly .ptc-tag{color:#a87fff;background:rgba(160,100,255,.12);}
+.ptc-body p{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0;}
+.ptc-terms{text-align:center;margin:14px 0 24px;}
+.ptc-terms a{font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s;}
+.ptc-terms a:hover{color:var(--cyan);}
+/* WhatsApp CTA block */
+.wa-cta-block{
+  display:flex;align-items:center;gap:18px;
+  background:rgba(37,211,102,.06);
+  border:1px solid rgba(37,211,102,.18);
+  border-radius:16px;padding:18px 22px;
+  text-decoration:none;
+  transition:background .25s,border-color .25s,transform .22s;
+}
+.wa-cta-block:hover{
+  background:rgba(37,211,102,.11);
+  border-color:rgba(37,211,102,.38);
+  transform:translateY(-2px);
+}
+.wa-cta-icon{
+  width:46px;height:46px;flex-shrink:0;
+  background:#25d366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 18px rgba(37,211,102,.3),0 0 40px rgba(37,211,102,.1);
+  transition:box-shadow .25s;
+}
+.wa-cta-block:hover .wa-cta-icon{box-shadow:0 0 24px rgba(37,211,102,.5),0 0 50px rgba(37,211,102,.18);}
+.wa-cta-text strong{display:block;font-size:14.5px;font-weight:700;color:#fff;margin-bottom:2px;}
+.wa-cta-text span{font-size:12.5px;color:rgba(255,255,255,.45);}
+.wa-cta-arrow{
+  margin-left:auto;flex-shrink:0;
+  font-size:22px;line-height:1;
+  color:rgba(37,211,102,.5);
+  transition:transform .22s,color .22s;
+}
+.wa-cta-block:hover .wa-cta-arrow{transform:translateX(5px);color:#25d366;}
+
 /* Monthly badge on back */
 .mo-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:4px;padding:6px 12px;font-size:11px;color:var(--cyan);margin-bottom:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.5px;}
 /* Monthly HERO number (big monthly fee) */
@@ -675,6 +832,62 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,6vw,84px);font
 .trust-text span{font-size:12px;color:var(--muted);}
 /* PROCESS */
 #process{background:var(--bg);}
+
+/* TRUST BADGE MARQUEE */
+/* Logo palette: #4aadad (primary teal) · #7dd4d4 (light teal) · #2a7070 (deep teal) */
+#trust-badges{background:var(--bg);padding:80px 0 90px;overflow:hidden;}
+#trust-badges .tb-header{text-align:center;margin-bottom:56px;padding:0 24px;}
+/* Big glowing eyebrow label */
+#trust-badges .tb-eyebrow{
+  display:inline-block;
+  font-size:clamp(13px,1.6vw,16px);
+  font-weight:800;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:#7dd4d4;
+  background:rgba(74,173,173,.1);
+  border:1px solid rgba(74,173,173,.35);
+  border-radius:40px;
+  padding:8px 24px;
+  margin-bottom:22px;
+  text-shadow:0 0 18px rgba(74,173,173,.6);
+}
+#trust-badges h2.tb-title{
+  font-size:clamp(36px,6vw,72px);
+  font-weight:900;
+  letter-spacing:-1px;
+  line-height:1;
+  margin-bottom:18px;
+  color:#fff;
+  -webkit-text-fill-color:#fff;
+}
+#trust-badges .tb-sub{color:var(--muted);font-size:clamp(14px,1.5vw,17px);max-width:560px;margin:0 auto;line-height:1.7;}
+.badge-track-wrap{position:relative;overflow:hidden;width:100%;}
+.badge-track-wrap::before,.badge-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:160px;z-index:2;pointer-events:none;}
+.badge-track-wrap::before{left:0;background:linear-gradient(to right,var(--bg) 0%,transparent 100%);}
+.badge-track-wrap::after{right:0;background:linear-gradient(to left,var(--bg) 0%,transparent 100%);}
+.badge-track{display:flex;gap:22px;width:max-content;animation:badge-scroll 65s linear infinite;}
+.badge-track:hover{animation-play-state:paused;}
+@keyframes badge-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* TRUST BANNER — black strip with real logos */
+#trust-badges{background:#000;padding:0;overflow:hidden;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);}
+#trust-badges .tb-header{text-align:center;padding:56px 24px 40px;}
+#trust-badges .tb-eyebrow{display:inline-block;font-size:clamp(13px,1.6vw,16px);font-weight:800;letter-spacing:5px;text-transform:uppercase;color:#7dd4d4;background:rgba(74,173,173,.1);border:1px solid rgba(74,173,173,.35);border-radius:40px;padding:8px 24px;margin-bottom:22px;text-shadow:0 0 18px rgba(74,173,173,.6);}
+#trust-badges h2.tb-title{font-size:clamp(36px,6vw,72px);font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:18px;color:#fff;-webkit-text-fill-color:#fff;background:none;filter:none;}
+#trust-badges .tb-sub{color:var(--muted);font-size:clamp(14px,1.5vw,17px);max-width:560px;margin:0 auto;line-height:1.7;}
+.badge-track-wrap{position:relative;overflow:hidden;width:100%;background:#000;padding:28px 0;}
+.badge-track-wrap::before,.badge-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:160px;z-index:2;pointer-events:none;}
+.badge-track-wrap::before{left:0;background:linear-gradient(to right,#000 0%,transparent 100%);}
+.badge-track-wrap::after{right:0;background:linear-gradient(to left,#000 0%,transparent 100%);}
+.badge-track{display:flex;align-items:center;gap:0;width:max-content;animation:badge-scroll 65s linear infinite;}
+.badge-track:hover{animation-play-state:paused;}
+@keyframes badge-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.trust-badge{display:flex;align-items:center;gap:14px;padding:0 40px;white-space:nowrap;flex-shrink:0;border-right:1px solid rgba(255,255,255,.1);}
+.trust-badge:last-child{border-right:none;}
+.tb-logo{display:flex;align-items:center;justify-content:center;flex-shrink:0;height:36px;}
+.tb-logo svg,.tb-logo img{height:32px;width:auto;display:block;}
+.tb-label{font-size:13px;font-weight:700;color:#fff;letter-spacing:.5px;white-space:nowrap;}
+.tb-label small{display:block;font-size:10px;font-weight:400;color:rgba(255,255,255,.45);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
 .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
 .proc-card{background:var(--bg);padding:44px 36px;border-bottom:2px solid transparent;transition:border-color .3s;}
 .proc-card:hover{border-color:var(--cyan);}
@@ -1815,11 +2028,11 @@ html, body { max-width: 100%; overflow-x: hidden; }
     </p>
     <div class="cur-row" style="justify-content:center;">
       <span class="cur-label">Currency:</span>
-      <button class="cur-btn active" id="cur-AED" onclick="setCur('AED',3.67)">AED</button>
-      <button class="cur-btn" id="cur-USD" onclick="setCur('USD',1)">USD</button>
-      <button class="cur-btn" id="cur-GBP" onclick="setCur('GBP',0.79)">GBP</button>
-      <button class="cur-btn" id="cur-EUR" onclick="setCur('EUR',0.92)">EUR</button>
-      <button class="cur-btn" id="cur-INR" onclick="setCur('INR',83.5)">INR</button>
+      <button class="cur-btn active" id="cur-AED" onclick="setCur('AED')">AED</button>
+      <button class="cur-btn" id="cur-USD" onclick="setCur('USD')">USD</button>
+      <button class="cur-btn" id="cur-GBP" onclick="setCur('GBP')">GBP</button>
+      <button class="cur-btn" id="cur-EUR" onclick="setCur('EUR')">EUR</button>
+      <button class="cur-btn" id="cur-INR" onclick="setCur('INR')">INR</button>
     </div>
   </div>
 
@@ -1835,18 +2048,17 @@ html, body { max-width: 100%; overflow-x: hidden; }
         </div>
         <div class="pkg-price-block">
           <span class="pkg-cur" id="s1-sym-b2">AED</span><span class="pkg-cur" id="s1-sym-b" style="display:none">AED</span>
-          <span class="pkg-big" id="s1-mo">99</span>
+          <span class="pkg-big" id="s1-mo">149</span>
           <span class="pkg-per">/mo</span>
         </div>
-        <div class="pkg-sub">per month · cancel anytime</div>
+        <div class="pkg-sub">per month · billed monthly</div>
         <div class="pkg-divider-line"></div>
         <ul class="pkg-list">
-          <li>We build &amp; host your website</li>
-          <li>Free domain included</li>
+          <li>Website hosting included</li>
           <li>SSL certificate managed</li>
-          <li>2 minor edits per month</li>
           <li>Basic uptime monitoring</li>
-          <li>Cancel anytime — files are yours</li>
+          <li>3 content updates/month (text, images, prices)</li>
+          <li>48–72hr turnaround on all updates</li>
         </ul>
         <a href="#contact" class="pkg-cta-btn">GET STARTED</a>
         <button class="pkg-flip-link" onclick="window.flipCard('fw1','ot')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15"/></svg> SEE ONE-TIME PRICE</button>
@@ -1862,7 +2074,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
           <span class="pkg-big" id="s1-ot">1,464</span>
         </div>
         <div class="pkg-sub">one-time · you own it forever</div>
-        <div class="pkg-save-tag">💰 Save <span id="s1-save">908</span> <span class="save-sym">AED</span> vs 2yr monthly</div>
+        <div class="pkg-save-tag">💰 Save <span id="s1-save">2,112</span> <span class="save-sym">AED</span> vs 2yr monthly</div>
         <div class="pkg-divider-line"></div>
         <ul class="pkg-list">
           <li>Up to 5 pages — clean custom design</li>
@@ -1891,21 +2103,19 @@ html, body { max-width: 100%; overflow-x: hidden; }
         </div>
         <div class="pkg-price-block">
           <span class="pkg-cur" id="s2-sym-b2">AED</span><span class="pkg-cur" id="s2-sym-b" style="display:none">AED</span>
-          <span class="pkg-big" id="s2-mo">149</span>
+          <span class="pkg-big" id="s2-mo">199</span>
           <span class="pkg-per">/mo</span>
         </div>
-        <div class="pkg-sub">per month · cancel anytime</div>
+        <div class="pkg-sub">per month · billed monthly</div>
         <div class="pkg-divider-line"></div>
         <ul class="pkg-list">
-          <li>Everything in Starter, plus:</li>
-          <li>Free domain &amp; SSL managed</li>
-          <li>5 content &amp; design edits per month</li>
+          <li>Website hosting included</li>
+          <li>Domain included</li>
+          <li>SSL certificate managed</li>
+          <li>Uptime &amp; performance monitoring</li>
+          <li>6 updates/month (content + minor design changes)</li>
           <li>Basic troubleshooting &amp; bug fixes</li>
-          <li>Monthly uptime &amp; security monitoring</li>
-          <li>Priority 24hr support response</li>
-          <li>Google Business Profile managed</li>
-          <li>Monthly performance check</li>
-          <li>Cancel anytime — files are yours</li>
+          <li>48–72hr turnaround on all updates</li>
         </ul>
         <a href="#contact" class="pkg-cta-btn pkg-cta-btn--pop">GET STARTED</a>
         <button class="pkg-flip-link" onclick="window.flipCard('fw2','ot')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15"/></svg> SEE ONE-TIME PRICE</button>
@@ -1921,7 +2131,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
           <span class="pkg-big" id="s2-ot">2,932</span>
         </div>
         <div class="pkg-sub">one-time · you own it forever</div>
-        <div class="pkg-save-tag">💰 Save <span id="s2-save">1,540</span> <span class="save-sym">AED</span> vs 2yr monthly</div>
+        <div class="pkg-save-tag">💰 Save <span id="s2-save">1,844</span> <span class="save-sym">AED</span> vs 2yr monthly</div>
         <div class="pkg-divider-line"></div>
         <ul class="pkg-list">
           <li>Up to 10 pages — premium custom design</li>
@@ -1954,21 +2164,19 @@ html, body { max-width: 100%; overflow-x: hidden; }
         </div>
         <div class="pkg-price-block">
           <span class="pkg-cur" id="s3-sym-b2">AED</span><span class="pkg-cur" id="s3-sym-b" style="display:none">AED</span>
-          <span class="pkg-big" id="s3-mo" style="background:linear-gradient(135deg,#b464ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">349</span>
+          <span class="pkg-big" id="s3-mo" style="background:linear-gradient(135deg,#b464ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">399</span>
           <span class="pkg-per">/mo</span>
         </div>
-        <div class="pkg-sub">per month · cancel anytime</div>
+        <div class="pkg-sub">per month · billed monthly</div>
         <div class="pkg-divider-line" style="background:linear-gradient(90deg,#b464ff22,#b464ff,#b464ff22);"></div>
         <ul class="pkg-list">
-          <li>Everything in Business, plus:</li>
-          <li>Free premium domain included</li>
-          <li>Unlimited edits &amp; content updates</li>
-          <li>Monthly SEO keyword performance report</li>
-          <li>Ongoing SEO improvements each month</li>
-          <li>Google Ads campaign setup assistance</li>
-          <li>Monthly strategy call with our team</li>
-          <li>VIP same-day support — top priority</li>
-          <li>Cancel anytime — files always yours</li>
+          <li>Website hosting included</li>
+          <li>Domain included</li>
+          <li>SSL certificate managed</li>
+          <li>Full monitoring + downtime alerts</li>
+          <li>Unlimited updates (content, design &amp; new sections)</li>
+          <li>48–72hr turnaround on all updates</li>
+          <li>Priority WhatsApp support</li>
         </ul>
         <a href="#contact" class="pkg-cta-btn" style="background:linear-gradient(135deg,#b464ff,#7c3aed);color:#fff;">GET STARTED</a>
         <button class="pkg-flip-link" onclick="window.flipCard('fw3','ot')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15"/></svg> SEE ONE-TIME PRICE</button>
@@ -1984,7 +2192,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
           <span class="pkg-big" id="s3-ot" style="background:linear-gradient(135deg,#b464ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">5,501</span>
         </div>
         <div class="pkg-sub">one-time · you own it forever</div>
-        <div class="pkg-save-tag">💰 Save <span id="s3-save">2,877</span> <span class="save-sym">AED</span> vs 2yr monthly</div>
+        <div class="pkg-save-tag">💰 Save <span id="s3-save">4,075</span> <span class="save-sym">AED</span> vs 2yr monthly</div>
         <div class="pkg-divider-line" style="background:linear-gradient(90deg,#b464ff22,#b464ff,#b464ff22);"></div>
         <ul class="pkg-list">
           <li>Unlimited pages — fully bespoke design</li>
@@ -2014,18 +2222,58 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
   </div><!-- end pkg-grid -->
 
-  <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:32px;line-height:1.8;">
-    <strong style="color:var(--white)">Pay once</strong> — get the full code, host it yourself (we help with setup free).<br>
-    <strong style="color:var(--white)">Pay monthly</strong> — we build, host &amp; look after everything. Free domain included.<br>
-    <a href="#" onclick="openTC(event)" style="color:var(--cyan);text-decoration:none;">View full terms &amp; conditions →</a>
-  </p>
+  <!-- ── Pricing footer ─────────────────────────────────────── -->
+  <div class="pricing-footer">
 
-  <div style="display:flex;justify-content:center;margin-top:28px;">
+    <!-- Two plan-type explainer cards -->
+    <div class="plan-type-grid">
+
+      <div class="plan-type-card">
+        <div class="ptc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <div class="ptc-body">
+          <strong>Pay Once</strong>
+          <div class="ptc-tag">You own it forever</div>
+          <p>Receive the full source code. Deploy it yourself — we guide your setup completely free.</p>
+        </div>
+      </div>
+
+      <div class="plan-type-card ptc-monthly">
+        <div class="ptc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a87fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="ptc-body">
+          <strong>Pay Monthly</strong>
+          <div class="ptc-tag">Fully managed</div>
+          <p>We build, host, update &amp; support everything. Domain included on Business &amp; Premium plans.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Terms link -->
+    <p class="ptc-terms">
+      <a href="#" onclick="openTC(event)">View full terms &amp; conditions →</a>
+    </p>
+
+    <!-- WhatsApp CTA -->
     <a href="https://wa.me/971569016046?text=Hi!%20I%27m%20not%20sure%20which%20plan%20suits%20me%20%E2%80%94%20can%20you%20help%3F"
-       target="_blank" rel="noopener noreferrer" class="wa-pill-btn">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.507A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.727.977.994-3.634-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
-      Not sure which plan? Chat with us on WhatsApp — we'll help you choose.
+       target="_blank" rel="noopener noreferrer" class="wa-cta-block">
+      <div class="wa-cta-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L0 24l6.335-1.507A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.727.977.994-3.634-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      </div>
+      <div class="wa-cta-text">
+        <strong>Not sure which plan?</strong>
+        <span>Chat with us on WhatsApp — we'll help you choose.</span>
+      </div>
+      <div class="wa-cta-arrow">→</div>
     </a>
+
   </div>
 
 </section>
@@ -2040,6 +2288,100 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <div class="proc-card"><span class="proc-num">02</span><h3>Design &amp; Strategy</h3><p>Our team crafts custom wireframes and a full visual design concept for your approval before any code is written.</p></div>
     <div class="proc-card"><span class="proc-num">03</span><h3>Development</h3><p>We build your website with clean, fast code — integrating all features, AI tools, and third-party services required.</p></div>
     <div class="proc-card"><span class="proc-num">04</span><h3>Launch &amp; Grow</h3><p>We handle deployment, SEO setup, and provide training. Ongoing support ensures your site stays optimised and current.</p></div>
+  </div>
+</section>
+
+<!-- TRUST BADGES -->
+<section id="trust-badges">
+  <div class="tb-header">
+    <div class="tb-eyebrow">✦ Certified &amp; Secure ✦</div>
+    <h2 class="tb-title">BUILT TO BE TRUSTED</h2>
+    <p class="tb-sub">Every website we deliver meets the highest standards in security, performance, and compliance.</p>
+  </div>
+  <div class="badge-track-wrap">
+    <div class="badge-track">
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></div>
+        <div class="tb-label">PageSpeed 99+<small>Google Verified</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div>
+        <div class="tb-label">Secure Hosting<small>GitHub Pages</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" fill="#22c55e" opacity=".2"/><rect x="3" y="11" width="18" height="11" rx="2" stroke="#22c55e" stroke-width="1.8"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1.5" fill="#22c55e"/></svg></div>
+        <div class="tb-label">SSL Secured<small>256-Bit Encryption</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="36" rx="6" fill="#003a70"/><text x="8" y="14" font-family="monospace" font-size="8" fill="#fff" font-weight="700">Let's</text><text x="8" y="26" font-family="monospace" font-size="8" fill="#00c0e0" font-weight="700">Encrypt</text><rect x="60" y="8" width="14" height="20" rx="3" fill="none" stroke="#00c0e0" stroke-width="1.5"/><path d="M63 16v-3a4 4 0 018 0v3" stroke="#00c0e0" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="tb-label">HTTPS Certified<small>Let's Encrypt CA</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg"><text x="6" y="15" font-family="Arial,sans-serif" font-size="9" fill="#f6821f" font-weight="900" letter-spacing="-0.5">☁</text><text x="22" y="15" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="700">Cloud</text><text x="22" y="27" font-family="Arial,sans-serif" font-size="10" fill="#f6821f" font-weight="700">flare</text></svg></div>
+        <div class="tb-label">DDoS Protected<small>Cloudflare Network</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="17" fill="#003399" stroke="#fff" stroke-width=".5"/><g fill="#ffcc00"><polygon points="18,4 19.2,7.6 23,7.6 20,9.8 21.2,13.4 18,11.2 14.8,13.4 16,9.8 13,7.6 16.8,7.6"/><polygon points="28,9 29.2,12.6 33,12.6 30,14.8 31.2,18.4 28,16.2 24.8,18.4 26,14.8 23,12.6 26.8,12.6"/><polygon points="30,20 31.2,23.6 35,23.6 32,25.8 33.2,29.4 30,27.2 26.8,29.4 28,25.8 25,23.6 28.8,23.6"/><polygon points="24,29 25.2,32.6 29,32.6 26,34.8 27.2,38.4 24,36.2 20.8,38.4 22,34.8 19,32.6 22.8,32.6"/><polygon points="12,29 13.2,32.6 17,32.6 14,34.8 15.2,38.4 12,36.2 8.8,38.4 10,34.8 7,32.6 10.8,32.6"/><polygon points="6,20 7.2,23.6 11,23.6 8,25.8 9.2,29.4 6,27.2 2.8,29.4 4,25.8 1,23.6 4.8,23.6"/><polygon points="8,9 9.2,12.6 13,12.6 10,14.8 11.2,18.4 8,16.2 4.8,18.4 6,14.8 3,12.6 6.8,12.6"/></g></svg></div>
+        <div class="tb-label">GDPR Compliant<small>EU Privacy Standard</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="17" fill="#1a73e8"/><polygon points="21,5 10,20 17,20 15,31 26,16 19,16" fill="#fff"/></svg></div>
+        <div class="tb-label">Core Web Vitals<small>Google Standards</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="36" rx="6" fill="none" stroke="#fff" stroke-width="1.5"/><text x="8" y="23" font-family="Arial,sans-serif" font-size="14" fill="#fff" font-weight="900" letter-spacing="1">ISO</text><text x="50" y="15" font-family="Arial,sans-serif" font-size="8" fill="rgba(255,255,255,.7)">27001</text><line x1="44" y1="6" x2="44" y2="30" stroke="rgba(255,255,255,.3)" stroke-width="1"/></svg></div>
+        <div class="tb-label">ISO 27001<small>Security Standard</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="17" fill="#007a3d"/><text x="18" y="23" font-family="serif" font-size="18" fill="#fff" text-anchor="middle">🏙</text></svg></div>
+        <div class="tb-label">Dubai Business<small>UAE Licensed</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="36" rx="4" fill="#005a9c"/><text x="6" y="25" font-family="Arial,sans-serif" font-size="18" fill="#fff" font-weight="900">W3C</text><rect x="52" y="5" width="22" height="26" rx="2" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1"/><text x="63" y="23" font-family="monospace" font-size="10" fill="rgba(255,255,255,.8)" text-anchor="middle">✓</text></svg></div>
+        <div class="tb-label">W3C Compliant<small>Web Standards</small></div>
+      </div>
+      <!-- duplicate -->
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></div>
+        <div class="tb-label">PageSpeed 99+<small>Google Verified</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div>
+        <div class="tb-label">Secure Hosting<small>GitHub Pages</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" fill="#22c55e" opacity=".2"/><rect x="3" y="11" width="18" height="11" rx="2" stroke="#22c55e" stroke-width="1.8"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1.5" fill="#22c55e"/></svg></div>
+        <div class="tb-label">SSL Secured<small>256-Bit Encryption</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="36" rx="6" fill="#003a70"/><text x="8" y="14" font-family="monospace" font-size="8" fill="#fff" font-weight="700">Let's</text><text x="8" y="26" font-family="monospace" font-size="8" fill="#00c0e0" font-weight="700">Encrypt</text><rect x="60" y="8" width="14" height="20" rx="3" fill="none" stroke="#00c0e0" stroke-width="1.5"/><path d="M63 16v-3a4 4 0 018 0v3" stroke="#00c0e0" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="tb-label">HTTPS Certified<small>Let's Encrypt CA</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg"><text x="6" y="15" font-family="Arial,sans-serif" font-size="9" fill="#f6821f" font-weight="900" letter-spacing="-0.5">☁</text><text x="22" y="15" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="700">Cloud</text><text x="22" y="27" font-family="Arial,sans-serif" font-size="10" fill="#f6821f" font-weight="700">flare</text></svg></div>
+        <div class="tb-label">DDoS Protected<small>Cloudflare Network</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="17" fill="#003399" stroke="#fff" stroke-width=".5"/><g fill="#ffcc00"><polygon points="18,4 19.2,7.6 23,7.6 20,9.8 21.2,13.4 18,11.2 14.8,13.4 16,9.8 13,7.6 16.8,7.6"/><polygon points="28,9 29.2,12.6 33,12.6 30,14.8 31.2,18.4 28,16.2 24.8,18.4 26,14.8 23,12.6 26.8,12.6"/><polygon points="30,20 31.2,23.6 35,23.6 32,25.8 33.2,29.4 30,27.2 26.8,29.4 28,25.8 25,23.6 28.8,23.6"/><polygon points="24,29 25.2,32.6 29,32.6 26,34.8 27.2,38.4 24,36.2 20.8,38.4 22,34.8 19,32.6 22.8,32.6"/><polygon points="12,29 13.2,32.6 17,32.6 14,34.8 15.2,38.4 12,36.2 8.8,38.4 10,34.8 7,32.6 10.8,32.6"/><polygon points="6,20 7.2,23.6 11,23.6 8,25.8 9.2,29.4 6,27.2 2.8,29.4 4,25.8 1,23.6 4.8,23.6"/><polygon points="8,9 9.2,12.6 13,12.6 10,14.8 11.2,18.4 8,16.2 4.8,18.4 6,14.8 3,12.6 6.8,12.6"/></g></svg></div>
+        <div class="tb-label">GDPR Compliant<small>EU Privacy Standard</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="17" fill="#1a73e8"/><polygon points="21,5 10,20 17,20 15,31 26,16 19,16" fill="#fff"/></svg></div>
+        <div class="tb-label">Core Web Vitals<small>Google Standards</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="36" rx="6" fill="none" stroke="#fff" stroke-width="1.5"/><text x="8" y="23" font-family="Arial,sans-serif" font-size="14" fill="#fff" font-weight="900" letter-spacing="1">ISO</text><text x="50" y="15" font-family="Arial,sans-serif" font-size="8" fill="rgba(255,255,255,.7)">27001</text><line x1="44" y1="6" x2="44" y2="30" stroke="rgba(255,255,255,.3)" stroke-width="1"/></svg></div>
+        <div class="tb-label">ISO 27001<small>Security Standard</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="17" fill="#007a3d"/><text x="18" y="23" font-family="serif" font-size="18" fill="#fff" text-anchor="middle">🏙</text></svg></div>
+        <div class="tb-label">Dubai Business<small>UAE Licensed</small></div>
+      </div>
+      <div class="trust-badge">
+        <div class="tb-logo"><svg viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="36" rx="4" fill="#005a9c"/><text x="6" y="25" font-family="Arial,sans-serif" font-size="18" fill="#fff" font-weight="900">W3C</text><rect x="52" y="5" width="22" height="26" rx="2" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1"/><text x="63" y="23" font-family="monospace" font-size="10" fill="rgba(255,255,255,.8)" text-anchor="middle">✓</text></svg></div>
+        <div class="tb-label">W3C Compliant<small>Web Standards</small></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2770,16 +3112,20 @@ PATH 1 — OWN YOUR WEBSITE (one-time payment, you own the code, arrange your ow
 - Premium: AED 5,501 one-time — unlimited pages, advanced AI chatbot, CRM integrations, 6 months support, unlimited revisions
 
 PATH 2 — CANCAS MANAGED HOSTING (monthly recurring, we host & maintain everything):
-- Starter managed: AED 99/month — hosting, SSL, domain, 2 edits/month
-- Business managed: AED 149/month — hosting, SSL, domain, 5 edits/month, priority support
-- Premium managed: AED 349/month — hosting, SSL, domain, unlimited edits, VIP support, monthly strategy call
+- Starter managed: AED 149/month — hosting, SSL, 3 content updates/month (no domain)
+- Business managed: AED 199/month — hosting, SSL, domain, 6 updates/month, 48-72hr turnaround
+- Premium managed: AED 399/month — hosting, SSL, domain, unlimited edits, VIP support, monthly strategy call
 - All plans have a one-time setup fee (27% off the one-time price)
 - Includes: website hosting, SSL certificate, security monitoring, minor monthly edits
 - FREE domain included: we find the best available match for your business name
 - Specific/premium domain: additional cost — we check with the team and confirm before purchasing
-- Cancel anytime — hosting stops at end of final paid period
-- Website files transferred to client on request after cancellation, at no extra charge
-- Domain transfer after cancellation may have additional costs — confirmed with our team first
+- 
+- Cancellation requires 30 days written notice
+- Upon cancellation: ALL benefits cease at end of final paid period (hosting, domain, SSL, monitoring, updates, WhatsApp support — everything)
+- Website goes offline within 7 days of plan end date
+- Website source files transferred to client at no charge within 7 business days of request
+- Domain transfer subject to registrar availability and transfer fees — confirmed before action
+- Standalone hosting-only after cancellation: subject to availability, quoted separately, not guaranteed
 - 50% deposit required to start; remaining balance due on project completion
 
 CUSTOM BUILD: Clients can pick individual features for a tailored quote — confirmed after discovery call.
@@ -2879,30 +3225,30 @@ function getFallback(l){
   // Pricing / cost / packages
   if(l.match(/price|cost|how much|pricing|fee|package|plan|rate|charge|quote|affordable|cheap|expensive/))
     return pick('pricing',[
-      'We have two ways to work with us: \n\n1. Own it outright — Starter AED 1,464 | Business AED 2,932 | Premium AED 5,501 (one-time, you keep the code forever)\n\n2. Monthly managed — from AED 99/mo (we host, maintain and update everything, free domain included)\n\nWhich interests you more?',
-      'Our packages start at AED 1,464 for a one-time build or AED 99/month on a managed plan. The main difference: one-time means you own the code outright, monthly means we handle everything including hosting, SSL and edits. What type of business are you building for?',
-      'Great question on pricing! Starter is AED 1,464 (5 pages), Business is AED 2,932 (10 pages + AI chatbot + booking system), and Premium is AED 5,501 (unlimited pages, advanced features). All include full custom design. Monthly plans start at AED 99/mo. Want a specific quote?'
+      'We have two ways to work with us: \n\n1. Own it outright — Starter AED 1,464 | Business AED 2,932 | Premium AED 5,501 (one-time, you keep the code forever)\n\n2. Monthly managed — from AED 149/mo (we host, maintain and update everything, free domain included)\n\nWhich interests you more?',
+      'Our packages start at AED 1,464 for a one-time build or AED 149/month on a managed plan. The main difference: one-time means you own the code outright, monthly means we handle everything including hosting, SSL and edits. What type of business are you building for?',
+      'Great question on pricing! Starter is AED 1,464 (5 pages), Business is AED 2,932 (10 pages + AI chatbot + booking system), and Premium is AED 5,501 (unlimited pages, advanced features). All include full custom design. Monthly plans start at AED 149/mo. Want a specific quote?'
     ]);
 
   // Starter package
   if(l.match(/starter|basic|simple|small|1464|99.?mo|99 a month/))
     return pick('starter',[
-      'The Starter package is AED 1,464 one-time or AED 99/month managed. It includes a 5-page website, contact form, basic SEO, Google Maps, and 30 days of support. Perfect for small businesses just getting online. Want to get started?',
-      'Our Starter plan gives you a clean, professional 5-page website for AED 1,464 one-time. On the monthly plan it\'s AED 99/mo — and we handle hosting, SSL, domain, and 2 edits per month. Is this for a new business or an existing one?'
+      'The Starter package is AED 1,464 one-time or AED 149/month managed. It includes a 5-page website, contact form, basic SEO, Google Maps, and 30 days of support. Perfect for small businesses just getting online. Want to get started?',
+      'Our Starter plan gives you a clean, professional 5-page website for AED 1,464 one-time. On the monthly plan it\'s AED 149/mo — we handle hosting, SSL, and 3 content updates per month. Is this for a new business or an existing one?'
     ]);
 
   // Business package
   if(l.match(/business (package|plan|tier)|2932|149.?mo|10 page/))
     return pick('business',[
-      'The Business package at AED 2,932 one-time (or AED 149/month managed) is our most popular. It includes up to 10 pages, an AI chatbot, booking system, advanced SEO, analytics, and 90 days of support with unlimited revisions. What industry are you in?',
-      'Business plan is AED 2,932 one-time — 10 pages, booking system, built-in AI chatbot, full SEO and analytics, 90 days support. On monthly it\'s AED 149/mo with hosting and 5 edits per month. Would you like a demo?'
+      'The Business package at AED 2,932 one-time (or AED 199/month managed) is our most popular. It includes up to 10 pages, an AI chatbot, booking system, advanced SEO, analytics, and 90 days of support with unlimited revisions. What industry are you in?',
+      'Business plan is AED 2,932 one-time — 10 pages, booking system, built-in AI chatbot, full SEO and analytics, 90 days support. On monthly it\'s AED 199/mo — hosting, domain, SSL, and 6 updates per month. Would you like a demo?'
     ]);
 
   // Premium package
   if(l.match(/premium|enterprise|5501|349.?mo|unlimited/))
     return pick('premium',[
-      'The Premium package at AED 5,501 one-time (or AED 349/month) is our full-power option — unlimited pages, advanced AI chatbot, CRM integrations, 6 months support, and unlimited revisions. It\'s ideal for businesses that want a complete digital system. Want to discuss your requirements?',
-      'Premium is our most powerful package: AED 5,501 one-time or AED 349/month managed. Unlimited pages, full custom design, advanced AI chatbot, CRM integrations, VIP support and monthly strategy calls. Perfect for growing businesses. Shall I connect you with our team?'
+      'The Premium package at AED 5,501 one-time (or AED 399/month managed) is our full-power option — unlimited pages, advanced AI chatbot, CRM integrations, 6 months support, and unlimited revisions. It\'s ideal for businesses that want a complete digital system. Want to discuss your requirements?',
+      'Premium is our most powerful package: AED 5,501 one-time or AED 399/month managed. Unlimited pages, full custom design, advanced AI chatbot, CRM integrations, VIP support and monthly strategy calls. Perfect for growing businesses. Shall I connect you with our team?'
     ]);
 
   // Timeline / how long
@@ -3000,8 +3346,8 @@ function getFallback(l){
   // Refund / cancel
   if(l.match(/refund|cancel|stop|end|terminate|money back/))
     return pick('cancel',[
-      'For monthly managed plans, you can cancel anytime with 30 days notice — hosting stops at the end of your final paid period, and we transfer your website files to you at no extra charge. For one-time projects, the 50% deposit is non-refundable once work begins. Our full terms are in the website footer.',
-      'Cancellations for monthly plans take effect at end of the billing period. You always keep your website files — we transfer them to you on request. One-time project deposits are non-refundable once the build has started. Questions about a specific situation? Message us directly.'
+      'Cancellation of a Managed Monthly Plan requires 30 days written notice via email or WhatsApp. Once cancelled, all plan benefits — hosting, domain, SSL, monitoring, updates, and support — cease at the end of your final paid billing period. Website files are transferred to you at no charge within 7 business days of request. If you only need standalone hosting after cancellation, contact us to check availability. For one-time projects, the 50% deposit is non-refundable once work has commenced. Full terms are on our website.',
+      'Monthly plan cancellations require 30 days written notice and take effect at the end of the final paid billing period. Upon cancellation, all services stop — hosting, domain, monitoring, updates, and support. Your website files are transferred to you at no charge on request. If you need standalone hosting only, we can enquire about availability separately. One-time project deposits are non-refundable once the build has commenced. For specific situations, please reach out directly.'
     ]);
 
   // Contact / reach us
@@ -3102,10 +3448,10 @@ function getFallback(l){
 
   // Catchall — give real helpful info then invite follow-up
   var catchalls = [
-    "Hi! I'm Nex, the AI assistant for CANCAS STUDIO — a web design agency in Dubai. We build custom websites for restaurants, salons, real estate, gyms, tech companies and more. Prices start from AED 1,464 one-time or AED 99/month managed. What can I help you with?",
+    "Hi! I'm Nex, the AI assistant for CANCAS STUDIO — a web design agency in Dubai. We build custom websites for restaurants, salons, real estate, gyms, tech companies and more. Prices start from AED 1,464 one-time or AED 149/month managed. What can I help you with?",
     "CANCAS STUDIO builds premium websites for Dubai businesses — restaurants, salons, real estate, fitness studios and more. Websites launch in 7–14 days, starting from AED 1,464. Ask me about pricing, our portfolio, timelines, or anything else!",
     "Great to have you here! CANCAS STUDIO is a Dubai web design studio. Whether you need a simple 5-page site or a full AI-powered platform, we have packages to match. I'm Nex — ask me anything about our services, pricing, or how we work.",
-    "I'm Nex, your AI guide for CANCAS STUDIO. We create custom websites for businesses across every industry in Dubai and worldwide. Starter from AED 1,464 · Business from AED 2,932 · Premium from AED 5,501. Monthly plans from AED 99/mo. What would you like to know?",
+    "I'm Nex, your AI guide for CANCAS STUDIO. We create custom websites for businesses across every industry in Dubai and worldwide. Starter from AED 1,464 · Business from AED 2,932 · Premium from AED 5,501. Monthly plans from AED 149/mo. What would you like to know?",
     "Happy to help! CANCAS STUDIO is a premium web design agency based in Dubai. We specialise in fast, custom, mobile-first websites with AI chatbots, booking systems, SEO and more — delivered in as little as 7 days. What kind of website are you looking for?"
   ];
   return pick('catchall', catchalls);
@@ -3218,16 +3564,18 @@ window.addEventListener('scroll',()=>{
     <p>A non-refundable deposit of 50% of the agreed project cost (or the equivalent of the first month's fee for managed plans) is required to begin work. The remaining balance is due upon project completion, before the website goes live. All payments are final once work has commenced.</p>
 
     <h2>3. Website File Transfer on Cancellation</h2>
-    <p>Upon cancellation of a Managed Monthly Plan, the Client may request a full transfer of their website source code and associated assets at any time. This transfer is provided at <strong>no additional charge</strong>. If the Client wishes to also transfer ownership of the domain registered under their managed plan, additional costs may apply depending on domain registrar transfer fees. These costs will be confirmed with the CANCAS STUDIO team and quoted to the Client before any transfer is initiated. No domain transfer will proceed without the Client's explicit written approval.</p>
+    <p>Upon cancellation of a Managed Monthly Plan, the Client may request a full transfer of their website source code and associated assets. This transfer is provided at <strong>no additional charge</strong> and will be completed within 7 business days of the request.</p>
+    <p>If the Client wishes to transfer ownership of a domain registered under their Business or Premium managed plan, this is subject to domain registrar availability and transfer eligibility at the time of cancellation. Transfer fees charged by the registrar will be communicated to the Client in advance and require written approval before any action is taken. CANCAS STUDIO does not guarantee domain transferability in all circumstances, as this is subject to third-party registrar policies.</p>
+    <p>Website files and domain transfer requests must be submitted within 30 days of the plan end date. After this period, CANCAS STUDIO reserves the right to release the domain and remove all associated files.</p>
 
     <h2>4. Domain Names</h2>
-    <p>On all Managed Monthly Plans, one complimentary domain is included. CANCAS STUDIO will register the best available domain that closely matches your business name. If your preferred domain is unavailable, we will present the closest available alternatives and confirm the selection with you before registering.</p>
-    <p>If you require a specific or premium domain that must be purchased from a third-party marketplace or registrar, the acquisition cost will be confirmed with our team and quoted to you before any purchase is made. No premium domain spend will be incurred without your prior written approval.</p>
-    <p>On One-Time Purchase plans, domain registration and ongoing annual renewal are the Client's sole responsibility. We are happy to advise on selection and assist with technical setup at no additional charge.</p>
+    <p>A complimentary domain is included on <strong>Business</strong> and <strong>Premium</strong> Managed Monthly Plans only. CANCAS STUDIO will register the closest available domain matching your business name. If your preferred domain is unavailable, alternatives will be presented and confirmed with you before registration. The Starter Monthly Plan does not include a domain — the Client is responsible for registering and maintaining their own domain, though we are happy to advise.</p>
+    <p>If a specific or premium domain must be sourced from a third-party marketplace, the acquisition cost will be quoted and confirmed in writing before any purchase is made.</p>
+    <p>On One-Time Purchase plans, domain registration and annual renewal are the Client's sole responsibility. We assist with technical DNS setup at no additional charge.</p>
 
-    <h2>5. Minor Edits &amp; Maintenance</h2>
-    <p>Managed Monthly Plan clients are entitled to a set allowance of minor edits per month as specified in their package (e.g. text updates, image swaps, contact detail changes, small layout adjustments). A "minor edit" is defined as a change that takes under 30 minutes to implement. Requests that require new design work, additional pages, or significant development will be scoped and quoted separately. Unused monthly edit allowances do not carry over to subsequent months.</p>
-    <p>One-Time Purchase clients receive post-launch support for the period specified in their package. After this period, support and edits are available on request at our standard rate, confirmed per task.</p>
+    <h2>5. Website Updates &amp; Maintenance</h2>
+    <p>Managed Monthly Plan clients are entitled to a set number of website updates per month as specified in their plan: <strong>Starter</strong> — 3 content updates/month; <strong>Business</strong> — 6 updates/month (content and minor design); <strong>Premium</strong> — unlimited updates including content, design, and new sections. All updates are completed within a <strong>48–72 hour turnaround</strong>. Update requests that require new pages, significant development, or third-party integrations will be scoped and quoted separately. Unused update allowances do not carry over to subsequent months.</p>
+    <p>One-Time Purchase clients receive post-launch support for the period specified in their package. After this period, updates and support are available at our standard rate, confirmed per task.</p>
 
     <h2>6. Revisions During Build</h2>
     <p>Each package includes a defined number of revision rounds during the build phase. A "revision" means changes to existing design or content within the agreed scope — not new features, new pages, or material changes to scope. Out-of-scope requests will be quoted before implementation.</p>
@@ -3248,10 +3596,12 @@ window.addEventListener('scroll',()=>{
     <p>Upon receipt of full and final payment, ownership of all custom design and code created specifically for your project transfers to you. We retain the right to display your completed project in our portfolio unless you request otherwise in writing. Third-party plugins, themes, or libraries used in your project remain subject to their respective licences.</p>
 
     <h2>10. Cancellation &amp; Refunds</h2>
-    <p>The initial deposit is non-refundable. If a project is cancelled by the Client after work has commenced, payment is due for all work completed up to the cancellation date, calculated at our standard rate. No refunds are issued for completed and delivered work. For monthly managed plans, no partial-month refunds are issued — service continues until the end of the final paid billing period following cancellation notice.</p>
+    <p>For <strong>One-Time Purchase</strong> projects: the initial deposit (50% of the agreed project cost) is strictly non-refundable once work has commenced. If the Client cancels after work has begun, payment is due for all work completed to the cancellation date, calculated at our standard hourly rate. No refunds are issued for work that has been completed and delivered.</p>
+    <p>For <strong>Managed Monthly Plans</strong>: cancellation requires a minimum of <strong>30 days written notice</strong> submitted via email to hello@cancasstudio.com or WhatsApp. Upon receipt of a valid cancellation notice, all plan benefits — including website hosting, domain management, SSL, monitoring, website updates, and support — will remain active until the end of the final paid billing period and will cease entirely thereafter. No partial-month refunds are issued under any circumstances. The Client acknowledges that continued access to all services is contingent on the plan remaining active and fully paid.</p>
+    <p>If a Client on a Managed Monthly Plan requires <strong>standalone hosting only</strong> following cancellation of their full plan, they may enquire with our team regarding availability. Standalone hosting is offered at our discretion, subject to server capacity, and will be quoted separately. This is not guaranteed and does not form part of any existing plan agreement.</p>
 
     <h2>11. Hosting &amp; Service Termination</h2>
-    <div class="tc-highlight"><p>If a Managed Monthly Plan lapses due to non-payment or is cancelled, the website and all managed services will be taken offline within 7 days of the missed payment date or the end of the final paid billing period. CANCAS STUDIO will make reasonable efforts to notify the Client by email before the site goes offline. The Studio is not liable for any business loss, reputational harm, or lost revenue resulting from a website going offline due to plan termination, cancellation, or non-payment.</p></div>
+    <div class="tc-highlight"><p>Upon expiry of a Managed Monthly Plan — whether due to cancellation, non-renewal, or non-payment — <strong>all associated services will be terminated without exception</strong>. This includes, but is not limited to: website hosting, domain management, SSL certificate renewal, uptime monitoring, website updates, and WhatsApp support access. The website will be taken offline within 7 days of the plan end date or missed payment date. CANCAS STUDIO will make reasonable efforts to notify the Client by email prior to termination. The Studio accepts no liability for business loss, reputational damage, or lost revenue resulting from service termination due to plan expiry, cancellation, or non-payment.</p></div>
 
     <h2>12. Confidentiality</h2>
     <p>Both parties agree to keep confidential any proprietary information, trade secrets, or business data shared during the project. This obligation survives termination of the Agreement.</p>
@@ -3282,16 +3632,41 @@ window.addEventListener('scroll',()=>{
 const PRICES_AED = {
   ot:    [1464,  2932,  5501],  // one-time AED
   build: [1069,  2141,  4016],  // monthly setup AED (27% off)
-  mo:    [  99,   149,   349],  // monthly hosting fee AED
-  save:  [ 908,  1540,  2877]   // savings vs 2-yr monthly AED
+  mo:    [ 149,   199,   399],  // monthly hosting fee AED
+  save:  [2112,  1844,  4075]   // savings vs 2-yr monthly AED
 };
 const SYMS = {AED:'AED',USD:'$',GBP:'£',EUR:'€',INR:'₹'};
-const BASE_RATE = 3.67; // AED per USD
-let CUR = 'AED', RATE = 1; // RATE = target/AED ratio
+// Fallback rates relative to AED (used if live API is unavailable)
+let LIVE_RATES = {AED:1, USD:0.2724, GBP:0.2146, EUR:0.2513, INR:22.72};
+let CUR = 'AED', RATE = 1; // RATE = how many target-currency units per 1 AED
 
 function toTarget(aed){ return Math.round(aed * RATE).toLocaleString(); }
-// alias for legacy calls
-function fmtP(usd){ return Math.round(usd * RATE * BASE_RATE).toLocaleString(); }
+// legacy alias — converts a USD value to the active currency using live rates
+function fmtP(usd){ return Math.round(usd / LIVE_RATES.USD * RATE).toLocaleString(); }
+
+// ── Live exchange-rate fetch (open.er-api.com — free, no key required) ──
+function fetchLiveRates(){
+  fetch('https://open.er-api.com/v6/latest/AED')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(data && data.rates){
+        var r = data.rates;
+        LIVE_RATES = {
+          AED: 1,
+          USD: r.USD || LIVE_RATES.USD,
+          GBP: r.GBP || LIVE_RATES.GBP,
+          EUR: r.EUR || LIVE_RATES.EUR,
+          INR: r.INR || LIVE_RATES.INR
+        };
+        // Refresh display using the now-live rate for whichever currency is active
+        RATE = LIVE_RATES[CUR];
+        if(typeof renderAllPrices === 'function') renderAllPrices();
+        if(typeof updateBuilderLabels === 'function') updateBuilderLabels();
+      }
+    })
+    .catch(function(){ /* network error — fallback rates remain in effect */ });
+}
+document.addEventListener('DOMContentLoaded', fetchLiveRates);
 
 // ── MOBILE NAV ─────────────────────────────────────────────────────────
 function toggleMobileNav(){
@@ -3321,16 +3696,68 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-window.setCur = function setCur(cur, ratePerUSD){
+window.setCur = function setCur(cur){
   CUR = cur;
-  // Store as ratio vs AED: USD=1/3.67, GBP=0.79/3.67, etc.
-  RATE = ratePerUSD / BASE_RATE;
+  RATE = LIVE_RATES[cur] || 1;
   document.querySelectorAll('.cur-btn').forEach(b=>{
     b.classList.toggle('active', b.id === 'cur-'+cur);
   });
   renderAllPrices();
-  updateBuilderLabels();
+  if(typeof updateBuilderLabels === 'function') updateBuilderLabels();
 }
+
+// ── Feature-line scroll animation ────────────────────────────────────────
+;(function(){
+  var THRESHOLD = 0.12;
+
+  // Add feat-in to all visible items inside a container
+  function revealItems(container) {
+    var items = container.querySelectorAll('.pkg-list li, .pf li');
+    items.forEach(function(el) {
+      // Reset so re-flip re-animates cleanly
+      el.classList.remove('feat-in');
+    });
+    // rAF ensures the reset paint happens before we add feat-in
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        items.forEach(function(el) {
+          el.classList.add('feat-in');
+        });
+      });
+    });
+  }
+
+  // Intersection Observer — fires once per card entering viewport
+  document.addEventListener('DOMContentLoaded', function() {
+    var cards = document.querySelectorAll('.pkg-card');
+    if (!cards.length || !window.IntersectionObserver) {
+      // Fallback: show all immediately
+      document.querySelectorAll('.pkg-list li, .pf li').forEach(function(el) {
+        el.classList.add('feat-in');
+      });
+      return;
+    }
+
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          revealItems(entry.target);
+          obs.unobserve(entry.target); // only animate in once
+        }
+      });
+    }, { threshold: THRESHOLD, rootMargin: '0px 0px -40px 0px' });
+
+    cards.forEach(function(card) { obs.observe(card); });
+
+    // Also re-animate when user flips a card (wrap original flipCard)
+    var _origFlip = window.flipCard;
+    window.flipCard = function(cardId, showSide) {
+      if(typeof _origFlip === 'function') _origFlip(cardId, showSide);
+      var face = document.getElementById(cardId + '-' + showSide);
+      if (face) revealItems(face);
+    };
+  });
+})();
 
 // ── Error monitoring — sends errors to console with clear labels ──
 window.addEventListener('error', function(e) {
@@ -3364,7 +3791,7 @@ window.flipCard = function(cardId, showSide){
   if(window.renderAllPrices) window.renderAllPrices();
 }
 
-window.renderAllPrices = function renderAllPrices(){
+function renderAllPrices(){
   var sym = SYMS[CUR];
   ['s1','s2','s3'].forEach(function(id,i){
     var g = function(s){ return document.getElementById(id+s); };
@@ -3379,6 +3806,7 @@ window.renderAllPrices = function renderAllPrices(){
   document.querySelectorAll('.pkg-cur').forEach(function(el){ el.textContent = sym; });
   document.querySelectorAll('.save-sym').forEach(function(el){ el.textContent = sym; });
 }
+window.renderAllPrices = renderAllPrices;
 
 // Global toggle (top buttons) — flips all 3 cards at once, staggered
 window.toggleView = function(mode){
@@ -3428,7 +3856,7 @@ function initPkgViews(){
   document.querySelectorAll('.pkg-view').forEach(function(el){
     el.style.display = el.classList.contains('active') ? 'flex' : 'none';
   });
-  renderAllPrices();
+  if(typeof renderAllPrices === 'function') renderAllPrices();
 }
 if(document.readyState === 'loading'){
   document.addEventListener('DOMContentLoaded', initPkgViews);
